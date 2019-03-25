@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { SubirREDComponent } from './subir-red/subir-red.component';
+import { RedsPorPersonaComponent } from './reds-por-persona/reds-por-persona.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SubirREDComponent
+    SubirREDComponent,
+    RedsPorPersonaComponent
   ],
   imports: [
     BrowserModule
