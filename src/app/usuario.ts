@@ -6,5 +6,4 @@ export class Usuario {
   apellidos: string;
   tipoIdentificacion: string;
   numeroIdentificacion: string;
-  roles: RolAsignado[];
 }

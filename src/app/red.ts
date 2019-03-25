@@ -1,5 +1,3 @@
-import { RolAsignado } from './RolAsignado';
-
 export class Red {
   codigo: string;
   nombre: string;
@@ -13,6 +11,4 @@ export class Red {
   solicitante: string;
   horasTrabajadas: number;
   horasEstimadas: number;
-  rolesAsignados: RolAsignado[] | undefined;
-  
 }
