@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { AddRedComponent } from './add-red/add-red.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoadAssignationInfoComponent } from './load-assignation-info/load-assignation-info.component';
+import { RedAsignadosComponent } from './red/asignaciones/red-asignados.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -12,7 +13,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     AddRedComponent,
-    LoadAssignationInfoComponent
+    LoadAssignationInfoComponent,
+    RedAsignadosComponent
   ],
   imports: [
     AppRoutingModule,
