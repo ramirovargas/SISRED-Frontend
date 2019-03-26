@@ -20,5 +20,9 @@ export class RedAsignadosComponent implements OnInit {
      this.infoAsignacion = this.redAsignadosService.getREDs();
   }
 
+  getInfoAsignaciones() {
+    return this.infoAsignacion;
+  }
+
 }
 

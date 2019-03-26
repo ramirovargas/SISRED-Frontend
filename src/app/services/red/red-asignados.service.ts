@@ -26,15 +26,17 @@ export class RedAsignadosService {
   getREDs(): Observable<RedAsignado> {
     this.reds = [];
     let redAsignado = new RedAsignado();
-    this.httpClient.get(this.API_URL).subscribe((data: Array<any>) => {
-      redAsignado.nombreUsuario = data[0].nombreUsuario;
-      data.forEach(dataItem => {
+    this.httpClient.get(this.API_URL, httpOptions).subscribe((data: any) => {
+      console.log(data);
+      redAsignado.nombreUsuario = data.nombreUsuario;
+      data.redsAsignados.forEach(dataItem => {
         const red = new RED();
-        red.id = dataItem.id;
-        red.nombre = dataItem.nombre;
+        red.id = dataItem.idRed;
+        red.nombre = dataItem.nombreRed;
         red.rol = dataItem.rol;
         this.reds.push(red);
       });
+      redAsignado.redsAsignados = this.reds;
     });
     console.log(redAsignado);
     return of(redAsignado);
