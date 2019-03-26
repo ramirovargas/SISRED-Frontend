@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { RedAsignadosService } from '../../services/red/red-asignados.service';
+import {RED, RedAsignado} from "../../services/red/RedAsignado";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-red-asignados',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RedAsignadosComponent implements OnInit {
 
-  constructor() { }
+  private infoAsignacion: Observable<RedAsignado> = null;
+
+  constructor(private redAsignadosService: RedAsignadosService) {
+
+  }
 
   ngOnInit() {
+     this.infoAsignacion = this.redAsignadosService.getREDs();
   }
 
 }
