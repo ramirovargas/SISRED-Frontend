@@ -1,3 +1,6 @@
+import { ProyectoConectate } from './proyectoConectate';
+import { HistorialEstados } from './historialEstados';
+
 export class Red {
   codigo: string;
   nombre: string;
@@ -11,4 +14,6 @@ export class Red {
   solicitante: string;
   horasTrabajadas: number;
   horasEstimadas: number;
+  proyectoConectate: ProyectoConectate| undefined;
+  historialEstados: HistorialEstados[] | undefined;
 }

@@ -1,9 +1,10 @@
 import { Usuario } from './usuario';
 import { RolAsignado } from './rolAsignado';
+import { REDS } from './mock-reds';
 
 export const ASIGNACIONES : RolAsignado[] = [
   {
-    fechaInicio: '10-02-2019',
+    fechaInicio: '2019-02-10',
     fechaFin: '',
     rol: 'Graficador',
     usuario: {
@@ -13,23 +14,10 @@ export const ASIGNACIONES : RolAsignado[] = [
       tipoIdentificacion: '',
       numeroIdentificacion: '1',
     },
-    red: {
-      codigo: 'RED001',
-      nombre: 'infografía para el curso Educación, Juventud y Drogas',
-      nombreCorto: 'infografía drogas',
-      descripcion: 'esta es una descripción breve',
-      fechaInicio: '10-02-2019',
-      fechaCierre: '01-04-2019',
-      fechaCreacion: '01-02-2016',
-      porcentajeAvance: 80,
-      tipo: 'infografía',
-      solicitante: 'la profe',
-      horasTrabajadas: 50,
-      horasEstimadas: 60,
-    },
+    red: REDS[0],
   },
   {
-    fechaInicio: '10-02-2019',
+    fechaInicio: '2019-02-25',
     fechaFin: '',
     rol: 'Diseñador',
     usuario: {
@@ -39,23 +27,10 @@ export const ASIGNACIONES : RolAsignado[] = [
       tipoIdentificacion: '',
       numeroIdentificacion: '1',
     },
-    red: {
-      codigo: 'RED002',
-      nombre: 'video para el curso Educación, Juventud y Drogas',
-      nombreCorto: 'video drogas',
-      descripcion: 'esta es una descripción breve',
-      fechaInicio: '25-01-2019',
-      fechaCierre: '05-04-2019',
-      fechaCreacion: '01-02-2016',
-      porcentajeAvance: 90,
-      tipo: 'video',
-      solicitante: 'la profe',
-      horasTrabajadas: 110,
-      horasEstimadas: 130,
-    },
+    red: REDS[1],
   },
   {
-    fechaInicio: '10-02-2019',
+    fechaInicio: '2019-02-10',
     fechaFin: '',
     rol: 'Diseñador',
     usuario: {
@@ -65,23 +40,10 @@ export const ASIGNACIONES : RolAsignado[] = [
       tipoIdentificacion: '',
       numeroIdentificacion: '2',
     },
-    red: {
-      codigo: 'RED001',
-      nombre: 'infografía para el curso Educación, Juventud y Drogas',
-      nombreCorto: 'infografía drogas',
-      descripcion: 'esta es una descripción breve',
-      fechaInicio: '10-02-2019',
-      fechaCierre: '01-04-2019',
-      fechaCreacion: '01-02-2016',
-      porcentajeAvance: 80,
-      tipo: 'infografía',
-      solicitante: 'la profe',
-      horasTrabajadas: 50,
-      horasEstimadas: 60,
-    },
+    red: REDS[0],
   },
   {
-    fechaInicio: '10-02-2019',
+    fechaInicio: '2019-02-25',
     fechaFin: '',
     rol: 'Diseñador',
     usuario: {
@@ -91,19 +53,6 @@ export const ASIGNACIONES : RolAsignado[] = [
       tipoIdentificacion: '',
       numeroIdentificacion: '2',
     },
-    red: {
-      codigo: 'RED003',
-      nombre: 'animación para el curso Educación, Juventud y Drogas',
-      nombreCorto: 'animación drogas',
-      descripcion: 'esta es una descripción breve',
-      fechaInicio: '25-01-2019',
-      fechaCierre: '05-04-2019',
-      fechaCreacion: '01-02-2016',
-      porcentajeAvance: 50,
-      tipo: 'animación',
-      solicitante: 'la profe',
-      horasTrabajadas: 110,
-      horasEstimadas: 130,
-    },
+    red: REDS[2],
   },
 ]

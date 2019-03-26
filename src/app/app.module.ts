@@ -4,12 +4,14 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { SubirREDComponent } from './subir-red/subir-red.component';
 import { RedsPorPersonaComponent } from './reds-por-persona/reds-por-persona.component';
+import { AvanceProyectoConectateComponent } from './avance-proyecto-conectate/avance-proyecto-conectate.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SubirREDComponent,
-    RedsPorPersonaComponent
+    RedsPorPersonaComponent,
+    AvanceProyectoConectateComponent
   ],
   imports: [
     BrowserModule
