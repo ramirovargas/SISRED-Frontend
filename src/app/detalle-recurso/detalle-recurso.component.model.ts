@@ -1,8 +1,7 @@
 export class ResourceDetailModel {
   type: string;
   author: string;
-  creationDate: Date;
-  modificationDate: Date;
+  updateDate: Date;
   responsable: string;
   description: string;
   metadata: string[];

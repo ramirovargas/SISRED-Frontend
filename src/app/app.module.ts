@@ -4,6 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { DetalleRecursoComponent } from './detalle-recurso/detalle-recurso.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ResourceDetailsRestClientService } from './services/resource-details-rest-client.service';
+
 
 @NgModule({
   declarations: [
@@ -12,9 +15,10 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ResourceDetailsRestClientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
