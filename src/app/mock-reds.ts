@@ -19,11 +19,11 @@ export const REDS : Red[] = [
     historialEstados: [
       {
         fechaCambio: '2019-02-10',
-        nombreEstado: 'preproducción',
+        nombreEstado: 'Preproducción',
       },
       {
         fechaCambio: '2019-02-20',
-        nombreEstado: 'producción',
+        nombreEstado: 'Producción',
       },
     ],
   },
@@ -44,7 +44,7 @@ export const REDS : Red[] = [
     historialEstados: [
       {
         fechaCambio: '2019-02-25',
-        nombreEstado: 'preproducción',
+        nombreEstado: 'Preproducción',
       },
     ],
   },
@@ -65,15 +65,15 @@ export const REDS : Red[] = [
     historialEstados: [
       {
         fechaCambio: '2019-02-25',
-        nombreEstado: 'preproducción',
+        nombreEstado: 'Preproducción',
       },
       {
         fechaCambio: '2019-02-28',
-        nombreEstado: 'producción',
+        nombreEstado: 'Producción',
       },
       {
         fechaCambio: '2019-03-24',
-        nombreEstado: 'postproducción',
+        nombreEstado: 'Postproducción',
       },
     ],
   },

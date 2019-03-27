@@ -1,3 +1,31 @@
-<p>
-  avance-proyecto-conectate works!
-</p>
+<div *ngIf="proyecto">
+  <h2 style="text-align:center">Avance de Proyecto Conecta-TE - {{proyecto.nombreCorto}}</h2>
+  <div class="info-proyecto-c">
+    <span><b>Nombre Proyecto Conecta-TE:</b> {{proyecto.nombre}}</span>
+    <span><b>Responsable:</b> el responsable</span>
+    <span><b>Cantidad de REDs realizados:</b> {{reds.length}}</span>
+  </div>
+
+  <h3>Avance Proyecto</h3>
+  <span>10%</span>
+
+  <h3>Horas Estimadas</h3>
+  <span>{{horasEstimadas}}</span>
+
+  <h3>Horas Trabajadas</h3>
+  <span>{{horasTrabajadas}}</span>
+
+  <h3>REDs por Fase</h3>
+  <p *ngFor="let n of estadosRed; let i = index"><b>{{estados[i]}}:</b> {{n}}</p>
+  <h3>Personas en el proyecto</h3>
+  <table>
+    <tr>
+      <th>Rol</th>
+      <th *ngFor="let p of personas; let i = index">{{i}}</th>
+    </tr>
+    <tr *ngFor="let rol of roles; let i = index">
+      <td>{{rol}}</td>
+      <td *ngFor="let p of personas">{{p.roles[i]}}</td>
+    </tr>
+  </table>
+</div>
