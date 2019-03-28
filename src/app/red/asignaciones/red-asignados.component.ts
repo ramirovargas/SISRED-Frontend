@@ -1,7 +1,7 @@
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { RedAsignadosService } from '../../services/red/red-asignados.service';
-import {RED, RedAsignado} from "../../services/red/RedAsignado";
-import {Observable} from "rxjs";
+import { RedAsignado } from "../../services/red/RedAsignado";
 
 @Component({
   selector: 'app-red-asignados',
@@ -10,18 +10,21 @@ import {Observable} from "rxjs";
 })
 export class RedAsignadosComponent implements OnInit {
 
-  private infoAsignacion: Observable<RedAsignado> = null;
+  redsAsignados: RedAsignado[] = null;
 
-  constructor(private redAsignadosService: RedAsignadosService) {
+  private ID_USUARIO: number = 2; //TODO Temporal.
+
+  constructor(private activatedRoute: ActivatedRoute,
+              private redAsignadosService: RedAsignadosService) {
 
   }
 
   ngOnInit() {
-     this.infoAsignacion = this.redAsignadosService.getREDs();
+    this.getREDsAsignados();
   }
 
-  getInfoAsignaciones() {
-    return this.infoAsignacion;
+  getREDsAsignados(): void {
+    this.redAsignadosService.getREDs(this.ID_USUARIO).subscribe(redsAsignado => this.redsAsignados = redsAsignado);
   }
 
 }

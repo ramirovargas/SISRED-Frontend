@@ -15,6 +15,7 @@ export class ProyectosRedService {
     private httpClient: HttpClient
   ) { }
 
+
   getProyectosRed(idRed: number): Observable<ProyectoRed[]> {
     let params = new HttpParams();
     params = params.append('RED', idRed.toString());
@@ -23,10 +24,12 @@ export class ProyectosRedService {
       data.forEach(dataItem => {
         const pro = new ProyectoRed();
         pro.id = dataItem.id;
+        pro.name = dataItem.name;
         pro.autor = dataItem.autor;
         pro.typeFile = dataItem.typeFile;
         pro.createdDate = dataItem.createdDate;
         pro.description = dataItem.description;
+
         this.proyectosRed.push(pro);
       });
     });

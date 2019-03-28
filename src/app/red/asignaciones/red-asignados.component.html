@@ -15,7 +15,7 @@
   <!-- Main content -->
   <section class="content">
     <div class="box-header with-border">
-      <h3 class="box-title">Bienvenido <b>Santiago</b>. Has sido asignado a los siguientes REDs</h3>
+      <h3 class="box-title">Usted ha sido asignado a los siguientes REDs:</h3>
     </div>
     <table class="table">
     <thead>
@@ -26,20 +26,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">Red 1</th>
-        <td>Realizador</td>
+      <tr *ngFor="let red of redsAsignados">
+        <th scope="row">{{red.nombre}}</th>
+        <td>{{red.rol}}</td>
         <td><button type="button" class="btn btn-primary">Vet Detalle</button></td>
-      </tr>
-      <tr>
-        <th scope="row">Red 2</th>
-        <td>Diseñador</td>
-        <td><button type="button" class="btn btn-primary">Ver Detalle</button></td>
-      </tr>
-      <tr>
-        <th scope="row">Red 3</th>
-        <td>Realizador</td>
-        <td><button type="button" class="btn btn-primary">Ver Detalle</button></td>
       </tr>
     </tbody>
   </table>

@@ -4,4 +4,5 @@ export class ProyectoRed {
   typeFile: string;
   createdDate: string;
   description: string;
+  name: string;
 }
