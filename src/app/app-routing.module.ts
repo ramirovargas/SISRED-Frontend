@@ -7,9 +7,10 @@ import {DetalleREDComponent} from './detalle-red/detalle-red.component';
 import {ProyectosRedComponent} from './proyectos-red/proyectos-red.component';
 
 const routes: Routes = [
+  {path: '', component: RedAsignadosComponent},
   {path: 'agregar', component: AddRedComponent},
-  {path: 'red/asignados/', component: RedAsignadosComponent},
-  {path: 'red/detalle', component: DetalleREDComponent},
+  {path: 'red/asignados', component: RedAsignadosComponent},
+  {path: 'red/:idRed/detalle', component: DetalleREDComponent},
   {path: 'red/:idRed/proyectos', component: ProyectosRedComponent}
 ];
 

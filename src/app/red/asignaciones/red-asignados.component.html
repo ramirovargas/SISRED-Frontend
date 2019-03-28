@@ -29,7 +29,10 @@
       <tr *ngFor="let red of redsAsignados">
         <th scope="row">{{red.nombre}}</th>
         <td>{{red.rol}}</td>
-        <td><button type="button" class="btn btn-primary">Vet Detalle</button></td>
+        <td>
+          <button type="button" class="btn btn-primary" routerLink="/red/{{red.id}}/detalle">Ver Detalle</button>&nbsp;&nbsp;
+          <button type="button" class="btn btn-warning" routerLink="/red/{{red.id}}/proyectos">Ver Proyectos</button>
+        </td>
       </tr>
     </tbody>
   </table>

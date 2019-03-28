@@ -9,6 +9,7 @@ import {RecursoAsociado} from '../services/recursos-asociados/recurso-asociado.m
 import {Metadata} from '../services/metadata/metadata.model';
 import {MetadataService} from '../services/metadata/metadata.service';
 import {DetalleRedService} from '../services/detalle-red/detalle-red.service';
+import {ActivatedRoute} from "@angular/router";
 
 
 
@@ -23,9 +24,10 @@ export class DetalleREDComponent implements OnInit {
   recursos: RecursoAsociado[];
   proyectos: ProyectoRed[];
   metadata: Metadata[];
+  idRed: number;
 
-
-  constructor(private detalleRedService: DetalleRedService,
+  constructor(private route: ActivatedRoute,
+              private detalleRedService: DetalleRedService,
               private personaAsignadaService: PersonasAsignadasService,
               private recursosAsociadosService: RecursosAsociadosService,
               private proyectosRedService: ProyectosRedService,
@@ -33,6 +35,7 @@ export class DetalleREDComponent implements OnInit {
 
 
   ngOnInit() {
+    this.idRed = this.route.snapshot.params['idRed'];
     this.getDetalleRed();
     this.getPersonasAsignadas();
     this.getRecursosAsociados();
@@ -42,27 +45,27 @@ export class DetalleREDComponent implements OnInit {
   }
 
   getDetalleRed(): void {
-    this.detalleRedService.getDetalleRed(1)
+    this.detalleRedService.getDetalleRed(this.idRed)
         .subscribe(detalle => this.detalle = detalle);
   }
 
   getPersonasAsignadas(): void{
-    this.personaAsignadaService.getPersonasAsignadas(1)
+    this.personaAsignadaService.getPersonasAsignadas(this.idRed)
       .subscribe(personas => this.personas = personas)
   }
 
   getRecursosAsociados(): void{
-    this.recursosAsociadosService.getRecursosAsociados(1)
+    this.recursosAsociadosService.getRecursosAsociados(this.idRed)
       .subscribe(recursos => this.recursos = recursos)
   }
 
   getProyectosRed(): void{
-    this.proyectosRedService.getProyectosRed(1)
+    this.proyectosRedService.getProyectosRed(this.idRed)
       .subscribe(proyectos => this.proyectos = proyectos)
   }
 
   getMetadata(): void{
-    this.metadataService.getMetadata(1)
+    this.metadataService.getMetadata(this.idRed)
       .subscribe(metadata => this.metadata = metadata)
   }
 

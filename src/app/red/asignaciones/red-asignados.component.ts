@@ -15,6 +15,7 @@ export class RedAsignadosComponent implements OnInit {
   private ID_USUARIO: number = 2; //TODO Temporal.
 
   constructor(private activatedRoute: ActivatedRoute,
+              private router: Router,
               private redAsignadosService: RedAsignadosService) {
 
   }
