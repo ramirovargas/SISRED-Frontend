@@ -25,8 +25,9 @@ export class AddRedComponent implements OnInit {
     this.addRedForm = new FormGroup({
       name: new FormControl(),
       type: new FormControl(),
-      folder: new FormControl(),
-      redId: new FormControl()
+      author: new FormControl(),
+      description: new FormControl(),
+      folder: new FormControl()
    });
   }
 
@@ -36,7 +37,7 @@ export class AddRedComponent implements OnInit {
         this.addRedForm.get('name').value,
         this.addRedForm.get('type').value,
         this.addRedForm.get('folder').value,
-        this.addRedForm.get('redId').value);
+        "1");
   }
 
 
