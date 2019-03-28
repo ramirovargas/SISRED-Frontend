@@ -18,14 +18,13 @@ export class PersonasAsignadasService {
 
   getPersonasAsignadas(idRed: number): Observable<PersonaAsignada[]> {
     let params = new HttpParams();
-    params = params.append('red_id', idRed.toString());
+    params = params.append('RED', idRed.toString());
     this.personasAsignadas = [];
     this.httpClient.get(this.API_URL, {params} ).subscribe((data: Array<any>) => {
       data.forEach(dataItem => {
         const per = new PersonaAsignada();
-        per.id = dataItem.pk;
-        per.name = dataItem.fields.name;
-        per.rol = dataItem.fields.rol;
+        per.name = dataItem.name;
+        per.rol = dataItem.rol;
         this.personasAsignadas.push(per);
       });
     });

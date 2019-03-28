@@ -17,16 +17,16 @@ export class ProyectosRedService {
 
   getProyectosRed(idRed: number): Observable<ProyectoRed[]> {
     let params = new HttpParams();
-    params = params.append('red_id', idRed.toString());
+    params = params.append('RED', idRed.toString());
     this.proyectosRed = [];
     this.httpClient.get(this.API_URL, {params} ).subscribe((data: Array<any>) => {
       data.forEach(dataItem => {
         const pro = new ProyectoRed();
-        pro.id = dataItem.pk;
-        pro.autor = dataItem.fields.autor;
-        pro.typeFile = dataItem.fields.typeFile;
-        pro.createdDate = dataItem.fields.createdDate;
-        pro.description = dataItem.fields.description;
+        pro.id = dataItem.id;
+        pro.autor = dataItem.autor;
+        pro.typeFile = dataItem.typeFile;
+        pro.createdDate = dataItem.createdDate;
+        pro.description = dataItem.description;
         this.proyectosRed.push(pro);
       });
     });

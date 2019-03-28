@@ -17,14 +17,14 @@ export class RecursosAsociadosService {
 
   getRecursosAsociados(idRed: number): Observable<RecursoAsociado[]> {
     let params = new HttpParams();
-    params = params.append('red_id', idRed.toString());
+    params = params.append('RED', idRed.toString());
     this.recursosAsociados = [];
     this.httpClient.get(this.API_URL, {params} ).subscribe((data: Array<any>) => {
       data.forEach(dataItem => {
         const recurso = new RecursoAsociado();
-        recurso.id = dataItem.pk;
-        recurso.name = dataItem.fields.name;
-        recurso.typeFormat = dataItem.fields.typeFormat;
+        recurso.id = dataItem.id;
+        recurso.name = dataItem.name;
+        recurso.typeFormat = dataItem.typeFormat;
         this.recursosAsociados.push(recurso);
       });
     });

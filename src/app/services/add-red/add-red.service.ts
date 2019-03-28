@@ -22,7 +22,7 @@ export class AddRedService {
   ) { }
 
   addRed(name: String, type: String, folder: String, redId: String): Observable<any> {
-    var obj = { nombre: name, tipo: type, carpeta: folder, RED: redId}
+    var obj = { nombre: name, tipo: type, carpeta: folder, RED: redId};
     this.httpClient.post(this.API_URL, JSON.stringify(obj), httpOptions).subscribe((data: Response) => {
       if (data[0].fields.nombre == name) {
         

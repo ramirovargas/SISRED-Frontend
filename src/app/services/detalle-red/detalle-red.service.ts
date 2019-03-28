@@ -18,12 +18,13 @@ export class DetalleRedService {
 
   getDetalleRed(idRed: number): Observable<DetalleRed> {
     let params = new HttpParams();
-    params = params.append('red_id', idRed.toString());
-    this.httpClient.get(this.API_URL, {params}).subscribe((data: Response) => {
-      this.detalleRed.nameRed = data[0].fields.nameRed;
-      this.detalleRed.nameProject = data[0].fields.nameProject;
-      this.detalleRed.url = data[0].fields.url;
-      this.detalleRed.status = data[0].fields.status;
+    params = params.append('RED', idRed.toString());
+    this.httpClient.get(this.API_URL, {params}).subscribe((data: any) => {
+      console.log(data);
+      this.detalleRed.nameRed = data.nombreRed;
+      this.detalleRed.nameProject = data.nombreProject;
+      this.detalleRed.url = data.url;
+      this.detalleRed.status = data.status;
     });
     return of(this.detalleRed);
   }
