@@ -1,6 +1,7 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { DatePipe } from '@angular/common';
-import {FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {Component, ElementRef, ViewChild} from '@angular/core';
+import {DatePipe} from '@angular/common';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {SubirRedService} from './subir-red.service';
 
 @Component({
   selector: 'app-subir-red',
@@ -8,12 +9,14 @@ import {FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./subir-red.component.css']
 })
 export class SubirREDComponent {
-
+  vLstProyectosRED: ProyectoRED[];
+  vLstRecurso: Recurso[];
+  vLstRED: RED[];
   form: FormGroup;
 
   @ViewChild('fileInput') fileInput: ElementRef;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, public subirRedService: SubirRedService) {
     this.createForm();
   }
 
@@ -41,12 +44,28 @@ export class SubirREDComponent {
   onSubmit() {
     const formModel = this.prepareSave();
     // http post API URL goes here instead of the timer...
-    //this.http.post('apiUrl', formModel)
+    // this.http.post('apiUrl', formModel)
     setTimeout(() => {
       console.log(formModel.get('comments'));
       console.log(formModel.get('REDFile'));
       alert('done!');
     }, 1000);
+  }
+
+  getProyectosRED() {
+    this.subirRedService.getProyectosRED().subscribe(response => this.vLstProyectosRED = response);
+  }
+
+  getRecurso() {
+    this.subirRedService.getRecurso().subscribe(response => this.vLstRecurso = response);
+  }
+
+  getRED() {
+    this.subirRedService.getRED().subscribe(response => this.vLstRED = response);
+  }
+
+  addRED(pObject: RED) {
+    this.subirRedService.addRED(pObject);
   }
 }
 
