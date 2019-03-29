@@ -11,8 +11,7 @@ import { RedAsignado } from "../../services/red/RedAsignado";
 export class RedAsignadosComponent implements OnInit {
 
   redsAsignados: RedAsignado[] = null;
-
-  private ID_USUARIO: number = 2; //TODO Temporal.
+  idUsuario: number;
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
@@ -21,11 +20,12 @@ export class RedAsignadosComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.idUsuario = this.activatedRoute.snapshot.params.idUsuario; //TODO Temporal.
     this.getREDsAsignados();
   }
 
   getREDsAsignados(): void {
-    this.redAsignadosService.getREDs(this.ID_USUARIO).subscribe(redsAsignado => this.redsAsignados = redsAsignado);
+    this.redAsignadosService.getREDs(this.idUsuario).subscribe(redsAsignado => this.redsAsignados = redsAsignado);
   }
 
 }
