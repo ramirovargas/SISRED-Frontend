@@ -9,7 +9,7 @@ import {RecursoAsociado} from '../services/recursos-asociados/recurso-asociado.m
 import {Metadata} from '../services/metadata/metadata.model';
 import {MetadataService} from '../services/metadata/metadata.service';
 import {DetalleRedService} from '../services/detalle-red/detalle-red.service';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute} from '@angular/router';
 
 
 
@@ -35,7 +35,7 @@ export class DetalleREDComponent implements OnInit {
 
 
   ngOnInit() {
-    this.idRed = this.route.snapshot.params['idRed'];
+    this.idRed = this.route.snapshot.params.idRed;
     this.getDetalleRed();
     this.getPersonasAsignadas();
     this.getRecursosAsociados();
@@ -49,24 +49,24 @@ export class DetalleREDComponent implements OnInit {
         .subscribe(detalle => this.detalle = detalle);
   }
 
-  getPersonasAsignadas(): void{
+  getPersonasAsignadas(): void {
     this.personaAsignadaService.getPersonasAsignadas(this.idRed)
-      .subscribe(personas => this.personas = personas)
+      .subscribe(personas => this.personas = personas);
   }
 
-  getRecursosAsociados(): void{
+  getRecursosAsociados(): void {
     this.recursosAsociadosService.getRecursosAsociados(this.idRed)
-      .subscribe(recursos => this.recursos = recursos)
+      .subscribe(recursos => this.recursos = recursos);
   }
 
-  getProyectosRed(): void{
+  getProyectosRed(): void {
     this.proyectosRedService.getProyectosRed(this.idRed)
-      .subscribe(proyectos => this.proyectos = proyectos)
+      .subscribe(proyectos => this.proyectos = proyectos);
   }
 
-  getMetadata(): void{
+  getMetadata(): void {
     this.metadataService.getMetadata(this.idRed)
-      .subscribe(metadata => this.metadata = metadata)
+      .subscribe(metadata => this.metadata = metadata);
   }
 
 }

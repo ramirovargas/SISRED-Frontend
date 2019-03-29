@@ -41,7 +41,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table class="table table-hover table-bordered">
+              <table class="table table-hover table-bordered table-margin">
                 <thead>
                   <tr>
                     <td colspan="3">
@@ -65,7 +65,7 @@
                 </tbody>
               </table>
 
-              <table class="table table-hover table-bordered">
+              <table class="table table-hover table-bordered table-margin">
                 <thead>
                   <tr>
                     <td colspan="2">
@@ -85,7 +85,7 @@
                 </tbody>
               </table>
 
-              <table class="table table-hover table-bordered">
+              <table class="table table-hover table-bordered table-margin">
                 <thead>
                   <tr>
                     <td colspan="4">
@@ -114,9 +114,9 @@
                 <h3 class="text-justify">Metadata del RED</h3>
                 <div class="card card-body">
                   <div class="row">
-                    <div class="col col-md-12 p-2 mx-2">
-                      <span class="p-2 mx-2" *ngFor="let meta of metadata">
-                        <span class="badge badge-pill badge-info text-sm-center text-wrap">{{meta.tag}}</span>
+                    <div class="col col-md-12">
+                      <span class="metadata-padding" *ngFor="let meta of metadata">
+                        <span class="badge badge-pill label-info text-sm-center text-wrap">{{meta.tag}}</span>
                       </span>
                     </div>
                   </div>
@@ -129,7 +129,7 @@
           <!-- /.box -->
           <div class="box-footer">
             <button type="button" class="btn btn-default">Volver</button>
-            <button type="submit" class="btn btn-info">Ver REDs asociados</button>
+            <button type="button" class="btn btn-info">Ver REDs asociados</button>
           </div>
           <!-- /.box-footer -->
         </div>
