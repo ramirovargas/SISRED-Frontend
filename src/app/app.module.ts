@@ -4,8 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { DetalleRecursoComponent } from './detalle-recurso/detalle-recurso.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ResourceDetailsRestClientService } from './services/resource-details-rest-client.service';
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({
@@ -16,7 +17,10 @@ import { ResourceDetailsRestClientService } from './services/resource-details-re
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [ResourceDetailsRestClientService],
   bootstrap: [AppComponent]

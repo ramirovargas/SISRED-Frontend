@@ -9,7 +9,7 @@
       <div class="col-sm">
         <div class="text-center">
           <img
-            src="https://test-ipv6.com/images/hires_ok.png"
+            [src]="resourceDetailsoModel?.thumbnail"
             width="100"
             height="100"
           />
@@ -19,7 +19,7 @@
     <div class="row">
       <div class="col-sm-6 border">Tipo</div>
       <div *ngIf="!showInputText" class="col-sm-6 border">
-        {{ resourceDetailsoModel.type }}
+        {{ resourceDetailsoModel?.type }}
       </div>
       <div *ngIf="showInputText" class="col-sm-6 border">
         <input
@@ -35,7 +35,7 @@
     <div class="row">
       <div class="col-sm-6 border">Autor</div>
       <div *ngIf="!showInputText" class="col-sm-6 border">
-        {{ resourceDetailsoModel.author }}
+        {{ resourceDetailsoModel?.author }}
       </div>
       <div *ngIf="showInputText" class="col-sm-6 border">
         <input
@@ -51,7 +51,7 @@
     <div class="row">
       <div class="col-sm-6 border">Fecha creacion</div>
       <div *ngIf="!showInputText" class="col-sm-6 border">
-        {{ resourceDetailsoModel.updateDate | date:'dd-MM-yyyy'}}
+        {{ resourceDetailsoModel?.updateDate | date:'dd-MM-yyyy'}}
       </div>
       <div *ngIf="showInputText" class="col-sm-6 border">
         <input
@@ -67,7 +67,7 @@
     <div class="row">
       <div class="col-sm-6 border">Descripcion</div>
       <div *ngIf="!showInputText" class="col-sm-6 border">
-        {{ resourceDetailsoModel.description }}
+        {{ resourceDetailsoModel?.description }}
       </div>
       <div *ngIf="showInputText" class="col-sm-6 border">
         <textarea
@@ -89,7 +89,7 @@
         <div
           class="btn-group btn-space"
           role="group"
-          *ngFor="let metadata of resourceDetailsoModel.metadata"
+          *ngFor="let metadata of resourceDetailsoModel?.metadata"
         >
           <button type="button" class="btn btn-outline-primary">
             {{ metadata }}

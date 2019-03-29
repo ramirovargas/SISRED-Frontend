@@ -3,6 +3,7 @@ import { ResourceDetailModel } from "./detalle-recurso.component.model";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { ResourceDetailsRestClientService } from "../services/resource-details-rest-client.service";
+import { UrlConstant } from "../constants/url-constant";
 
 @Component({
   selector: "app-detalle-recurso",
@@ -19,19 +20,12 @@ export class DetalleRecursoComponent implements OnInit {
     });
   }
 
+  urlConstant: UrlConstant;
   detailResourceForm: FormGroup;
 
   showInputText = false;
 
-  resourceDetailsoModel: ResourceDetailModel = {
-    type: "png",
-    author: "Cristian Sepulveda",
-    updateDate: new Date(),
-    responsable: "Adriana",
-    description:
-      "Esto es un mock de ejemplo donde puede tener una descripcion muy larga de detalle del recurso",
-    metadata: ["Universidad", "Videos", "Util"]
-  };
+  resourceDetailsoModel: ResourceDetailModel;
 
   ngOnInit() {
     this.loadForm();
@@ -54,16 +48,23 @@ export class DetalleRecursoComponent implements OnInit {
 
   public getResourceDetail(id: number): void {
     this.resourceDetailsRestClientService
-      .getAllAudiosGallery()
+      .getResourceDetailsById(id)
       .subscribe(response => {
-        console.log(response);
+        this.resourceDetailsoModel = {
+          type: response.tipo,
+          author: response.autor,
+          updateDate: response.fecha_ultima_modificacion,
+          responsable: response.usuario_ultima_modificacion,
+          description: response.descripcion,
+          metadata: response.metadata
+        };
       });
   }
 
   public update() {
     this.showInputText = false;
     this.resourceDetailsRestClientService
-      .updateResourceDetails({})
+      .updateResourceDetail({})
       .subscribe(response => {
         console.log("cfsm");
         console.log(response);
