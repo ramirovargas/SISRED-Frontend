@@ -3,7 +3,7 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Proyectos del RED - <small>< Aquí nombre del RED ></small>
+      Proyectos del RED - <small>{{detalleRed.nameRed}}</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -34,8 +34,8 @@
       <!--/.col (left) -->
     </div>
     <div class="box-footer">
-        <button type="button" class="btn btn-default">Volver</button>&nbsp;&nbsp;
-        <button type="button" class="btn btn-warning" routerLink="/agregar">Agregar Proyecto al RED</button>
+        <button type="button" class="btn btn-default" routerLink="/red/asignados">Volver</button>&nbsp;&nbsp;
+        <button type="button" class="btn btn-warning" routerLink="/red/{{idRed}}/proyecto/agregar">Agregar Proyecto al RED</button>
     </div>
     <!-- /.row -->
   </section>
