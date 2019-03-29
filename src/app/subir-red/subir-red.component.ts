@@ -41,6 +41,7 @@ export class SubirREDComponent {
   onSubmit() {
     const formModel = this.prepareSave();
     // http post API URL goes here instead of the timer...
+    //this.http.post('apiUrl', formModel)
     setTimeout(() => {
       console.log(formModel.get('comments'));
       console.log(formModel.get('REDFile'));
