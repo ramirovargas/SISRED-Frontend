@@ -1,0 +1,1 @@
+export const ROLES: string[] = ['Graficador', 'Diseñador', 'Desarrollador', 'Editor', 'Pensador']
