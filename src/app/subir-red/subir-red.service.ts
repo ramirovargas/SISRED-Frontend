@@ -71,10 +71,12 @@ export class SubirRedService {
     return of(vLstObjetos);
   }
 
-  addRED(pObject: RED): Observable<any> {
-    const METHOD_URL = '/{Controller}/{View}/';
-    const vJson = JSON.stringify(pObject);
-    const vParams = 'json=' + vJson;
-    return this.httpClient.post(this.API_URL + METHOD_URL, vParams, {headers: this.HEADERS});
+  addRED(pObject: FormData) {
+    const METHOD_URL = 'url/to/your/api';
+    return this.httpClient.post(this.API_URL + METHOD_URL, pObject)
+      .subscribe(res => {
+        console.log(res);
+        alert('SUCCESS !!');
+      });
   }
 }
