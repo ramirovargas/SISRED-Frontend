@@ -16,7 +16,11 @@
   <span>{{horasTrabajadas}}</span>
 
   <h3>REDs por Fase</h3>
-  <p *ngFor="let n of estadosRed; let i = index"><b>{{estados[i]}}:</b> {{n}}</p>
+  <p *ngFor="let n of fasesReds; let i = index"><b>{{fases[i]}}:</b> {{n}}</p>
+  
+  <h3>REDs por Estado</h3>
+  <p *ngFor="let n of estadosReds; let i = index"><b>{{estados[i]}}:</b> {{n}}</p>
+
 
   <h3>Porcentaje de REDs completados</h3>
 

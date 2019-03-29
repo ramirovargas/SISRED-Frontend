@@ -1,5 +1,6 @@
 import { Red } from './red';
 import { PROYECTO_CONECTATE } from './mock-proyecto-conectate';
+import { FASES } from './fases';
 
 export const REDS : Red[] = [
   {
@@ -10,7 +11,7 @@ export const REDS : Red[] = [
     fechaInicio: '2019-02-10',
     fechaCierre: '2019-04-01',
     fechaCreacion: '2016-02-01',
-    porcentajeAvance: 80,
+    porcentajeAvance: 100,
     tipo: 'infografía',
     solicitante: 'la profe',
     horasTrabajadas: 50,
@@ -19,13 +20,14 @@ export const REDS : Red[] = [
     historialEstados: [
       {
         fechaCambio: '2019-02-10',
-        nombreEstado: 'Preproducción',
+        nombreEstado: 'En proceso',
       },
       {
         fechaCambio: '2019-02-20',
-        nombreEstado: 'Producción',
+        nombreEstado: 'Terminado',
       },
     ],
+    fase: FASES[1]
   },
   {
     codigo: 'RED002',
@@ -44,9 +46,10 @@ export const REDS : Red[] = [
     historialEstados: [
       {
         fechaCambio: '2019-02-25',
-        nombreEstado: 'Preproducción',
+        nombreEstado: 'En proceso',
       },
     ],
+    fase: FASES[0]
   },
   {
     codigo: 'RED003',
@@ -65,16 +68,13 @@ export const REDS : Red[] = [
     historialEstados: [
       {
         fechaCambio: '2019-02-25',
-        nombreEstado: 'Preproducción',
+        nombreEstado: 'En proceso',
       },
       {
         fechaCambio: '2019-02-28',
-        nombreEstado: 'Producción',
-      },
-      {
-        fechaCambio: '2019-03-24',
-        nombreEstado: 'Postproducción',
+        nombreEstado: 'Cancelado',
       },
     ],
+    fase: FASES[2]
   },
 ]

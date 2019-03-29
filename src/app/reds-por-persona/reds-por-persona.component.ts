@@ -11,7 +11,7 @@ import { AsignacionService } from '../asignacion.service';
 })
 export class RedsPorPersonaComponent implements OnInit {
 
-  asignaciones: RolAsignado[];
+  asignaciones: RolAsignado[] = [];
   asignFiltradas: RolAsignado[] = []
   usuarios: Usuario[] = []
 

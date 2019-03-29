@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+
 import { ProyectoConectate } from '../proyectoConectate';
 import { Red } from '../red';
 import { RolAsignado } from '../rolAsignado';
 import { PersonasPorRol } from '../personasPorRol';
-import { PROYECTO_CONECTATE } from '../mock-proyecto-conectate';
+import { ProyectoConectateService } from '../proyecto-conectate.service';
 import { REDS } from '../mock-reds';
 import { ASIGNACIONES } from '../mock-asignaciones';
 import { ROLES } from '../roles';
 import { ESTADOS } from '../estados';
+import { FASES } from '../fases';
 
 @Component({
   selector: 'app-avance-proyecto-conectate',
@@ -15,16 +17,18 @@ import { ESTADOS } from '../estados';
   styleUrls: ['./avance-proyecto-conectate.component.css']
 })
 export class AvanceProyectoConectateComponent implements OnInit {
-  proyecto : ProyectoConectate = PROYECTO_CONECTATE
-  reds: Red[] = REDS
-  asignaciones: RolAsignado[] = ASIGNACIONES
-  difMeses: number
-  personas: PersonasPorRol[] = []
-  roles: string[] = ROLES
-  horasEstimadas: number = 0
-  horasTrabajadas: number = 0
-  estados: string[] = ESTADOS
-  estadosRed: number[] = []
+  proyecto : ProyectoConectate;
+  reds: Red[] = REDS;
+  asignaciones: RolAsignado[] = ASIGNACIONES;
+  difMeses: number = 0;
+  personas: PersonasPorRol[] = [];
+  roles: string[] = ROLES;
+  horasEstimadas: number = 0;
+  horasTrabajadas: number = 0;
+  estados: string[] = ESTADOS;
+  estadosReds: number[] = [];
+  fases: string[] = FASES;
+  fasesReds: number[] = [];
 
   initPersonasPorRol() {
     let fechaInicio = new Date(this.proyecto.fechaInicio);
@@ -69,27 +73,55 @@ export class AvanceProyectoConectateComponent implements OnInit {
     }
   }
 
-  initEstadosRed() {
+  initEstadosReds() {
     for(let i in this.estados) {
-      this.estadosRed = this.estadosRed.concat(0);
+      this.estadosReds = this.estadosReds.concat(0);
     }
     for(let red of this.reds) {
       let estadoRed = this.getEstadoRed(red);
       for(let i in this.estados) {
         if(estadoRed === this.estados[i]) {
-          this.estadosRed[i]++;
+          this.estadosReds[i]++;
           break;
         }
       }
     }
   }
 
-  constructor() { }
+  initFasesReds(): void {
+    for(let i in this.fases) {
+      this.fasesReds = this.fasesReds.concat(0);
+    }
+    for(let red of this.reds) {
+      for(let i in this.estados) {
+        if(red.fase === this.fases[i]) {
+          this.fasesReds[i]++;
+          break;
+        }
+      }
+    }
+  }
+
+  getProyectoConectate(): void {
+    this.proyectoService.getProyecto(1)
+      .subscribe(proyecto => {
+        this.proyecto = proyecto;
+        this.getRedsProyecto();
+      });
+  }
+
+  getRedsProyecto(): void {
+
+  }
+
+  constructor(private proyectoService: ProyectoConectateService) { }
 
   ngOnInit() {
+    this.getProyectoConectate();
     this.initPersonasPorRol();
     this.initHoras();
-    this.initEstadosRed();
+    this.initEstadosReds();
+    this.initFasesReds();
   }
 
   getDifMeses(fechaInicio: Date, fechaFin: Date) {
