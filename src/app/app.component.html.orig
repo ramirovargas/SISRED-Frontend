@@ -1,7 +1,10 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<<<<<<< HEAD
 <app-subir-red></app-subir-red>
+=======
 <app-reds-por-persona></app-reds-por-persona>
 <app-avance-proyecto-conectate></app-avance-proyecto-conectate>
+>>>>>>> origin/Equipo2Sprint1-SR-02
 <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
