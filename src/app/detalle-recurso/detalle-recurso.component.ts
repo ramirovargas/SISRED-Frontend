@@ -58,7 +58,8 @@ export class DetalleRecursoComponent implements OnInit {
           responsable: response.usuario_ultima_modificacion,
           description: response.descripcion,
           metadata: response.metadata,
-          name: response.nombre
+          name: response.nombre,
+          thumbnail: response.thumbnail
         };
       });
   }
