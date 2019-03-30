@@ -12,10 +12,12 @@ import { Location } from '@angular/common'
   styleUrls: ['./add-red.component.css']
 })
 
+/**
+ * Componente con la lógica para agregar Proyectos al RED.
+ */
 @Injectable({
   providedIn: 'root'
 })
-
 export class AddRedComponent implements OnInit {
 
   public addRedForm: FormGroup;

@@ -6,6 +6,9 @@ import {ProyectosRedService} from "../services/proyectos-red/proyectos-red.servi
 import {DetalleRedService} from "../services/detalle-red/detalle-red.service";
 import {Location} from "@angular/common"
 
+/**
+ * Componente para mostrar el listado de Proyectos del RED.
+ */
 @Component({
   selector: 'app-proyectos-red',
   templateUrl: './proyectos-red.component.html',

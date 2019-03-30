@@ -13,6 +13,9 @@ import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common'
 
 
+/**
+ * Componente encargado del Detalle de un RED en especifico.
+ */
 @Component({
   selector: 'app-detalle-red',
   templateUrl: './detalle-red.component.html',

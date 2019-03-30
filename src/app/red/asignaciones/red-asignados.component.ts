@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { RedAsignadosService } from '../../services/red/red-asignados.service';
 import { RedAsignado } from "../../services/red/RedAsignado";
 
+/**
+ * Componente encargado del Detalle de un RED en especifico.
+ */
 @Component({
   selector: 'app-red-asignados',
   templateUrl: './red-asignados.component.html',
