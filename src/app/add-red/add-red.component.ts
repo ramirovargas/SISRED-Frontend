@@ -84,10 +84,9 @@ export class AddRedComponent implements OnInit {
         const file = files[i];
         newFiles.push()
       }
-      console.error(files[files.length - 1].name); 
 
       if (files[files.length - 1].name != ".DS_Store") {
-        dbx.filesUpload({path: "/"+ this.addRedForm.get('folder').value, contents: files[files.length - 1]})
+        dbx.filesUpload({path: "/"+ this.addRedForm.get('folder').value+"/" + files[files.length - 1].name, contents: files[files.length - 1]})
         .then(function(response) {
             console.log(response);
             if (files.length - 1 > 0) {
