@@ -4,7 +4,7 @@ import { RedsRelacionadosComponent } from './components/reds-relacionados/reds-r
 
 const routes: Routes = [
   {
-    path: 'redrel',
+    path: 'redrel/:idProyectoC',
     component: RedsRelacionadosComponent
   },
   { path: '**', redirectTo: '' }

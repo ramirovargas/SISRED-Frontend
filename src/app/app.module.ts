@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgSpinKitModule } from 'ng-spin-kit'
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { RedsRelacionadosComponent } from './components/reds-relacionados/reds-relacionados.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +14,9 @@ import { RedsRelacionadosComponent } from './components/reds-relacionados/reds-r
   ],
   imports: [
     BrowserModule,
-    NgSpinKitModule
+    NgSpinKitModule,
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

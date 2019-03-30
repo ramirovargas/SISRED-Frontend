@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { RedsService } from 'src/app/services/reds/reds.service';
 
 @Component({
@@ -26,9 +27,15 @@ export class RedsRelacionadosComponent implements OnInit {
 
   public success = '#28a745';
 
+  private idProyectoC = 0;
+
   constructor(
-    private redsService: RedsService
-  ) {}
+    private redsService: RedsService,
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.idProyectoC = this.activatedRoute.snapshot.params['idProyectoC'];
+    console.log(this.idProyectoC);
+  }
 
   ngOnInit() {
     this.loadReds();
@@ -36,7 +43,7 @@ export class RedsRelacionadosComponent implements OnInit {
 
   loadReds() {
     this.redsService
-      .getRedsRelacionados(this.proyectoConectate)
+      .getRedsRelacionados(this.idProyectoC)
       .then((data: any) => {
         this.nombreCortoProyecto = data.nombreCortoProyecto;
         this.nombreProyecto = data.nombreProyecto;
@@ -44,6 +51,7 @@ export class RedsRelacionadosComponent implements OnInit {
         this.redsListOptions.sort(this.compare);
         this.redsList = this.redsListOptions;
         this.loading = false;
+        console.log(this.idProyectoC);
       })
       .catch(err => {
         alert(err);

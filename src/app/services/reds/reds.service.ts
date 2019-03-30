@@ -9,7 +9,7 @@ export class RedsService {
 
   constructor(private http: HttpClient) {}
 
-  getRedsRelacionados(proyectoConectate) {
+  getRedsRelacionados(idProyectoC) {
     return new Promise((resolve, reject) => {
       const options = {
         headers: new HttpHeaders({
@@ -18,7 +18,7 @@ export class RedsService {
       };
 
       this.http
-        .get(environment.requestBase + '/api/reds/relacionados/' + proyectoConectate.id, options)
+        .get(environment.requestBase + '/api/reds/relacionados/' + idProyectoC, options)
         .subscribe(
           (data: any) => {
             resolve(data);
