@@ -6,26 +6,26 @@ import { RedsRecursosComponent } from './components/reds-recursos/reds-recursos.
 import { RecursosComponent } from './components/recursos/recursos.component';
 
 const routes: Routes = [
-    {
-        path: 'redrel',
-        component: RedsRelacionadosComponent,
-    },
-        {
-        path: 'red/:id/recursos',
-        component: RedsRecursosComponent,
-    },
-        {
-        path: 'red/:id/recursos/:id',
-        component: RecursosComponent,
-    }
+  {
+    path: 'redrel',
+    component: RedsRelacionadosComponent
+  },
+  {
+    path: 'red/:id/recursos',
+    component: RedsRecursosComponent
+  },
+  {
+    path: 'red/:id/recursos/:id',
+    component: RecursosComponent
+  },
+  {
+    path: '**',
+    redirectTo: 'redrel'
+  }
 ];
 
 @NgModule({
-    imports: [
-        RouterModule.forRoot(routes, { useHash: true }),
-    ],
-    exports: [
-        RouterModule,
-    ]
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
