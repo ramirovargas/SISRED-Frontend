@@ -11,17 +11,20 @@ import { RecursoService } from 'src/app/services/recurso/recurso.service';
 export class RecursosComponent {
 
 recursos: [] = [];
-id: number = 0;
+idrecurso: number = 0;
+idred: number = 0;
 
   constructor(private activatedRoute: ActivatedRoute, private api: RecursoService) {
+    this.idrecurso = this.activatedRoute.snapshot.params['idrecurso'];
     this.getResources();
-    this.id = this.activatedRoute.snapshot.params['id']
+    this.idred = this.activatedRoute.snapshot.params['id'];
   }
     getResources = () => {
-      this.api.getRecursos(this.id).subscribe(
+      this.api.getRecursos(this.idrecurso).subscribe(
        data => {
           this.recursos = data;
-          console.log(this.id);
+          console.log(this.idrecurso);
+          console.log(data);
         },
         error => {
           console.log(error);
