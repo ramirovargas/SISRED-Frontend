@@ -1,6 +1,9 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { DetalleRecursoComponent } from "./detalle-recurso/detalle-recurso.component";
+import { ResourceDetailsRestClientService } from "./services/resource-details-rest-client.service";
+import { HttpModule } from "@angular/http";
+import { VerAvanceRedComponent } from "./ver-avance-red/ver-avance-red.component";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,15 +17,19 @@ import { AgregarRecursoClientService } from './services/agregar-recurso-client.s
   declarations: [
     AppComponent,
     AgregarRecursoComponent,
+    AppComponent,
+    DetalleRecursoComponent,
+    VerAvanceRedComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
+    HttpModule,
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [AgregarRecursoClientService],
+  providers: [AgregarRecursoClientService, ResourceDetailsRestClientService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
