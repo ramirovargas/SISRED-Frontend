@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { RedProject } from './RedProject';
+import { environment } from './../../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -14,7 +15,7 @@ const httpOptions = {
 
 export class AddRedService {
   
-  API_URL = 'http://127.0.0.1:8000/api/post_proyecto_red/';
+  API_URL = environment.apiUrl +  'post_proyecto_red/';
 
   constructor(
     private httpClient: HttpClient,

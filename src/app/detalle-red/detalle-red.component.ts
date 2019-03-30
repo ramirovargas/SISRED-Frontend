@@ -10,7 +10,7 @@ import {Metadata} from '../services/metadata/metadata.model';
 import {MetadataService} from '../services/metadata/metadata.service';
 import {DetalleRedService} from '../services/detalle-red/detalle-red.service';
 import {ActivatedRoute} from '@angular/router';
-
+import {Location} from '@angular/common'
 
 
 @Component({
@@ -31,7 +31,8 @@ export class DetalleREDComponent implements OnInit {
               private personaAsignadaService: PersonasAsignadasService,
               private recursosAsociadosService: RecursosAsociadosService,
               private proyectosRedService: ProyectosRedService,
-              private metadataService: MetadataService) { }
+              private metadataService: MetadataService,
+              private location: Location) { }
 
 
   ngOnInit() {
@@ -67,6 +68,10 @@ export class DetalleREDComponent implements OnInit {
   getMetadata(): void {
     this.metadataService.getMetadata(this.idRed)
       .subscribe(metadata => this.metadata = metadata);
+  }
+
+  goBack(): void {
+    this.location.back()
   }
 
 }

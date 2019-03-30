@@ -15,7 +15,7 @@ const httpOptions = {
 
 export class RedAsignadosService {
 
-  API_URL:string = 'http://127.0.0.1:8000/api/reds/asignados/';
+  API_URL:string = environment.apiUrl + 'reds/asignados/';
 
   private reds: Array<RedAsignado> = [];
 

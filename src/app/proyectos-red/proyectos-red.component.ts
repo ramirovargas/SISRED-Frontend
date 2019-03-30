@@ -4,7 +4,7 @@ import {ProyectoRed} from "../services/proyectos-red/proyecto-red.model";
 import {DetalleRed} from "../services/detalle-red/detalle-red.model";
 import {ProyectosRedService} from "../services/proyectos-red/proyectos-red.service";
 import {DetalleRedService} from "../services/detalle-red/detalle-red.service";
-
+import {Location} from "@angular/common"
 
 @Component({
   selector: 'app-proyectos-red',
@@ -19,7 +19,8 @@ export class ProyectosRedComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private proyectosRedService: ProyectosRedService,
-              private detalleRedService: DetalleRedService) { }
+              private detalleRedService: DetalleRedService,
+              private location: Location) { }
 
   ngOnInit() {
     this.idRed = this.route.snapshot.params['idRed'];
@@ -35,6 +36,10 @@ export class ProyectosRedComponent implements OnInit {
   getDetalleRed(): void {
     this.detalleRedService.getDetalleRed(this.idRed)
       .subscribe(detalleRed => this.detalleRed = detalleRed);
+  }
+
+  goBack(): void {
+    this.location.back()
   }
 
 }

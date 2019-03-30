@@ -2,6 +2,7 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { AddRedService } from '../services/add-red/add-red.service';
 import { FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-add-red',
@@ -17,7 +18,8 @@ export class AddRedComponent implements OnInit {
 
   public addRedForm: FormGroup;
 
-  constructor(private addRedService: AddRedService) { 
+  constructor(private addRedService: AddRedService,
+              private location: Location) { 
     
   }
 
@@ -40,5 +42,7 @@ export class AddRedComponent implements OnInit {
         "1");
   }
 
-
+  goBack(): void {
+    this.location.back()
+  }
 }
