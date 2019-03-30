@@ -13,7 +13,7 @@ httpHeaders = new HttpHeaders({'Content-type': 'application/json'})
 
   constructor(private http: HttpClient) {}
 
-  getRedsRelacionados(proyectoConectate) {
+  getRedsRelacionados(idProyectoC) {
     return new Promise((resolve, reject) => {
       const options = {
         headers: new HttpHeaders({
@@ -22,7 +22,7 @@ httpHeaders = new HttpHeaders({'Content-type': 'application/json'})
       };
 
       this.http
-        .get(environment.requestBase + '/api/reds/relacionados/' + proyectoConectate.id, options)
+        .get(environment.requestBase + '/api/reds/relacionados/' + idProyectoC, options)
         .subscribe(
           (data: any) => {
             resolve(data);
