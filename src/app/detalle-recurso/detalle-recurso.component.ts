@@ -40,7 +40,8 @@ export class DetalleRecursoComponent implements OnInit {
       type: new FormControl("", Validators.required),
       name: new FormControl("", Validators.required),
       author: new FormControl("", Validators.required),
-      updateDate: new FormControl("", Validators.required),
+      updateDate: new FormControl(""),
+      creationDate: new FormControl(""),
       description: new FormControl("", Validators.required),
       metadata: new FormControl("")
     });
@@ -74,3 +75,4 @@ export class DetalleRecursoComponent implements OnInit {
     //   });
   }
 }
+
