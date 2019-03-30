@@ -37,7 +37,7 @@ export class RedsService {
   }
 
   getRedDetail(id): Observable<any> {
-    return this.http.get(this.baseurl + '/getRedDet/' + id, {
+    return this.http.get(environment.requestBase + '/getRedDet/' + id, {
       headers: this.httpHeaders
     });
   }
