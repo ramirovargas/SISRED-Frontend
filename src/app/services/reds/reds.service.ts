@@ -7,9 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RedsService {
-
-baseurl = "http://localhost:8000"
-httpHeaders = new HttpHeaders({'Content-type': 'application/json'})
+  httpHeaders = new HttpHeaders({ 'Content-type': 'application/json' });
 
   constructor(private http: HttpClient) {}
 
@@ -22,7 +20,10 @@ httpHeaders = new HttpHeaders({'Content-type': 'application/json'})
       };
 
       this.http
-        .get(environment.requestBase + '/api/reds/relacionados/' + idProyectoC, options)
+        .get(
+          environment.requestBase + '/reds/relacionados/' + idProyectoC,
+          options
+        )
         .subscribe(
           (data: any) => {
             resolve(data);
@@ -35,10 +36,9 @@ httpHeaders = new HttpHeaders({'Content-type': 'application/json'})
     });
   }
 
-  getRedDetail(id): Observable<any>{
-    return this.http.get(this.baseurl + '/api/getRedDet/' + id, {headers: this.httpHeaders})
+  getRedDetail(id): Observable<any> {
+    return this.http.get(this.baseurl + '/getRedDet/' + id, {
+      headers: this.httpHeaders
+    });
   }
-
 }
-
-

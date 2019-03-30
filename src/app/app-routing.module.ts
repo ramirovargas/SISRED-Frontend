@@ -7,7 +7,7 @@ import { RecursosComponent } from './components/recursos/recursos.component';
 
 const routes: Routes = [
   {
-    path: 'redrel',
+    path: 'redrel/:idProyectoC',
     component: RedsRelacionadosComponent
   },
   {
@@ -20,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'redrel'
+    redirectTo: 'redrel/1'
   }
 ];
 
