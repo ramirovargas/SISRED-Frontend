@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  requestBase: ''
+  requestBase: 'https://sisred-equipo4-backend.herokuapp.com'
 };
