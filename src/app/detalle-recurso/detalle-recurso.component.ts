@@ -38,11 +38,11 @@ export class DetalleRecursoComponent implements OnInit {
   loadForm() {
     this.detailResourceForm = new FormGroup({
       type: new FormControl("", Validators.required),
+      name: new FormControl("", Validators.required),
       author: new FormControl("", Validators.required),
       updateDate: new FormControl("", Validators.required),
-      responsable: new FormControl("", Validators.required),
       description: new FormControl("", Validators.required),
-      metadata: new FormControl("", Validators.required)
+      metadata: new FormControl("")
     });
   }
 
@@ -54,21 +54,22 @@ export class DetalleRecursoComponent implements OnInit {
           type: response.tipo,
           author: response.autor,
           updateDate: response.fecha_ultima_modificacion,
+          creationDate: response.fecha_creacion,
           responsable: response.usuario_ultima_modificacion,
           description: response.descripcion,
-          metadata: response.metadata
+          metadata: response.metadata,
+          name: response.nombre
         };
       });
   }
 
   public update() {
     this.showInputText = false;
-    this.resourceDetailsRestClientService
-      .updateResourceDetail({})
-      .subscribe(response => {
-        console.log("cfsm");
-        console.log(response);
-        console.log("cfsm");
-      });
+    console.log(this.detailResourceForm.valid);
+    // this.resourceDetailsRestClientService
+    //   .updateResourceDetail({})
+    //   .subscribe(response => {
+    //     console.log(response);
+    //   });
   }
 }
