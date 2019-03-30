@@ -12,7 +12,7 @@ httpHeaders = new HttpHeaders({'Content-type': 'application/json'})
 
   constructor(private http: HttpClient) { }
 
-  getRecursos(id): Observable<any>{
-    return this.http.get(this.baseurl + '/api/getRecurso/'+ id, {headers: this.httpHeaders})
+  getRecursos(idrecurso): Observable<any>{
+    return this.http.get(this.baseurl + '/api/getRecurso/'+ idrecurso + '/', {headers: this.httpHeaders})
   }
 }

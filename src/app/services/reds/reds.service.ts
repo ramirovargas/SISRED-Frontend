@@ -36,7 +36,7 @@ httpHeaders = new HttpHeaders({'Content-type': 'application/json'})
   }
 
   getRedDetail(id): Observable<any>{
-    return this.http.get(this.baseurl + '/api/getRedDet/' + id, {headers: this.httpHeaders})
+    return this.http.get(this.baseurl + '/api/getRedDet/' + id + '/', {headers: this.httpHeaders})
   }
 
 }

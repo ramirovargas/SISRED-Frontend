@@ -13,8 +13,8 @@ reds: [] = [];
 id: number = 0;
 
 constructor(private activatedRoute: ActivatedRoute, private api: RedsService) {
+  this.id = this.activatedRoute.snapshot.params['id'];
   this.getReds();
-  this.id = this.activatedRoute.snapshot.params['id']
   }
 
   getReds = () => {
@@ -22,6 +22,7 @@ constructor(private activatedRoute: ActivatedRoute, private api: RedsService) {
      data => {
         this.reds = data;
         console.log(this.id);
+        console.log(data);
       },
       error => {
         console.log(error);
