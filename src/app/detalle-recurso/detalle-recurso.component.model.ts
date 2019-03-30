@@ -7,4 +7,5 @@ export class ResourceDetailModel {
   description: string;
   metadata: string[];
   name: string;
+  thumbnail: any;
 }
