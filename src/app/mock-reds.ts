@@ -8,7 +8,7 @@ export const REDS : Red[] = [
     nombre: 'infografía para el curso Educación, Juventud y Drogas',
     nombreCorto: 'infografía drogas',
     descripcion: 'esta es una descripción breve',
-    fechaInicio: '2019-02-10',
+    fechaInicio: '2018-12-10',
     fechaCierre: '2019-04-01',
     fechaCreacion: '2016-02-01',
     porcentajeAvance: 100,
@@ -19,11 +19,11 @@ export const REDS : Red[] = [
     proyectoConectate: PROYECTO_CONECTATE,
     historialEstados: [
       {
-        fechaCambio: '2019-02-10',
+        fechaCambio: '2018-12-11',
         nombreEstado: 'En proceso',
       },
       {
-        fechaCambio: '2019-02-20',
+        fechaCambio: '2018-12-20',
         nombreEstado: 'Terminado',
       },
     ],
@@ -57,7 +57,7 @@ export const REDS : Red[] = [
     nombreCorto: 'animación drogas',
     descripcion: 'esta es una descripción breve',
     fechaInicio: '2019-02-25',
-    fechaCierre: '2019-04-05',
+    fechaCierre: '2019-03-25',
     fechaCreacion: '2016-02-01',
     porcentajeAvance: 50,
     tipo: 'animación',
@@ -71,8 +71,8 @@ export const REDS : Red[] = [
         nombreEstado: 'En proceso',
       },
       {
-        fechaCambio: '2019-02-28',
-        nombreEstado: 'Cancelado',
+        fechaCambio: '2019-03-28',
+        nombreEstado: 'Terminado',
       },
     ],
     fase: FASES[2]

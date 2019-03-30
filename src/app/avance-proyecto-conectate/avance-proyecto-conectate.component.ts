@@ -20,6 +20,7 @@ import { FASES } from '../fases';
 export class AvanceProyectoConectateComponent implements OnInit {
   proyecto : ProyectoConectate;
   reds: Red[] = REDS;
+  productoresReds: number[] = [];
   asignaciones: RolAsignado[] = ASIGNACIONES;
   difMeses: number = 0;
   redsTerminados: number = 0;
@@ -29,15 +30,19 @@ export class AvanceProyectoConectateComponent implements OnInit {
   horasEstimadas: number = 0;
   horasTrabajadas: number = 0;
   estados: string[];
-  estadosReds: number[] = [];
+  estados2: string[] = ['Terminados a tiempo', 'Terminados tarde', 'Otros'];
+  estadosReds: number[] = [0, 0, 0];
   fases: string[]
   fasesReds: number[] = [];
+  redsIniciadosAnual: number[] = [];
+  redsTerminadosAnual: number[] = [];
+  yearInicio: number;
 
-  constructor(private proyectoService: ProyectoConectateService, private refService: RolesEstadosFasesService) { }
+  constructor(private proyectoService: ProyectoConectateService, 
+    private refService: RolesEstadosFasesService) { }
 
   ngOnInit() {
     this.getProyectoConectate();
-    this.initHoras();
   }
 
   getProyectoConectate(): void {
@@ -52,6 +57,7 @@ export class AvanceProyectoConectateComponent implements OnInit {
     this.proyectoService.getRedsProyecto(1)
       .subscribe(reds => {
         this.reds = reds;
+        this.initHoras();
         this.getRolesEstadosFases();
       });
   }
@@ -118,19 +124,32 @@ export class AvanceProyectoConectateComponent implements OnInit {
   }
 
   initEstadosReds() {
-    for(let i in this.estados) {
-      this.estadosReds = this.estadosReds.concat(0);
+    let fechaInicio = new Date(this.proyecto.fechaInicio);
+    let fechaActual = new Date();
+    let difYears = fechaActual.getFullYear() - fechaInicio.getFullYear();
+    this.yearInicio = fechaInicio.getFullYear();
+    for(let i = 0; i<=difYears; i++) {
+      this.redsTerminadosAnual.push(0);
+      this.redsIniciadosAnual.push(0);
     }
+
     for(let red of this.reds) {
       let estadoRed = this.getEstadoRed(red);
-      for(let i in this.estados) {
-        if(estadoRed === this.estados[i]) {
-          if(estadoRed === 'Terminado') {
-            this.redsTerminados++;
-          }
-          this.estadosReds[i]++;
-          break;
+      let fechaInicioRed = new Date(red.fechaInicio);
+      let fechaEstado = this.getFechaEstadoRed(red);
+      this.redsIniciadosAnual[fechaInicioRed.getFullYear() - this.yearInicio]++;
+      if(estadoRed === 'Terminado') {
+        this.redsTerminadosAnual[fechaEstado.getFullYear() - this.yearInicio]++;
+        if(fechaEstado < new Date(red.fechaCierre)) {
+          this.estadosReds[0]++;
         }
+        else {
+          this.estadosReds[1]++;
+        }
+        this.redsTerminados++;
+      }
+      else {
+        this.estadosReds[2]++;
       }
     }
     this.avance = Math.round(100*this.redsTerminados/this.reds.length);
@@ -169,6 +188,20 @@ export class AvanceProyectoConectateComponent implements OnInit {
       }
     }
     return estadoActual;
+  }
+
+  getFechaEstadoRed(red: Red) {
+    let fechaEstado;
+    if(red.historialEstados && red.historialEstados.length !== 0) {
+      fechaEstado = new Date(red.historialEstados[0].fechaCambio);
+    }
+    for(let estado of red.historialEstados) {
+      let nuevaFecha = new Date(estado.fechaCambio);
+      if(nuevaFecha>fechaEstado) {
+        fechaEstado = nuevaFecha;
+      }
+    }
+    return fechaEstado;
   }
 
 }
