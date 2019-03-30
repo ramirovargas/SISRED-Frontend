@@ -84,8 +84,8 @@
               <!-- /.box -->
 
             <div class="box-footer">
-              <button type="button" class="btn btn-default">Cancelar</button>
-              <button type="submit" class="btn btn-info" (click)="filesPickedToArray(folderInput.files)">Guardar</button>
+              <button type="button" (click)="goBack()" class="btn btn-default">Cancelar</button>
+              <button type="submit" class="btn btn-info" (click)="filesPickedToArray(folderInput.files)">Guardar</button>            
             </div>
             <!-- /.box-footer -->
           </form>

@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } 
 import { HttpClientModule } from '@angular/common/http';
 import { Dropbox } from 'dropbox';
 import {ActivatedRoute} from '@angular/router';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-add-red',
@@ -19,7 +20,8 @@ export class AddRedComponent implements OnInit {
 
   public addRedForm: FormGroup;
 
-  constructor(private route: ActivatedRoute, private addRedService: AddRedService) { 
+
+  constructor(private route: ActivatedRoute, private addRedService: AddRedService, private location: Location) { 
     
   }
 
@@ -84,9 +86,8 @@ export class AddRedComponent implements OnInit {
       }
       console.error(files[files.length - 1].name); 
 
-      
       if (files[files.length - 1].name != ".DS_Store") {
-        dbx.filesUpload({path: "/"+files[files.length - 1].webkitRelativePath, contents: files[files.length - 1]})
+        dbx.filesUpload({path: "/"+ this.addRedForm.get('folder').value, contents: files[files.length - 1]})
         .then(function(response) {
             console.log(response);
             if (files.length - 1 > 0) {
@@ -112,5 +113,8 @@ export class AddRedComponent implements OnInit {
     
   }
 
-  
+  goBack(): void {
+    this.location.back()
+  }
+
 }

@@ -15,7 +15,7 @@ const httpOptions = {
 
 export class RedAsignadosService {
 
-  API_URL = 'http://127.0.0.1:8000/api/reds/asignados/2';
+  API_URL:string = environment.apiUrl + 'reds/asignados/';
 
   private reds: Array<RedAsignado> = [];
 
@@ -26,7 +26,7 @@ export class RedAsignadosService {
 
   getREDs(idUsuario: number): Observable<RedAsignado[]> {
     this.reds = [];
-    this.httpClient.get(this.API_URL, httpOptions).subscribe((data: any) => {
+    this.httpClient.get(this.API_URL+idUsuario, httpOptions).subscribe((data: any) => {
       console.log(data);
       data.redsAsignados.forEach(dataItem => {
         const red = new RedAsignado();
