@@ -7,7 +7,7 @@
   </div>
 
   <h3>Avance Proyecto</h3>
-  <span>10%</span>
+  <span>{{avance}}%</span>
 
   <h3>Horas Estimadas</h3>
   <span>{{horasEstimadas}}</span>
@@ -20,9 +20,6 @@
   
   <h3>REDs por Estado</h3>
   <p *ngFor="let n of estadosReds; let i = index"><b>{{estados[i]}}:</b> {{n}}</p>
-
-
-  <h3>Porcentaje de REDs completados</h3>
 
   <h3>Personas en el proyecto</h3>
   <table>

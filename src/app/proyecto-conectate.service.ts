@@ -4,6 +4,8 @@ import { HttpClient } from  '@angular/common/http';
 
 import { ProyectoConectate } from './proyectoConectate';
 import { PROYECTO_CONECTATE } from './mock-proyecto-conectate';
+import { Red } from './red';
+import { REDS } from './mock-reds';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,7 @@ export class ProyectoConectateService {
 
   API_URL = 'localhost:8000';
   private proyecto: ProyectoConectate;
+  private reds: Red[] = [];
 
   constructor(private httpClient: HttpClient) { }
 
@@ -26,5 +29,17 @@ export class ProyectoConectateService {
     });*/
     this.proyecto = PROYECTO_CONECTATE;
     return of(this.proyecto);
+  }
+
+  getRedsProyecto(id: number): Observable<Red[]> {
+    /*this.httpClient.get(`${this.API_URL}/proyectos/${id}/reds`).subscribe((data:  Array<any>) => {
+      data.forEach( dataItem => {
+        let red1 = new Red();
+        //hacer todo.
+        this.reds.push(red1);
+      });
+    });*/
+    this.reds = REDS;
+    return of(this.reds);
   }
 }

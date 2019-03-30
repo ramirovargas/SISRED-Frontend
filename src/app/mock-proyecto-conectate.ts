@@ -1,6 +1,7 @@
 import { ProyectoConectate } from './proyectoConectate';
 
 export const PROYECTO_CONECTATE: ProyectoConectate = {
+  id: 1,
   nombre: 'Procesos ágiles de desarrollo de software',
   nombreCorto: 'Procesos ágiles',
   codigo: 'MISO4101',
