@@ -1,3 +1,42 @@
-<p>
-  reds-relacionados works!
-</p>
+<div class="row" style="display: flex; align-items: center;">
+  <div class="col-1"></div>
+  <div class="col-lg-3 col-md-4 col-12">
+    <div class="form-group mr-2 ml-2">
+      <label for="mediaType" class="text-bold col-form-label font-weight-bold">REDs relacionados al proyecto&nbsp;{{nombreCortoProyecto}}</label>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!loading" class="row" style="display: flex; align-items: center;">
+
+  <div class="col-12">
+    <br />
+  </div>
+
+  <div *ngFor="let red of redsList" class="col-md-4 col-sm-6 col-12 mb-4">
+    <div class="card mx-auto shadow" style="max-width: 18rem;" [ngClass]="{'border-dark': multimedia.type.typeId === 'Video', 'border-success': multimedia.type.typeId == 'Audio', 'border-info': multimedia.type.typeId == 'Image' }">
+      <div class="card-body text-dark">
+
+        <div class="container text-center">
+          <br />&nbsp;<i class="fas fa-video" [ngClass]="{'fas fa-video': red.tipo === 'mp4', 'far fa-file-audio': red.tipo == 'mp3', 'fa fa-image':  red.tipo == 'jpg' }"></i>
+        </div>
+
+        <h5 class="card-title mt-2">{{red.nombreCortoRed}}</h5>
+        <p class="card-text">Tipo: &nbsp;{{red.tipo}} <br />Productor: &nbsp;{{red.productor}} <br />Proyecto: &nbsp;{{red.nombreProyecto}}</p>
+      </div>
+
+      <div class="card-footer text-center">
+        <button type="button" class="btn btn-outline-dark shadow-none"><i
+            class="fas fa-eye"></i>Ver detalles</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 mb-4">
+    <br />
+  </div>
+</div>
+
+<div id="loadingContainer" *ngIf="loading" class="text-center">
+  <sk-chasing-dots [color]="success"></sk-chasing-dots>
+</div>
