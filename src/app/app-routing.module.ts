@@ -15,7 +15,7 @@ const routes: Routes = [
     component: RedsRecursosComponent
   },
   {
-    path: 'red/:id/recursos/:id',
+    path: 'red/:id/recursos/:idrecurso',
     component: RecursosComponent
   },
   {
