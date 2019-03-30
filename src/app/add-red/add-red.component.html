@@ -44,13 +44,7 @@
                       <td>
                           <input type="text" class="form-control" formControlName="author">
                       </td>                        
-                    </tr>
-                    <tr>                    
-                        <td>Carpeta</td>
-                        <td>
-                            <input type="text" class="form-control" formControlName="folder">
-                        </td>                        
-                    </tr>
+                    </tr>                    
                     <tr>                    
                         <td>Fecha de creación</td>
                         <td>
@@ -70,10 +64,19 @@
                     </tr>
                     <tr>                    
                         <td>Seleccionar carpeta</td>
-                        <td>                              
-                            <input type="file" id="exampleInputFile">                        
+                        <td>         
+                            <input
+                            #folderInput
+                            type="file"
+                            webkitDirectory>                                                                         
                         </td>                          
-                    </tr>                                                            
+                    </tr>
+                    <tr>                    
+                        <td>Carpeta</td>
+                        <td>
+                            <input type="text" class="form-control" formControlName="folder">
+                        </td>                        
+                    </tr>                                                        
                   </table>
                 </div>
                 <!-- /.box-body -->            
@@ -82,7 +85,7 @@
 
             <div class="box-footer">
               <button type="button" class="btn btn-default">Cancelar</button>
-              <button type="submit" class="btn btn-info" (click)="addRed()">Guardar</button>
+              <button type="submit" class="btn btn-info" (click)="filesPickedToArray(folderInput.files)">Guardar</button>
             </div>
             <!-- /.box-footer -->
           </form>
