@@ -14,6 +14,7 @@ export class RedsPorPersonaComponent implements OnInit {
   asignaciones: RolAsignado[] = [];
   asignFiltradas: RolAsignado[] = []
   usuarios: Usuario[] = []
+  valor: string;
 
   initUsuarios() {
     for(let asign of this.asignaciones) {
@@ -25,6 +26,7 @@ export class RedsPorPersonaComponent implements OnInit {
   }
 
   onChangeUsuario(id: string) {
+    this.valor = id;
     this.asignFiltradas = this.asignaciones.filter(asign => asign.usuario.numeroIdentificacion === id)
   }
 
