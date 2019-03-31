@@ -63,15 +63,17 @@ export class AgregarRecursoComponent implements OnInit {
   }
 
   register() {
-    const nombre = this.registerForm.get('nombre').value; 
+    this.uploadSuccessful = false;
+    const nombre = this.registerForm.get('nombre').value;
     const tipo = this.registerForm.get('tipo').value;
-    const autor = this.registerForm.get('autor').value; 
+    const autor = this.registerForm.get('autor').value;
     const descripcion = this.registerForm.get('descripcion').value;
     const url = this.url;
+
     const recurso = {'nombre': nombre, 'archivo':url, 'thumbnail':'urlThumbnail',
     'tipo': tipo, 'descripcion':descripcion, 'autor':1};
     console.log(recurso);
-    
+
     // set the component state to "uploading"
     this.uploading = true;
 
@@ -87,12 +89,21 @@ export class AgregarRecursoComponent implements OnInit {
       }
       // When all progress-observables are completed...
       forkJoin(allProgressObservables).subscribe(end => {
-  
-        // ... the upload was successful...
-        this.uploadSuccessful = true;
-  
+        if(end[0] === 100){
+
+        this.uploadSuccessful = true;  
         // ... and the component is no longer uploading
         this.uploading = false;
+
+        this.registerForm.reset();
+
+        this.files.clear();
+
+        this.FileSelected = false;
+        this.registerForm.controls.autor.enable();
+        this.registerForm.controls.fechaCreacion.enable();
+        this.registerForm.controls.tipo.enable();
+        }
       });
     }, error => {
       console.log(error);

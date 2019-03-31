@@ -2,7 +2,7 @@
   <form name="" class="card" [formGroup]="registerForm">
     <h2 name="title">Agregar un Recurso</h2>
     <p name="Loading" [hidden]="!uploading">Subiendo Archivo</p>
-    <p name="Loading" [hidden]="!uploading">Finalizado exitosamente</p>
+    <p name="Loading" [hidden]="!uploadSuccessful">Finalizado exitosamente</p>
     <button class="btn btn-primary" type="button" id="file btn" [disabled]="FileSelected" (click)="addFiles()">Seleccionar Archivo</button>   
     <input class="form-control" type="file" #file style="display: none" (change)="onFilesAdded()"/>
     <table class="table form-horizontal">
@@ -34,7 +34,7 @@
             </tr>
             <tr>
               <th scope="row"></th>
-              <td><button class="btn btn-primary" id="send" name="send" type="submit" (click)="register()">Guardar</button></td>
+              <td><button class="btn btn-primary" [disabled]="!registerForm.valid" id="send" name="send" type="submit" (click)="register()">Guardar</button></td>
               <td><button class="btn btn-secondary" (click)="goBack()">Cancelar</button></td>
             </tr>
           </tbody>

@@ -26,7 +26,7 @@ export class AgregarRecursoClientService {
         'Content-Type': 'application/octet-stream',
         'Dropbox-API-Arg': JSON.stringify({
           path: '/' +  file.name,
-          mode: 'add',
+          mode: 'overwrite',
           autorename: true,
           mute: false
         }),
