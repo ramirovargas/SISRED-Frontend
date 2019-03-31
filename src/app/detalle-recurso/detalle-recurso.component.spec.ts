@@ -6,6 +6,7 @@ import { of } from 'rxjs';
 import { ResourceDetailModelMock } from '../Mocks/detalle-recurso.component.model.mock';
 import { ResourceDetailsRestClientService } from '../services/resource-details-rest-client.service';
 import { DetalleRecursoComponent } from './detalle-recurso.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 
 describe('DetalleRecursoComponent', () => {
@@ -18,7 +19,8 @@ describe('DetalleRecursoComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, ReactiveFormsModule, HttpModule],
       providers: [ResourceDetailsRestClientService],
-      declarations: [DetalleRecursoComponent]
+      declarations: [DetalleRecursoComponent],
+      schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
   }));

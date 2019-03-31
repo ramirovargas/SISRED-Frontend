@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { DetalleRecursoComponent } from "./detalle-recurso/detalle-recurso.component";
 import { ResourceDetailsRestClientService } from "./services/resource-details-rest-client.service";
 import { HttpModule } from "@angular/http";
@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AgregarRecursoComponent } from './AgregarRecurso/agregar-recurso.component';
 import { AgregarRecursoClientService } from './services/agregar-recurso-client.service';
+import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -27,9 +28,11 @@ import { AgregarRecursoClientService } from './services/agregar-recurso-client.s
     AppRoutingModule,
     HttpModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgbAlertModule,
+    NgbPaginationModule
   ],
   providers: [AgregarRecursoClientService, ResourceDetailsRestClientService],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

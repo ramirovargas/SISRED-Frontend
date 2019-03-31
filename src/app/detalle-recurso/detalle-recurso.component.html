@@ -1,3 +1,7 @@
+<p>
+<ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+</p>
+
 <div class="details-container">
   <form [formGroup]="detailResourceForm">
     <div class="row border bg-primary">
