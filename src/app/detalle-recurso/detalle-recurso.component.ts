@@ -21,13 +21,14 @@ export class DetalleRecursoComponent implements OnInit {
     private resourceDetailsRestClientService: ResourceDetailsRestClientService
   ) {
     this.route.params.subscribe(param => {
-      this.getResourceDetail(Number(param["id"]));
       this.idResource = Number(param["id"]);
     });
   }
 
   ngOnInit(): void {
     this.loadForm();
+    this.getResourceDetail(this.idResource);
+
   }
 
   public edit(): void {
@@ -56,10 +57,9 @@ export class DetalleRecursoComponent implements OnInit {
         this.resourceDetailsoModel = {
           type: response.tipo,
           author: response.getAutor,
-          lastUserModification: response.getResponsableModificacion,
           updateDate: response.fecha_ultima_modificacion,
           creationDate: response.fecha_creacion,
-          responsable: response.usuario_ultima_modificacion,
+          lastUserModification: response.getResponsableModificacion,
           description: response.descripcion,
           metadata: response.metadata,
           name: response.nombre,
@@ -68,19 +68,18 @@ export class DetalleRecursoComponent implements OnInit {
       });
   }
 
-  public update(): void {
+  public updateResource(): void {
     this.showInputText = false;
     if (this.detailResourceForm.valid) {
       const json = {
         name: this.detailResourceForm.controls.name.value,
         description: this.detailResourceForm.controls.description.value,
-        lastUserModification: 'Crisian Sepulveda XD'
+        lastUserModification: "Cristian Sepulveda XD",
+        id: this.idResource
       }
-      console.log(json);
       this.resourceDetailsRestClientService.updateResourceDetail(json).subscribe(response => {
         this.getResourceDetail(this.idResource);
       });
-
     }
 
   }
