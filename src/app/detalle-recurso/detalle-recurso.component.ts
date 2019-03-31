@@ -3,7 +3,6 @@ import { ResourceDetailModel } from "./detalle-recurso.component.model";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { ResourceDetailsRestClientService } from "../services/resource-details-rest-client.service";
-import { UrlConstant } from "../constants/url-constant";
 
 @Component({
   selector: "app-detalle-recurso",
@@ -11,38 +10,42 @@ import { UrlConstant } from "../constants/url-constant";
   styleUrls: ["./detalle-recurso.component.css"]
 })
 export class DetalleRecursoComponent implements OnInit {
+
+  public detailResourceForm: FormGroup;
+  public resourceDetailsoModel: ResourceDetailModel;
+  public showInputText = false;
+  private idResource: number;
+
   constructor(
     private route: ActivatedRoute,
     private resourceDetailsRestClientService: ResourceDetailsRestClientService
   ) {
     this.route.params.subscribe(param => {
       this.getResourceDetail(Number(param["id"]));
+      this.idResource = Number(param["id"]);
     });
   }
 
-  urlConstant: UrlConstant;
-  detailResourceForm: FormGroup;
-
-  showInputText = false;
-
-  resourceDetailsoModel: ResourceDetailModel;
-
-  ngOnInit() {
+  ngOnInit(): void {
     this.loadForm();
   }
 
-  public edit() {
+  public edit(): void {
     this.showInputText = true;
   }
 
-  loadForm() {
+  public cancelEdit(): void {
+    this.showInputText = false;
+  }
+
+  loadForm(): void {
     this.detailResourceForm = new FormGroup({
-      type: new FormControl("", Validators.required),
+      type: new FormControl(""),
       name: new FormControl("", Validators.required),
-      author: new FormControl("", Validators.required),
-      updateDate: new FormControl("", Validators.required),
-      description: new FormControl("", Validators.required),
-      metadata: new FormControl("")
+      author: new FormControl(""),
+      updateDate: new FormControl(""),
+      description: new FormControl(""),
+      metadata: new FormControl(""),
     });
   }
 
@@ -52,24 +55,33 @@ export class DetalleRecursoComponent implements OnInit {
       .subscribe(response => {
         this.resourceDetailsoModel = {
           type: response.tipo,
-          author: response.autor,
+          author: response.getAutor,
+          lastUserModification: response.getResponsableModificacion,
           updateDate: response.fecha_ultima_modificacion,
           creationDate: response.fecha_creacion,
           responsable: response.usuario_ultima_modificacion,
           description: response.descripcion,
           metadata: response.metadata,
-          name: response.nombre
+          name: response.nombre,
+          thumbnail: response.thumbnail
         };
       });
   }
 
-  public update() {
+  public update(): void {
     this.showInputText = false;
-    console.log(this.detailResourceForm.valid);
-    // this.resourceDetailsRestClientService
-    //   .updateResourceDetail({})
-    //   .subscribe(response => {
-    //     console.log(response);
-    //   });
+    if (this.detailResourceForm.valid) {
+      const json = {
+        name: this.detailResourceForm.controls.name.value,
+        description: this.detailResourceForm.controls.description.value,
+        lastUserModification: 'Crisian Sepulveda XD'
+      }
+      console.log(json);
+      this.resourceDetailsRestClientService.updateResourceDetail(json).subscribe(response => {
+        this.getResourceDetail(this.idResource);
+      });
+
+    }
+
   }
 }

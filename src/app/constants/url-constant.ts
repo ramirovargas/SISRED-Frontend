@@ -1,4 +1,5 @@
 export class UrlConstant {
     static readonly SERVER_URL = "https://grupo1-sisred.herokuapp.com";
-    static readonly RESOURCE_DETAILS_ENDPOINT = "/recurso/recurso_addget/";
+    static readonly RESOURCE_DETAILS_ENDPOINT = "/recurso/recurso_get/";
+    static readonly RESOURCE_DETAILS_UPDATE_ENDPOINT = "/recurso/recurso_put";
 }

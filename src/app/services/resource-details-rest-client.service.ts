@@ -15,8 +15,9 @@ export class ResourceDetailsRestClientService {
   }
 
   updateResourceDetail(data: any): Observable<any> {
+    const json = { "nombre": data.description, "descripcion": data.name, "usuario_ultima_modificacion": data.lastUserModification };
     return this.http
-      .post(UrlConstant.SERVER_URL, data)
+      .put(UrlConstant.SERVER_URL + UrlConstant.RESOURCE_DETAILS_UPDATE_ENDPOINT, json)
       .pipe(map(reponse => reponse.json()));
   }
 }
