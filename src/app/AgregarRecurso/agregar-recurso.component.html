@@ -1,7 +1,8 @@
 <div class="container">  
   <form name="" class="card" [formGroup]="registerForm">
     <h2 name="title">Agregar un Recurso</h2>
-    <h3 name="Loading" [hidden]="!uploading">Subiendo Archivo</h3>
+    <p name="Loading" [hidden]="!uploading">Subiendo Archivo</p>
+    <p name="Loading" [hidden]="!uploading">Finalizado exitosamente</p>
     <button class="btn btn-primary" type="button" id="file btn" [disabled]="FileSelected" (click)="addFiles()">Seleccionar Archivo</button>   
     <input class="form-control" type="file" #file style="display: none" (change)="onFilesAdded()"/>
     <table class="table form-horizontal">

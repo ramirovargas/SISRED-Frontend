@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest, HttpEventType, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-const url = '/2/files/upload'; 
-const host = 'https://content.dropboxapi.com';
-const token = 'n8Swy7K2KQAAAAAAAAAADwCBX-iw2cbl4025vfMIc3G5ueK4NRNk65hdvXq6S0Hi';
+const url = 'https://content.dropboxapi.com/2/files/upload';
+const token = 'n8Swy7K2KQAAAAAAAAAAEhPhfmBUFQIkLeX-JZ5wHeCntHYtZr1WFAGKwv8yaz0-';
 
 @Injectable()
 export class AgregarRecursoClientService {
@@ -22,23 +21,28 @@ export class AgregarRecursoClientService {
       const formData: FormData = new FormData();
       formData.append('file', file, file.name);
 
-      const  headers = new  HttpHeaders().set('Authorization', 'Bearer ' + token);
-      headers.set('Content-Type', 'application/octet-stream');
-      headers.set('Dropbox-API-Arg', JSON.stringify({
-        path: '/' +  file.name,
-        mode: 'add',
-        autorename: true,
-        mute: false
-      }));
-      headers.set('Host', host);
-      headers.set('User-Agent', 'api-explorer-client');
+      const reqHeaders = new HttpHeaders({
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/octet-stream',
+        'Dropbox-API-Arg': JSON.stringify({
+          path: '/' +  file.name,
+          mode: 'add',
+          autorename: true,
+          mute: false
+        }),
+        'User-Agent': 'api-explorer-client',
+      });
 
 
       // create a http-post request and pass the form
       // tell it to report the upload progress
       const req = new HttpRequest('POST', url, formData, {
+        headers: reqHeaders,
         reportProgress: true
       });
+
+      console.log(JSON.stringify(req.headers));
+      console.log(JSON.stringify(req));
 
       // create a new progress-subject for every file
       const progress = new Subject<number>();
@@ -71,7 +75,7 @@ export class AgregarRecursoClientService {
   }
 
   register(user: any): Observable<any> {
-    return this.http.post("https://grupo1-sisred.herokuapp.com/recurso/", user).pipe(map(response => { }));
+    return this.http.post("https://grupo1-sisred.herokuapp.com/recurso/recurso_post/", user).pipe(map(response => { }));
   }
 
 }

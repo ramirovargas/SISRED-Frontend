@@ -4,7 +4,6 @@ import { Location, formatDate } from '@angular/common';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AgregarRecursoClientService } from '../services/agregar-recurso-client.service';
 import { forkJoin } from 'rxjs';
-import { LOCALE_DATA } from '@angular/common/src/i18n/locale_data';
 
 @Component({
   selector: 'app-agregar-recurso',
@@ -67,42 +66,41 @@ export class AgregarRecursoComponent implements OnInit {
     const nombre = this.registerForm.get('nombre').value; 
     const tipo = this.registerForm.get('tipo').value;
     const autor = this.registerForm.get('autor').value; 
-    const fechaCreacion = this.registerForm.get('fechaCreacion').value;
     const descripcion = this.registerForm.get('descripcion').value;
     const url = this.url;
-    const recurso = {'nombre': nombre, 'archivo':url, 'thumbnail':'', 'fecha_creacion':fechaCreacion,
-    'fecha_ultima_modificacion':fechaCreacion, 'tipo': tipo, 'descripcion':descripcion, 'metadata':[1],
-    'autor':1,'usuario_ultima_modificacion':1,'getAutor':autor, 'getResponsableModificacion':autor};
+    const recurso = {'nombre': nombre, 'archivo':url, 'thumbnail':'urlThumbnail',
+    'tipo': tipo, 'descripcion':descripcion, 'autor':1};
+    console.log(recurso);
     
     // set the component state to "uploading"
     this.uploading = true;
 
     // start the upload and save the progress map
-    this.progress = this.agregarRecursoRestClientService.upload(this.files);
-
-    // convert the progress map into an array
-    const allProgressObservables = [];
-    for (let key in this.progress) {
-      allProgressObservables.push(this.progress[key].progress);
-    }
-    // When all progress-observables are completed...
-    forkJoin(allProgressObservables).subscribe(end => {
-
-      // ... the upload was successful...
-      this.uploadSuccessful = true;
-
-      // ... and the component is no longer uploading
-      this.uploading = false;
-    });
-    this.agregarRecursoRestClientService.upload(this.files);
     this.agregarRecursoRestClientService.register(recurso).subscribe(response => {
       console.log(response);
+      this.progress = this.agregarRecursoRestClientService.upload(this.files);
+
+      // convert the progress map into an array
+      const allProgressObservables = [];
+      for (let key in this.progress) {
+        allProgressObservables.push(this.progress[key].progress);
+      }
+      // When all progress-observables are completed...
+      forkJoin(allProgressObservables).subscribe(end => {
+  
+        // ... the upload was successful...
+        this.uploadSuccessful = true;
+  
+        // ... and the component is no longer uploading
+        this.uploading = false;
+      });
     }, error => {
       console.log(error);
+      this.uploadSuccessful = false;
+      this.uploading = false;
       alert('Formulario Invalido');
       this.registerForm.reset();
-    }
-    );
+    });
   };
 
   goBack(): void {
