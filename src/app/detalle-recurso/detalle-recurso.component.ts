@@ -3,6 +3,8 @@ import { ResourceDetailModel } from "./detalle-recurso.component.model";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { ResourceDetailsRestClientService } from "../services/resource-details-rest-client.service";
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: "app-detalle-recurso",
@@ -14,7 +16,11 @@ export class DetalleRecursoComponent implements OnInit {
   public detailResourceForm: FormGroup;
   public resourceDetailsoModel: ResourceDetailModel;
   public showInputText = false;
+  public staticAlertClosed = false;
+  public successMessage: string;
   private idResource: number;
+  private _success = new Subject<string>();
+
 
   constructor(
     private route: ActivatedRoute,
@@ -28,7 +34,12 @@ export class DetalleRecursoComponent implements OnInit {
   ngOnInit(): void {
     this.loadForm();
     this.getResourceDetail(this.idResource);
+    setTimeout(() => this.staticAlertClosed = true, 20000);
 
+    this._success.subscribe((message) => this.successMessage = message);
+    this._success.pipe(
+      debounceTime(5000)
+    ).subscribe(() => this.successMessage = null);
   }
 
   public edit(): void {
@@ -79,7 +90,9 @@ export class DetalleRecursoComponent implements OnInit {
       }
       this.resourceDetailsRestClientService.updateResourceDetail(json).subscribe(response => {
         this.getResourceDetail(this.idResource);
-      });
+        this._success.next('Recurso: ' + this.resourceDetailsoModel.name + ' editado con exito');
+      }
+      );
     }
 
   }
