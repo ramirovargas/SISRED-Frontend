@@ -14,7 +14,7 @@ export class RecursosAsociadosService {
   constructor(
     private httpClient: HttpClient
   ) { }
-
+  // Metodo que invoca al servicio que obtiene los recursos asociados del RED
   getRecursosAsociados(idRed: number): Observable<RecursoAsociado[]> {
     let params = new HttpParams();
     params = params.append('RED', idRed.toString());

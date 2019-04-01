@@ -15,7 +15,7 @@ export class ProyectosRedService {
     private httpClient: HttpClient
   ) { }
 
-
+  // Metodo que invoca al servicio que obtiene los proyectos RED
   getProyectosRed(idRed: number): Observable<ProyectoRed[]> {
     let params = new HttpParams();
     params = params.append('RED', idRed.toString());

@@ -16,6 +16,7 @@ export class MetadataService {
     private httpClient: HttpClient
   ) { }
 
+  // Metodo que invoca al servicio que obtiene la metadata del RED
   getMetadata(idRed: number): Observable<Metadata[]> {
     let params = new HttpParams();
     params = params.append('RED', idRed.toString());

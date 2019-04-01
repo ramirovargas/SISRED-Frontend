@@ -6,7 +6,7 @@
       REDs Asignados
     </h1>
     <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>        
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
       <li class="active">Agregar proyecto RED</li>
       <li class="">REDs asignados</li>
     </ol>
@@ -14,28 +14,48 @@
 
   <!-- Main content -->
   <section class="content">
-    <div class="box-header with-border">
-      <h3 class="box-title">Usted ha sido asignado a los siguientes REDs:</h3>
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-12">
+        <!-- general form elements -->
+
+        <div class="box box-primary">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Usted ha sido asignado a los siguientes REDs:</h3>
+            </div>
+            <div class="box-body">
+              <table class="table">
+                <thead>
+                <tr>
+                  <th scope="col">Nombre del RED</th>
+                  <th scope="col">Rol</th>
+                  <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let red of redsAsignados">
+                  <th scope="row">{{red.nombre}}</th>
+                  <td>{{red.rol}}</td>
+                  <td>
+                    <button type="button" class="btn btn-primary" routerLink="/red/{{red.id}}/detalle">Ver Detalle
+                    </button>&nbsp;&nbsp;
+                    <button type="button" class="btn btn-warning" routerLink="/red/{{red.id}}/proyectos">Ver Proyectos
+                    </button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.box primary-->
+      </div>
+      <!--/.col (left) -->
     </div>
-    <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Nombre del RED</th>
-        <th scope="col">Rol</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let red of redsAsignados">
-        <th scope="row">{{red.nombre}}</th>
-        <td>{{red.rol}}</td>
-        <td>
-          <button type="button" class="btn btn-primary" routerLink="/red/{{red.id}}/detalle">Ver Detalle</button>&nbsp;&nbsp;
-          <button type="button" class="btn btn-warning" routerLink="/red/{{red.id}}/proyectos">Ver Proyectos</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <!-- /.row -->
   </section>
   <!-- /.content -->
 </div>

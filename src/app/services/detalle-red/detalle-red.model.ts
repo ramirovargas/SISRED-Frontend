@@ -1,3 +1,4 @@
+// Modelo DetalleRed
 export class DetalleRed {
   nameRed: string;
   nameProject: string;

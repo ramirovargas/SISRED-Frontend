@@ -1,3 +1,4 @@
+// Model ProyectoRed
 export class ProyectoRed {
   id: number;
   autor: string;

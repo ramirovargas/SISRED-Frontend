@@ -16,11 +16,11 @@ export class DetalleRedService {
     private httpClient: HttpClient
   ) { }
 
+  // Metodo que invoca al servicio que obtiene la informacion del RED
   getDetalleRed(idRed: number): Observable<DetalleRed> {
     let params = new HttpParams();
     params = params.append('RED', idRed.toString());
     this.httpClient.get(this.API_URL, {params}).subscribe((data: any) => {
-      console.log(data);
       this.detalleRed.nameRed = data.nombreRed;
       this.detalleRed.nameProject = data.nombreProject;
       this.detalleRed.url = data.url;

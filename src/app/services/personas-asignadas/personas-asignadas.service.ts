@@ -16,6 +16,7 @@ export class PersonasAsignadasService {
     private httpClient: HttpClient
   ) { }
 
+  // Metodo que invoca al servicio que obtiene las personas asignadas al RED
   getPersonasAsignadas(idRed: number): Observable<PersonaAsignada[]> {
     let params = new HttpParams();
     params = params.append('RED', idRed.toString());

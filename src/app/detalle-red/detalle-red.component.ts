@@ -10,7 +10,7 @@ import {Metadata} from '../services/metadata/metadata.model';
 import {MetadataService} from '../services/metadata/metadata.service';
 import {DetalleRedService} from '../services/detalle-red/detalle-red.service';
 import {ActivatedRoute} from '@angular/router';
-import {Location} from '@angular/common'
+import {Location} from '@angular/common';
 
 
 /**
@@ -48,33 +48,40 @@ export class DetalleREDComponent implements OnInit {
 
   }
 
+  // Metodo que obtiene informacion del RED
   getDetalleRed(): void {
     this.detalleRedService.getDetalleRed(this.idRed)
         .subscribe(detalle => this.detalle = detalle);
   }
 
+  // Metodo que obtiene personas asignadas al RED
   getPersonasAsignadas(): void {
     this.personaAsignadaService.getPersonasAsignadas(this.idRed)
       .subscribe(personas => this.personas = personas);
   }
 
+  // Metodo que obtiene los recursos asociados al RED
   getRecursosAsociados(): void {
     this.recursosAsociadosService.getRecursosAsociados(this.idRed)
       .subscribe(recursos => this.recursos = recursos);
   }
 
+  // Metodo que obtiene los proyectos RED
   getProyectosRed(): void {
     this.proyectosRedService.getProyectosRed(this.idRed)
       .subscribe(proyectos => this.proyectos = proyectos);
   }
 
+  // Metodo que obtiene la metadata del RED
   getMetadata(): void {
     this.metadataService.getMetadata(this.idRed)
       .subscribe(metadata => this.metadata = metadata);
   }
 
+  // Metodo que regresa a la pantella anterior
   goBack(): void {
-    this.location.back()
+    this.location.back();
+    console.log(this.location);
   }
 
 }
