@@ -49,6 +49,7 @@ export class AddRedComponent implements OnInit {
         this.route.snapshot.params.idRed);
   }  
 
+  //Método para subir un archivo individual
   uploadFile() {
     var ACCESS_TOKEN = "I0Ng9kItu5AAAAAAAAAAHR16cYlxD2zh7tyDcSjg7cRFs0brDmSS088zp6kwqIEx";
     var dbx = new Dropbox({ accessToken: ACCESS_TOKEN });
@@ -66,6 +67,7 @@ export class AddRedComponent implements OnInit {
     return false;
   }
 
+  //Método que recibe un listado de archivos de una carpeta y crea un array
   public filesPickedToArray(files: FileList) {
     var filesArray: Array<File> = new Array<File>();
 
@@ -76,6 +78,7 @@ export class AddRedComponent implements OnInit {
     this.uploadFiles(filesArray);
   }
 
+  //Método recursivo que recibe un array de archivos y los envía a una cuenta de dropbox referenciada por ACCESS_TOKEN
   public uploadFiles(files: Array<File>) {
     var ACCESS_TOKEN = "I0Ng9kItu5AAAAAAAAAAHR16cYlxD2zh7tyDcSjg7cRFs0brDmSS088zp6kwqIEx";
     var dbx = new Dropbox({ accessToken: ACCESS_TOKEN });

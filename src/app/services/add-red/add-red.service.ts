@@ -22,6 +22,7 @@ export class AddRedService {
     private router: Router
   ) { }
 
+  //Método que invoca el servicio al cual se sube la información del nuevo proyecto
   addRed(name: String, type: String, author: String, description: String, folder: String, redId: String): Observable<any> {
     var obj = { nombre: name, tipo: type, autor: author, descripcion: description, carpeta: folder, RED: redId};
     this.httpClient.post(this.API_URL, JSON.stringify(obj), httpOptions).subscribe((data: Response) => {

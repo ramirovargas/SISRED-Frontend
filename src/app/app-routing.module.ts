@@ -14,7 +14,6 @@ const routes: Routes = [
   {path: 'red/:idRed/proyectos', component: ProyectosRedComponent}
 ];
 
-
 @NgModule({
   imports: [RouterModule.forRoot(routes), HttpClientModule],
   exports: [RouterModule]
