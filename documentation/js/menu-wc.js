@@ -55,13 +55,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-AppModule-4af4a1a549ff7c20fb5af747f340a59d"' : 'data-target="#xs-components-links-module-AppModule-4af4a1a549ff7c20fb5af747f340a59d"' }>
+                                            'data-target="#components-links-module-AppModule-661df0f9473801fb97bf26e70037b6e5"' : 'data-target="#xs-components-links-module-AppModule-661df0f9473801fb97bf26e70037b6e5"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-4af4a1a549ff7c20fb5af747f340a59d"' :
-                                            'id="xs-components-links-module-AppModule-4af4a1a549ff7c20fb5af747f340a59d"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-661df0f9473801fb97bf26e70037b6e5"' :
+                                            'id="xs-components-links-module-AppModule-661df0f9473801fb97bf26e70037b6e5"' }>
                                             <li class="link">
                                                 <a href="components/AgregarRecursoComponent.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">AgregarRecursoComponent</a>
@@ -82,13 +82,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-AppModule-4af4a1a549ff7c20fb5af747f340a59d"' : 'data-target="#xs-injectables-links-module-AppModule-4af4a1a549ff7c20fb5af747f340a59d"' }>
+                                        'data-target="#injectables-links-module-AppModule-661df0f9473801fb97bf26e70037b6e5"' : 'data-target="#xs-injectables-links-module-AppModule-661df0f9473801fb97bf26e70037b6e5"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-AppModule-4af4a1a549ff7c20fb5af747f340a59d"' :
-                                        'id="xs-injectables-links-module-AppModule-4af4a1a549ff7c20fb5af747f340a59d"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-AppModule-661df0f9473801fb97bf26e70037b6e5"' :
+                                        'id="xs-injectables-links-module-AppModule-661df0f9473801fb97bf26e70037b6e5"' }>
                                         <li class="link">
                                             <a href="injectables/AgregarRecursoClientService.html"
                                                 data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>AgregarRecursoClientService</a>
@@ -114,7 +114,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse" ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
                             <li class="link">
+                                <a href="classes/AgregarRecursoModelMock.html" data-type="entity-link">AgregarRecursoModelMock</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/RED.html" data-type="entity-link">RED</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/ResourceDetailModel.html" data-type="entity-link">ResourceDetailModel</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/ResourceDetailModelMock.html" data-type="entity-link">ResourceDetailModelMock</a>
                             </li>
                             <li class="link">
                                 <a href="classes/UrlConstant.html" data-type="entity-link">UrlConstant</a>
@@ -129,6 +138,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <span class="icon ion-ios-arrow-down"></span>
                             </div>
                             <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
+                                <li class="link">
+                                    <a href="injectables/AdvanceRedRestClientService.html" data-type="entity-link">AdvanceRedRestClientService</a>
+                                </li>
                                 <li class="link">
                                     <a href="injectables/AgregarRecursoClientService.html" data-type="entity-link">AgregarRecursoClientService</a>
                                 </li>

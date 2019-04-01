@@ -38,7 +38,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li>ResourceDetailsRestClientService</li>
+  <li>AdvanceRedRestClientService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -56,7 +56,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/services/resource-details-rest-client.service.ts</code>
+            <code>src/app/services/advance-red-rest-client.service.ts</code>
         </p>
 
 
@@ -76,10 +76,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#getResourceDetailsById">getResourceDetailsById</a>
-                            </li>
-                            <li>
-                                <a href="#updateResourceDetail">updateResourceDetail</a>
+                                <a href="#getAdvanceRed">getAdvanceRed</a>
                             </li>
                         </ul>
                     </td>
@@ -104,7 +101,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/services/resource-details-rest-client.service.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/services/advance-red-rest-client.service.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -151,26 +148,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getResourceDetailsById"></a>
+                    <a name="getAdvanceRed"></a>
                     <span class="name">
                         <b>
-                            getResourceDetailsById
+                            getAdvanceRed
                         </b>
-                        <a href="#getResourceDetailsById"><span class="icon ion-ios-link"></span></a>
+                        <a href="#getAdvanceRed"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getResourceDetailsById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+<code>getAdvanceRed()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="11"
-                            class="link-to-prism">src/app/services/resource-details-rest-client.service.ts:11</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="14"
+                            class="link-to-prism">src/app/services/advance-red-rest-client.service.ts:14</a></div>
                 </td>
             </tr>
 
@@ -178,110 +175,9 @@
             <tr>
                 <td class="col-md-4">
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>id</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
                     <div class="io-description">
                         <b>Returns : </b>    <code>Observable&lt;any&gt;</code>
 
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="updateResourceDetail"></a>
-                    <span class="name">
-                        <b>
-                            updateResourceDetail
-                        </b>
-                        <a href="#updateResourceDetail"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>updateResourceDetail(data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">src/app/services/resource-details-rest-client.service.ts:17</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>data</td>
-                                    <td>
-                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;any&gt;</code>
-
-                    </div>
-                    <div class="io-description">
-                        
                     </div>
                 </td>
             </tr>
@@ -293,26 +189,22 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@angular/core&quot;;
-import { Http } from &quot;@angular/http&quot;;
-import { Observable } from &quot;rxjs&quot;;
-import { map } from &quot;rxjs/operators&quot;;
-import { UrlConstant } from &quot;../constants/url-constant&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { Http } from &#x27;@angular/http&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+import { UrlConstant } from &#x27;../constants/url-constant&#x27;;
+import { map } from &#x27;rxjs/operators&#x27;;
 
-@Injectable()
-export class ResourceDetailsRestClientService {
+@Injectable({
+  providedIn: &#x27;root&#x27;
+})
+export class AdvanceRedRestClientService {
+
   constructor(private http: Http) { }
 
-  getResourceDetailsById(id: number): Observable&lt;any&gt; {
+  getAdvanceRed(): Observable&lt;any&gt; {
     return this.http
-      .get(UrlConstant.SERVER_URL + UrlConstant.RESOURCE_DETAILS_ENDPOINT + id)
-      .pipe(map(reponse &#x3D;&gt; reponse.json()));
-  }
-
-  updateResourceDetail(data: any): Observable&lt;any&gt; {
-    const json &#x3D; { &quot;nombre&quot;: data.name, &quot;descripcion&quot;: data.description, &quot;usuario_ultima_modificacion&quot;: data.lastUserModification, &quot;id&quot;: data.id };
-    return this.http
-      .put(UrlConstant.SERVER_URL + UrlConstant.RESOURCE_DETAILS_UPDATE_ENDPOINT, json)
+      .get(UrlConstant.SERVER_URL + UrlConstant.ADVANCE_RED_ENDPOINT)
       .pipe(map(reponse &#x3D;&gt; reponse.json()));
   }
 }
@@ -348,7 +240,7 @@ export class ResourceDetailsRestClientService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'ResourceDetailsRestClientService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'AdvanceRedRestClientService.html';
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>

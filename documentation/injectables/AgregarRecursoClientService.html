@@ -105,7 +105,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/services/agregar-recurso-client.service.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/services/agregar-recurso-client.service.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -170,8 +170,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">src/app/services/agregar-recurso-client.service.ts:73</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="77"
+                            class="link-to-prism">src/app/services/agregar-recurso-client.service.ts:77</a></div>
                 </td>
             </tr>
 
@@ -242,8 +242,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/app/services/agregar-recurso-client.service.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="13"
+                            class="link-to-prism">src/app/services/agregar-recurso-client.service.ts:13</a></div>
                 </td>
             </tr>
 
@@ -300,9 +300,8 @@
 import { HttpClient, HttpRequest, HttpEventType, HttpResponse, HttpHeaders } from &#x27;@angular/common/http&#x27;;
 import { Observable, Subject } from &#x27;rxjs&#x27;;
 import { map } from &#x27;rxjs/operators&#x27;;
-const url &#x3D; &#x27;/2/files/upload&#x27;; 
-const host &#x3D; &#x27;https://content.dropboxapi.com&#x27;;
-const token &#x3D; &#x27;n8Swy7K2KQAAAAAAAAAADwCBX-iw2cbl4025vfMIc3G5ueK4NRNk65hdvXq6S0Hi&#x27;;
+const url &#x3D; &#x27;https://content.dropboxapi.com/2/files/upload&#x27;;
+const token &#x3D; &#x27;n8Swy7K2KQAAAAAAAAAAEhPhfmBUFQIkLeX-JZ5wHeCntHYtZr1WFAGKwv8yaz0-&#x27;;
 
 @Injectable()
 export class AgregarRecursoClientService {
@@ -320,23 +319,28 @@ export class AgregarRecursoClientService {
       const formData: FormData &#x3D; new FormData();
       formData.append(&#x27;file&#x27;, file, file.name);
 
-      const  headers &#x3D; new  HttpHeaders().set(&#x27;Authorization&#x27;, &#x27;Bearer &#x27; + token);
-      headers.set(&#x27;Content-Type&#x27;, &#x27;application/octet-stream&#x27;);
-      headers.set(&#x27;Dropbox-API-Arg&#x27;, JSON.stringify({
-        path: &#x27;/&#x27; +  file.name,
-        mode: &#x27;add&#x27;,
-        autorename: true,
-        mute: false
-      }));
-      headers.set(&#x27;Host&#x27;, host);
-      headers.set(&#x27;User-Agent&#x27;, &#x27;api-explorer-client&#x27;);
+      const reqHeaders &#x3D; new HttpHeaders({
+        &#x27;Authorization&#x27;: &#x27;Bearer &#x27; + token,
+        &#x27;Content-Type&#x27;: &#x27;application/octet-stream&#x27;,
+        &#x27;Dropbox-API-Arg&#x27;: JSON.stringify({
+          path: &#x27;/&#x27; +  file.name,
+          mode: &#x27;overwrite&#x27;,
+          autorename: true,
+          mute: false
+        }),
+        &#x27;User-Agent&#x27;: &#x27;api-explorer-client&#x27;,
+      });
 
 
       // create a http-post request and pass the form
       // tell it to report the upload progress
       const req &#x3D; new HttpRequest(&#x27;POST&#x27;, url, formData, {
+        headers: reqHeaders,
         reportProgress: true
       });
+
+      console.log(JSON.stringify(req.headers));
+      console.log(JSON.stringify(req));
 
       // create a new progress-subject for every file
       const progress &#x3D; new Subject&lt;number&gt;();
@@ -369,7 +373,7 @@ export class AgregarRecursoClientService {
   }
 
   register(user: any): Observable&lt;any&gt; {
-    return this.http.post(&quot;https://grupo1-sisred.herokuapp.com/recurso/&quot;, user).pipe(map(response &#x3D;&gt; { }));
+    return this.http.post(&quot;https://grupo1-sisred.herokuapp.com/recurso/recurso_post/&quot;, user).pipe(map(response &#x3D;&gt; { }));
   }
 
 }</code></pre>

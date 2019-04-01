@@ -287,7 +287,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BrowserModule } from &quot;@angular/platform-browser&quot;;
-import { NgModule } from &quot;@angular/core&quot;;
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from &quot;@angular/core&quot;;
 import { DetalleRecursoComponent } from &quot;./detalle-recurso/detalle-recurso.component&quot;;
 import { ResourceDetailsRestClientService } from &quot;./services/resource-details-rest-client.service&quot;;
 import { HttpModule } from &quot;@angular/http&quot;;
@@ -299,6 +299,7 @@ import { FormsModule } from &#x27;@angular/forms&#x27;;
 import { ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
 import { AgregarRecursoComponent } from &#x27;./AgregarRecurso/agregar-recurso.component&#x27;;
 import { AgregarRecursoClientService } from &#x27;./services/agregar-recurso-client.service&#x27;;
+import { NgbPaginationModule, NgbAlertModule } from &#x27;@ng-bootstrap/ng-bootstrap&#x27;;
 
 
 @NgModule({
@@ -315,12 +316,14 @@ import { AgregarRecursoClientService } from &#x27;./services/agregar-recurso-cli
     AppRoutingModule,
     HttpModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgbAlertModule,
+    NgbPaginationModule
   ],
   providers: [AgregarRecursoClientService, ResourceDetailsRestClientService],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
 </code></pre>
     </div>
 </div>
