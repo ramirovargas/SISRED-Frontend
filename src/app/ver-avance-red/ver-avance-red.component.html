@@ -1,153 +1,67 @@
-<!-- Main content -->
-<section class="content">
-
-  <div class="row">
-    <div class="col-md-8">
-      <div class="col-md-12">
-        <p>Avance del RED:&nbsp;<a href="http://www.lipsum.com/">Video de introducci&oacute;n al curso de procesos agiles</a></p>
-      </div>
-      <div class="col-md-12">
-        <p>Proyecto conectate:&nbsp;<strong>Maestria MISO</strong></p>
-      </div>
-    </div>
-    <div class="col-md-4" style="text-align: right">
-      <a class="btn btn-app">
-        <i class="fa fa-repeat"></i> Repeat
-      </a>
-    </div>    
-  </div>
-
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="box">
-        <div class="box-header">
-          <h3 class="box-title"></h3>
-        </div>
-        <!-- /.box-header -->
-        <div class="box-body">
-          <table id="example1" class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>RED</th>
-                <th>Asignado</th>
-                <th>Iniciado</th>
-                <th>En proceso</th>
-                <th>Pausado</th>
-                <th>Terminado</th>
-                <th>Term. parcial</th>
-                <th>Cancelado</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Video de introducci&oacute;n al curso Procesos &Aacute;giles</td>
-                <td></td>
-                <td>
-                    
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr>
-                <th>RED</th>
-                <th>Asignado</th>
-                <th>Iniciado</th>
-                <th>En proceso</th>
-                <th>Pausado</th>
-                <th>Terminado</th>
-                <th>Term. parcial</th>
-                <th>Cancelado</th>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
-        <!-- /.box-body -->
-      </div>
-      <!-- /.box -->
-    </div>
-    <!-- /.col -->
-  </div>
-  <!-- /.row -->
+<div class="container">
+  <form>
   
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="box">
-        <div class="box-header">
-          <h3 class="box-title">Avance de sub-productos del RED</h3>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="row">
+          <p>Avance del RED: <a href="https://agiles-grupo1-sisred.herokuapp.com/consultar-proyectos/recurso/">{{ red?.nombre }}</a></p>  
         </div>
-        <!-- /.box-header -->
-        <div class="box-body">
-          <table id="example1" class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>Sub-productos</th>
-                <th>Asignado</th>
-                <th>Iniciado</th>
-                <th>En proceso</th>
-                <th>Pausado</th>
-                <th>Terminado</th>
-                <th>Term. parcial</th>
-                <th>Cancelado</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Animaci&oacute;n</td>
-                <td></td>
-                <td><span class="label label-success">Approved</span></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Cortinilla</td>
-                <td></td>
-                <td></td>
-                <td><span class="label label-warning">In process</span></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Animaci&oacute;n</td>
-                <td></td>
-                <td><span class="label label-success">Approved</span></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr>
-                <th>Sub-productos</th>
-                <th>Asignado</th>
-                <th>Iniciado</th>
-                <th>En proceso</th>
-                <th>Pausado</th>
-                <th>Terminado</th>
-                <th>Term. parcial</th>
-                <th>Cancelado</th>
-              </tr>
-            </tfoot>
-          </table>
+        <div class="row">
+          <p>Proyecto Conecta-Te: <strong>{{ red?.getProyecto }}</strong></p>
         </div>
-        <!-- /.box-body -->
       </div>
-      <!-- /.box -->
-    </div>
-    <!-- /.col -->
-  </div>
-  <!-- /.row -->
-  
-</section>
-<!-- /.content -->
+      <!--/.col-md-8-->
+      <div class="col-md-4" style="text-align: right">
+        <h2>{{ red?.getFase }}</h2>
+      </div>
+      <!--/.col-md-4-->
+    </div><br>
+    <!--/.row-->
+
+    <div class="row">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">RED</th>
+            <th scope="col">Fase</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>{{ red?.nombre }}</th>
+            <td>{{ red?.getFase }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <!--/.table-->
+    </div><br>
+    <!--/.row-->
+
+    <div class="row">
+      <h5>Avance de sub-productos del RED</h5>
+    </div><br>
+    <!--/.row-->
+
+    <div class="row">
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Sub-producto</th>
+              <th scope="col">Fase</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let subreds of subred">
+              <th>{{ subreds.nombre }}</th>
+              <td>{{ subreds.getFase }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <!--/.table-->
+      </div>
+      <!--/.row-->
+
+  </form>
+  <!--/.form-->
+</div>
+<!--/.container-->
