@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { RedAsignadosService } from '../../services/red/red-asignados.service';
 import { RedAsignado } from "../../services/red/RedAsignado";
 
+declare function setup(): any;
+
 /**
  * Componente encargado del Detalle de un RED en especifico.
  */
@@ -23,6 +25,7 @@ export class RedAsignadosComponent implements OnInit {
   }
 
   ngOnInit() {
+    setup();    
     this.idUsuario = this.activatedRoute.snapshot.params.idUsuario; //TODO Temporal.
     this.getREDsAsignados();
   }

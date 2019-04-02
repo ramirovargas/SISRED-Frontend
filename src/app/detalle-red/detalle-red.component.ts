@@ -12,6 +12,7 @@ import {DetalleRedService} from '../services/detalle-red/detalle-red.service';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 
+declare function setup(): any;
 
 /**
  * Componente encargado del Detalle de un RED en especifico.
@@ -39,6 +40,7 @@ export class DetalleREDComponent implements OnInit {
 
 
   ngOnInit() {
+    setup();    
     this.idRed = this.route.snapshot.params.idRed;
     this.getDetalleRed();
     this.getPersonasAsignadas();

@@ -6,6 +6,8 @@ import {ProyectosRedService} from "../services/proyectos-red/proyectos-red.servi
 import {DetalleRedService} from "../services/detalle-red/detalle-red.service";
 import {Location} from "@angular/common"
 
+declare function setup(): any;
+
 /**
  * Componente para mostrar el listado de Proyectos del RED.
  */
@@ -26,6 +28,7 @@ export class ProyectosRedComponent implements OnInit {
               private location: Location) { }
 
   ngOnInit() {
+    setup();
     this.idRed = this.route.snapshot.params['idRed'];
     this.getProyectosRed();
     this.getDetalleRed();

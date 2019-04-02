@@ -6,6 +6,8 @@ import { Dropbox } from 'dropbox';
 import {ActivatedRoute} from '@angular/router';
 import { Location } from '@angular/common'
 
+declare function setup(): any;
+
 @Component({
   selector: 'app-add-red',
   templateUrl: './add-red.component.html',
@@ -28,6 +30,7 @@ export class AddRedComponent implements OnInit {
   }
 
   ngOnInit() {
+    setup();
     this.addRedForm = new FormGroup({
       name: new FormControl(),
       type: new FormControl(),
