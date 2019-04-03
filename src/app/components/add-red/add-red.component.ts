@@ -54,7 +54,7 @@ export class AddRedComponent implements OnInit {
 
   //Método para subir un archivo individual
   uploadFile() {
-    var ACCESS_TOKEN = "I0Ng9kItu5AAAAAAAAAAHR16cYlxD2zh7tyDcSjg7cRFs0brDmSS088zp6kwqIEx";
+    var ACCESS_TOKEN = 'I0Ng9kItu5AAAAAAAAAAHR16cYlxD2zh7tyDcSjg7cRFs0brDmSS088zp6kwqIEx';
     var dbx = new Dropbox({ accessToken: ACCESS_TOKEN });
     var fileInput = (<HTMLInputElement> document.getElementById('filetest'));
     var file = fileInput.files[0];
@@ -77,7 +77,7 @@ export class AddRedComponent implements OnInit {
 
     for (let i = 0; i < files.length; i++) {
       filesArray.push(files.item(i));
-      pathsArray.push((files.item(i)).webkitRelativePath);
+      pathsArray.push('files/');
       console.log(pathsArray[i]);
     }
 
@@ -86,7 +86,7 @@ export class AddRedComponent implements OnInit {
 
   //Método recursivo que recibe un array de archivos y los envía a una cuenta de dropbox referenciada por ACCESS_TOKEN
   public uploadFiles(files: Array<File>, paths: Array<String>) {
-    var ACCESS_TOKEN = "I0Ng9kItu5AAAAAAAAAAHR16cYlxD2zh7tyDcSjg7cRFs0brDmSS088zp6kwqIEx";
+    var ACCESS_TOKEN = 'I0Ng9kItu5AAAAAAAAAAHR16cYlxD2zh7tyDcSjg7cRFs0brDmSS088zp6kwqIEx';
     var dbx = new Dropbox({ accessToken: ACCESS_TOKEN });
     var newFiles: Array<File> = files.slice(0, files.length - 1);
     var newPaths: Array<String> = paths.slice(0, files.length - 1);
@@ -97,8 +97,8 @@ export class AddRedComponent implements OnInit {
         newFiles.push()
       }
 
-      if (files[files.length - 1].name != ".DS_Store") {
-        dbx.filesUpload({path: "/"+ paths[files.length - 1], contents: files[files.length - 1]})
+      if (files[files.length - 1].name != '.DS_Store') {
+        dbx.filesUpload({path: '/'+ paths[files.length - 1], contents: files[files.length - 1]})
         .then(function(response) {
             console.log(response);
             if (files.length - 1 > 0) {
