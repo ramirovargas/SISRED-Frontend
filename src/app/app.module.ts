@@ -18,6 +18,7 @@ import { DetalleRecursoComponent } from "./detalle-recurso/detalle-recurso.compo
 import { AgregarRecursoClientService } from "./services/agregar-recurso-client.service";
 import { ResourceDetailsRestClientService } from "./services/resource-details-rest-client.service";
 import { VerAvanceRedComponent } from "./ver-avance-red/ver-avance-red.component";
+import { HttpModule } from '@angular/http';
 
 
 
@@ -46,7 +47,8 @@ import { VerAvanceRedComponent } from "./ver-avance-red/ver-avance-red.component
     AppRoutingModule,
     NgSpinKitModule,
     NgbAlertModule,
-    NgbPaginationModule
+    NgbPaginationModule,
+    HttpModule
   ],
   providers: [AgregarRecursoClientService, ResourceDetailsRestClientService],
   bootstrap: [AppComponent]
