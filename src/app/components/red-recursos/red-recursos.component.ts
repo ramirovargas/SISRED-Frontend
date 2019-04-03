@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { RedsService } from 'src/app/services/reds/reds.service';
+import { RedService } from 'src/app/services/red/red.service';
 
 @Component({
   selector: 'app-red-recursos',
@@ -12,7 +12,7 @@ export class RedRecursosComponent implements OnInit {
   reds: [] = [];
   id: number = 0;
 
-  constructor(private activatedRoute: ActivatedRoute, private api: RedsService) {
+  constructor(private activatedRoute: ActivatedRoute, private api: RedService) {
     this.id = this.activatedRoute.snapshot.params['id'];
     this.getReds();
     }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { RedsService } from 'src/app/services/reds/reds.service';
+import { RedService } from 'src/app/services/red/red.service';
 
 @Component({
   selector: 'app-reds-relacionados',
@@ -30,7 +30,7 @@ export class RedsRelacionadosComponent implements OnInit {
   private idProyectoC = 0;
 
   constructor(
-    private redsService: RedsService,
+    private redService: RedService,
     private activatedRoute: ActivatedRoute
   ) {
     this.idProyectoC = this.activatedRoute.snapshot.params['idProyectoC'];
@@ -42,7 +42,7 @@ export class RedsRelacionadosComponent implements OnInit {
   }
 
   loadReds() {
-    this.redsService
+    this.redService
       .getRedsRelacionados(this.idProyectoC)
       .then((data: any) => {
         this.nombreCortoProyecto = data.nombreCortoProyecto;

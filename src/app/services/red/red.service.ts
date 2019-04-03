@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class RedsService {
+export class RedService {
   httpHeaders = new HttpHeaders({ 'Content-type': 'application/json' });
 
   constructor(private http: HttpClient) {}
