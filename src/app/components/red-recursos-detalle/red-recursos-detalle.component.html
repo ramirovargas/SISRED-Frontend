@@ -1,0 +1,27 @@
+<div class="container">
+  <div *ngFor="let recurso of recursos" class="row">
+    <div class="col-12 mt-4">
+    <br>
+    </div>
+    <div class="col text-center block-center">
+             <h5 class="text-secondary">RECURSO</h5>
+             <h1 class="text-secondary">{{recurso.nombre}}</h1>
+      <br><br>
+           <img src="{{recurso.thumbnail}}" alt="..." class="img-thumbnail shadow" style="width: 300px; height: 300px;">
+      <br><br>
+      <button type="button" class="btn btn-secondary btn-lg btn-block" [routerLink]="['/red/'+idred+'/recursos/']">Regresar</button>
+    </div>
+    <div class="col">
+      <br><br><br><br>
+      <ul class="list-group">
+      <li class="list-group-item list-group-item-light">ID:{{recurso.id}}</li>
+      <li class="list-group-item list-group-item-light">NOMBRE: {{recurso.nombre}}</li>
+      <li class="list-group-item list-group-item-light">ARCHIVO: {{recurso.archivo}}</li>
+      <li class="list-group-item list-group-item-light">FECHA CREACION: {{recurso.fecha_creacion}}</li>
+      <li class="list-group-item list-group-item-light">FECHA MODIFICACION: {{recurso.fecha_ultima_modificacion}}</li>
+      <li class="list-group-item list-group-item-light">TIPO: {{recurso.tipo}}</li>
+      <li class="list-group-item list-group-item-light">DESCRIPCION: {{recurso.descripcion}}</li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,11 @@ import { RedAsignadosComponent } from './components/red/asignaciones/red-asignad
 import { HttpClientModule } from '@angular/common/http';
 import {DetalleREDComponent} from './components/detalle-red/detalle-red.component';
 import {ProyectosRedComponent} from './components/proyectos-red/proyectos-red.component';
+import { CommonModule } from '@angular/common';
+import { RedsRelacionadosComponent } from './components/reds-relacionados/reds-relacionados.component';
+import { RedRecursosComponent } from './components/red-recursos/red-recursos.component';
+import { RedRecursosDetalleComponent } from './components/red-recursos-detalle/red-recursos-detalle.component';
+
 
 const routes: Routes = [
   {path: '', component: RedAsignadosComponent},
@@ -12,6 +17,18 @@ const routes: Routes = [
   {path: 'red/asignados/:idUsuario', component: RedAsignadosComponent},
   {path: 'red/:idRed/detalle', component: DetalleREDComponent},
   {path: 'red/:idRed/proyectos', component: ProyectosRedComponent}
+  {
+    path: 'redrel/:idProyectoC',
+    component: RedsRelacionadosComponent
+  },
+  {
+    path: 'red/:id/recursos',
+    component: RedRecursosComponent
+  },
+  {
+    path: 'red/:id/recursos/:idrecurso',
+    component: RedRecursosDetalleComponent
+  }
 ];
 
 @NgModule({
