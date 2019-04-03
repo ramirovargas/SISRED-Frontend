@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RolAsignado } from '../rolAsignado';
-import { Usuario } from '../usuario';
-import { Red } from '../red';
-import { AsignacionService } from '../asignacion.service';
+import { RolAsignado } from '../../services/asignaciones/rolAsignado';
+import { Usuario } from '../../services/asignaciones/usuario';
+import { Red } from '../../services/red/red';
+import { AsignacionService } from '../../services/asignaciones/asignacion.service';
 
 @Component({
   selector: 'app-reds-por-persona',

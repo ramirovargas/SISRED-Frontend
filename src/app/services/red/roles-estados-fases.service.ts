@@ -5,13 +5,13 @@ import { HttpClient } from  '@angular/common/http';
 import { ROLES } from './roles';
 import { ESTADOS } from './estados';
 import { FASES } from './fases';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RolesEstadosFasesService {
 
-  API_URL = 'localhost:8000';
   private roles: string[] = [];
   private estados: string[] = [];
   private fases: string[] = [];
@@ -19,7 +19,7 @@ export class RolesEstadosFasesService {
   constructor(private httpClient: HttpClient) { }
 
   getRoles(): Observable<string[]> {
-    /*this.httpClient.get(`${this.API_URL}/roles`).subscribe((data:  Array<any>) => {
+    /*this.httpClient.get(`${environment.apiUrl}/roles`).subscribe((data:  Array<any>) => {
       data.forEach(item => this.roles.push(item.nombre));
     });*/
     this.roles = ROLES;
@@ -27,7 +27,7 @@ export class RolesEstadosFasesService {
   }
 
   getEstados(): Observable<string[]> {
-    /*this.httpClient.get(`${this.API_URL}/estados`).subscribe((data:  Array<any>) => {
+    /*this.httpClient.get(`${environment.apiUrl}/estados`).subscribe((data:  Array<any>) => {
       data.forEach(item => this.estados.push(item.nombre_estado));
     });*/
     this.estados = ESTADOS;
@@ -35,7 +35,7 @@ export class RolesEstadosFasesService {
   }
 
   getFases(): Observable<string[]> {
-    /*this.httpClient.get(`${this.API_URL}/fases`).subscribe((data:  Array<any>) => {
+    /*this.httpClient.get(`${environment.apiUrl}/fases`).subscribe((data:  Array<any>) => {
       data.forEach(item => this.fases.push(item.nombre_fase));
     });*/
     this.fases = FASES;

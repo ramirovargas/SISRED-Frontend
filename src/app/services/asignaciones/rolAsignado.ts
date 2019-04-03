@@ -1,5 +1,5 @@
 import { Usuario } from './usuario';
-import { Red } from './red';
+import { Red } from '../red/red';
 
 export class RolAsignado {
   fechaInicio: string;

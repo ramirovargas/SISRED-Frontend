@@ -3,10 +3,9 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from  '@angular/common/http';
 
 import { RolAsignado } from './rolAsignado';
-import { Red } from './red';
+import { Red } from '../red/red';
 import { Usuario } from './usuario';
-import { ASIGNACIONES } from './mock-asignaciones';
-import { API_URL } from './api-url';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +25,7 @@ export class AsignacionService {
       };
 
     return new Promise((resolve, reject) => {
-      this.httpClient.get(`${API_URL}/asignaciones/`, options).subscribe((data: any) => {
+      this.httpClient.get(`${environment.apiUrl}/asignaciones/`, options).subscribe((data: any) => {
         data.context.forEach( dataItem => {
           let asignacion1 = new RolAsignado();
           asignacion1.fechaInicio = dataItem.fecha_inicio;

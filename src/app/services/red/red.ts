@@ -1,4 +1,4 @@
-import { ProyectoConectate } from './proyectoConectate';
+import { ProyectoConectate } from '../proyectoConectate/proyectoConectate';
 import { HistorialEstados } from './historialEstados';
 
 export class Red {

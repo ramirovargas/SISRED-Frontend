@@ -1,7 +1,6 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {DatePipe} from '@angular/common';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {SubirRedService} from './subir-red.service';
+import {SubirRedService, ProyectoRED, Recurso, RED} from '../../services/red/subir-red.service';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
@@ -82,36 +81,4 @@ export class SubirREDComponent {
   addRED(pObject: FormData) {
     this.subirRedService.addRED(pObject);
   }
-}
-
-export class ProyectoRED {
-  nombre: string;
-  tipo: string;
-  carpeta: string;
-}
-
-export class Recurso {
-  nombre: string;
-  archivo: string;
-  descripcion: string;
-  thumbnail: string;
-  fechaCreacion: DatePipe;
-  fechaUltimaModificacion: DatePipe;
-  tipo: string;
-}
-
-export class RED {
-  codigo: string;
-  nombre: string;
-  nombreCorto: string;
-  descripcion: string;
-  fechaInicio: DatePipe;
-  fechaCierre: DatePipe;
-  fechaCreacion: DatePipe;
-  porcentajeAvance: bigint;
-  tipo: string;
-  solicitante: string;
-  horasEstimadas: bigint;
-  horasTrabajadas: bigint;
-  recurso: Recurso;
 }

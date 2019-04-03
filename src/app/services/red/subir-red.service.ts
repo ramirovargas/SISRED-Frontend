@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {ProyectoRED, Recurso, RED} from './subir-red.component';
 import {Observable, of} from 'rxjs';
+import {DatePipe} from '@angular/common';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SubirRedService {
-  API_URL = 'https://apropiacion.herokuapp.com';
   HEADERS = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
   constructor(private  httpClient: HttpClient) {
@@ -16,7 +16,7 @@ export class SubirRedService {
   getProyectosRED(): Observable<ProyectoRED[]> {
     const vLstObjetos = [];
     const METHOD_URL = '/{Controller}/{View}/';
-    this.httpClient.get(this.API_URL + METHOD_URL).subscribe((data: Array<any>) => {
+    this.httpClient.get(environment.apiUrl + METHOD_URL).subscribe((data: Array<any>) => {
       data.forEach(dataItem => {
         const vObjeto = new ProyectoRED();
         vObjeto.nombre = dataItem.nombre;
@@ -31,7 +31,7 @@ export class SubirRedService {
   getRecurso(): Observable<Recurso[]> {
     const vLstObjetos = [];
     const METHOD_URL = '/{Controller}/{View}/';
-    this.httpClient.get(this.API_URL + METHOD_URL).subscribe((data: Array<any>) => {
+    this.httpClient.get(environment.apiUrl + METHOD_URL).subscribe((data: Array<any>) => {
       data.forEach(dataItem => {
         const vObjeto = new Recurso();
         vObjeto.nombre = dataItem.nombre;
@@ -50,7 +50,7 @@ export class SubirRedService {
   getRED(): Observable<RED[]> {
     const vLstObjetos = [];
     const METHOD_URL = '/{Controller}/{View}/';
-    this.httpClient.get(this.API_URL + METHOD_URL).subscribe((data: Array<any>) => {
+    this.httpClient.get(environment.apiUrl + METHOD_URL).subscribe((data: Array<any>) => {
       data.forEach(dataItem => {
         const vObjeto = new RED();
         vObjeto.codigo = dataItem.codigo;
@@ -73,10 +73,43 @@ export class SubirRedService {
 
   addRED(pObject: FormData) {
     const METHOD_URL = 'url/to/your/api';
-    return this.httpClient.post(this.API_URL + METHOD_URL, pObject)
+    return this.httpClient.post(environment.apiUrl + METHOD_URL, pObject)
       .subscribe(res => {
         console.log(res);
         alert('SUCCESS !!');
       });
   }
 }
+
+export class ProyectoRED {
+  nombre: string;
+  tipo: string;
+  carpeta: string;
+}
+
+export class Recurso {
+  nombre: string;
+  archivo: string;
+  descripcion: string;
+  thumbnail: string;
+  fechaCreacion: DatePipe;
+  fechaUltimaModificacion: DatePipe;
+  tipo: string;
+}
+
+export class RED {
+  codigo: string;
+  nombre: string;
+  nombreCorto: string;
+  descripcion: string;
+  fechaInicio: DatePipe;
+  fechaCierre: DatePipe;
+  fechaCreacion: DatePipe;
+  porcentajeAvance: bigint;
+  tipo: string;
+  solicitante: string;
+  horasEstimadas: bigint;
+  horasTrabajadas: bigint;
+  recurso: Recurso;
+}
+

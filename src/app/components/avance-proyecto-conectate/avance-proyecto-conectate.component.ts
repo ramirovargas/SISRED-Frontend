@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ProyectoConectate } from '../proyectoConectate';
-import { Red } from '../red';
-import { RolAsignado } from '../rolAsignado';
-import { PersonasPorRol } from '../personasPorRol';
-import { ProyectoConectateService } from '../proyecto-conectate.service';
-import { RolesEstadosFasesService } from '../roles-estados-fases.service';
-import { REDS } from '../mock-reds';
-import { ASIGNACIONES } from '../mock-asignaciones';
-import { ROLES } from '../roles';
-import { ESTADOS } from '../estados';
-import { FASES } from '../fases';
+import { ProyectoConectate } from '../../services/proyectoConectate/proyectoConectate';
+import { Red } from '../../services/red/red';
+import { RolAsignado } from '../../services/asignaciones/rolAsignado';
+import { PersonasPorRol } from '../../services/proyectoConectate/personasPorRol';
+import { ProyectoConectateService } from '../../services/proyectoConectate/proyecto-conectate.service';
+import { RolesEstadosFasesService } from '../../services/red/roles-estados-fases.service';
+import { REDS } from '../../services/red/mock-reds';
+import { ASIGNACIONES } from '../../services/asignaciones/mock-asignaciones';
+import { ROLES } from '../../services/red/roles';
+import { ESTADOS } from '../../services/red/estados';
+import { FASES } from '../../services/red/fases';
 
 @Component({
   selector: 'app-avance-proyecto-conectate',

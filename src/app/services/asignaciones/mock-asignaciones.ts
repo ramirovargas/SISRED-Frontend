@@ -1,6 +1,6 @@
 import { Usuario } from './usuario';
 import { RolAsignado } from './rolAsignado';
-import { REDS } from './mock-reds';
+import { REDS } from '../red/mock-reds';
 
 export const ASIGNACIONES : RolAsignado[] = [
   {

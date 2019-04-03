@@ -4,9 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { SubirREDComponent } from './subir-red/subir-red.component';
-import { RedsPorPersonaComponent } from './reds-por-persona/reds-por-persona.component';
-import { AvanceProyectoConectateComponent } from './avance-proyecto-conectate/avance-proyecto-conectate.component';
+import { SubirREDComponent } from './components/subir-red/subir-red.component';
+import { RedsPorPersonaComponent } from './components/reds-por-persona/reds-por-persona.component';
+import { AvanceProyectoConectateComponent } from './components/avance-proyecto-conectate/avance-proyecto-conectate.component';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { AvanceProyectoConectateComponent } from './avance-proyecto-conectate/av
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
 import { Red } from './red';
-import { PROYECTO_CONECTATE } from './mock-proyecto-conectate';
+import { PROYECTO_CONECTATE } from '../proyectoConectate/mock-proyecto-conectate';
 import { FASES } from './fases';
 
 export const REDS : Red[] = [
