@@ -55,6 +55,7 @@ export class RedsRelacionadosComponent implements OnInit {
       })
       .catch(err => {
         alert(err);
+        this.loading = false;
       });
   }
 

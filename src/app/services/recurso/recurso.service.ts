@@ -12,7 +12,7 @@ export class RecursoService {
   constructor(private http: HttpClient) {}
 
   getRecursos(id): Observable<any> {
-    return this.http.get(environment.requestBase + '/getRecurso/' + id, {
+    return this.http.get(environment.apiUrl + 'getRecurso/' + id, {
       headers: this.httpHeaders
     });
   }

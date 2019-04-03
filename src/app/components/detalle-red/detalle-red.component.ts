@@ -40,7 +40,7 @@ export class DetalleREDComponent implements OnInit {
 
 
   ngOnInit() {
-    setup();    
+    setup();
     this.idRed = this.route.snapshot.params.idRed;
     this.getDetalleRed();
     this.getPersonasAsignadas();

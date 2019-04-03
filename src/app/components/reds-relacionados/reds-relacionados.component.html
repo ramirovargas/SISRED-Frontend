@@ -1,3 +1,4 @@
+<div class="container bg-white">
 <div class="row" style="display: flex; align-items: center;">
   <div class="col-1"></div>
   <div class="col-lg-5 col-md-6 col-12">
@@ -15,15 +16,17 @@
     <br />
   </div>
 
-  <div *ngFor="let red of redsList" class="col-md-4 col-sm-6 col-12 mb-4">
-    <div class="card mx-auto shadow" style="max-width: 18rem; height: 320px; width: 300px">
+  <div *ngFor="let red of redsList" class="col-md-3 col-sm-6 col-12 mb-4">
+    <div class="card mx-auto shadow" style="height: 320px; ">
       <div class="card-body text-dark">
 
-        <div class="container text-center">
+        <div class="text-center">
           <br />
           <i *ngIf="red.tipo === 'mp4' || red.tipo === 'mpg'" class="fas fa-video fa-3x"></i>
           <i *ngIf="red.tipo == 'jpg' || red.tipo == 'png' || red.tipo == 'gif'" class="fa fa-image fa-3x"></i>
           <i *ngIf="red.tipo == 'mp3'" class="far fa-file-audio fa-3x"></i>
+          <i *ngIf="red.tipo != 'mp3' && red.tipo != 'jpg' && red.tipo != 'png' && red.tipo != 'mp4'" class="fas fa-file fa-3x"></i>
+
         </div>
 
         <h5 class="card-title mt-2">{{red.nombreCortoRed}}</h5>
@@ -44,4 +47,5 @@
 
 <div id="loadingContainer" *ngIf="loading" class="text-center">
   <sk-chasing-dots [color]="success"></sk-chasing-dots>
+</div>
 </div>

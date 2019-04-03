@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'red/:idRed/proyecto/agregar', component: AddRedComponent},
   {path: 'red/asignados/:idUsuario', component: RedAsignadosComponent},
   {path: 'red/:idRed/detalle', component: DetalleREDComponent},
-  {path: 'red/:idRed/proyectos', component: ProyectosRedComponent}
+  {path: 'red/:idRed/proyectos', component: ProyectosRedComponent},
   {
     path: 'redrel/:idProyectoC',
     component: RedsRelacionadosComponent

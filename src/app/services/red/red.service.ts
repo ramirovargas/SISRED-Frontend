@@ -21,7 +21,7 @@ export class RedService {
 
       this.http
         .get(
-          environment.requestBase + '/reds/relacionados/' + idProyectoC,
+          environment.apiUrl + 'reds/relacionados/' + idProyectoC,
           options
         )
         .subscribe(
@@ -36,8 +36,8 @@ export class RedService {
     });
   }
 
-  getRedDetail(id): Observable<any> {
-    return this.http.get(environment.requestBase + '/getRedDet/' + id, {
+  getRedRecursosDetalle(id): Observable<any> {
+    return this.http.get(environment.apiUrl + 'getRedDetailRecursos/' + id, {
       headers: this.httpHeaders
     });
   }
