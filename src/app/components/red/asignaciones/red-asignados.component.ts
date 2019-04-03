@@ -1,7 +1,7 @@
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { RedAsignadosService } from '../../services/red/red-asignados.service';
-import { RedAsignado } from "../../services/red/RedAsignado";
+import { RedAsignadosService } from '../../../services/red/red-asignados.service';
+import { RedAsignado } from "../../../services/red/RedAsignado";
 
 declare function setup(): any;
 

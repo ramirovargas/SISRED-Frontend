@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { PersonasAsignadasService } from '../services/personas-asignadas/personas-asignadas.service';
-import {RecursosAsociadosService} from '../services/recursos-asociados/recursos-asociados.service';
-import {ProyectosRedService} from '../services/proyectos-red/proyectos-red.service';
-import {PersonaAsignada} from '../services/personas-asignadas/persona-asignada.model';
-import {DetalleRed} from '../services/detalle-red/detalle-red.model';
-import {ProyectoRed} from '../services/proyectos-red/proyecto-red.model';
-import {RecursoAsociado} from '../services/recursos-asociados/recurso-asociado.model';
-import {Metadata} from '../services/metadata/metadata.model';
-import {MetadataService} from '../services/metadata/metadata.service';
-import {DetalleRedService} from '../services/detalle-red/detalle-red.service';
+import { PersonasAsignadasService } from '../../services/rolAsignado/personas-asignadas/personas-asignadas.service';
+import {RecursosAsociadosService} from '../../services/recurso/recursos-asociados/recursos-asociados.service';
+import {ProyectosRedService} from '../../services/proyectoRed/proyectos-red/proyectos-red.service';
+import {PersonaAsignada} from '../../services/rolAsignado/personas-asignadas/persona-asignada.model';
+import {DetalleRed} from '../../services/red/detalle-red/detalle-red.model';
+import {ProyectoRed} from '../../services/proyectoRed/proyecto-red.model';
+import {RecursoAsociado} from '../../services/recurso/recursos-asociados/recurso-asociado.model';
+import {Metadata} from '../../services/metadata/metadata.model';
+import {MetadataService} from '../../services/metadata/metadata.service';
+import {DetalleRedService} from '../../services/red/detalle-red/detalle-red.service';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 

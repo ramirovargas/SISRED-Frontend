@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {ProyectoRed} from "../services/proyectos-red/proyecto-red.model";
-import {DetalleRed} from "../services/detalle-red/detalle-red.model";
-import {ProyectosRedService} from "../services/proyectos-red/proyectos-red.service";
-import {DetalleRedService} from "../services/detalle-red/detalle-red.service";
+import {ProyectoRed} from "../../services/proyectoRed/proyecto-red.model";
+import {DetalleRed} from "../../services/red/detalle-red/detalle-red.model";
+import {ProyectosRedService} from "../../services/proyectoRed/proyectos-red/proyectos-red.service";
+import {DetalleRedService} from "../../services/red/detalle-red/detalle-red.service";
 import {Location} from "@angular/common"
 
 declare function setup(): any;

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProyectosRedComponent } from './detalle-red.component';
+import { ProyectosRedComponent } from './proyectos-red.component';
 
 describe('DetalleREDComponent', () => {
   let component: ProyectosRedComponent;

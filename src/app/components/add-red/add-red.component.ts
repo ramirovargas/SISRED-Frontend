@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { AddRedService } from '../services/add-red/add-red.service';
+import { AddRedService } from '../../services/proyectoRed/add-red/add-red.service';
 import { FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Dropbox } from 'dropbox';
@@ -73,19 +73,23 @@ export class AddRedComponent implements OnInit {
   //Método que recibe un listado de archivos de una carpeta y crea un array
   public filesPickedToArray(files: FileList) {
     var filesArray: Array<File> = new Array<File>();
+    var pathsArray: Array<String> = new Array<String>();
 
     for (let i = 0; i < files.length; i++) {
       filesArray.push(files.item(i));
+      pathsArray.push((files.item(i)).webkitRelativePath);
+      console.log(pathsArray[i]);
     }
 
-    this.uploadFiles(filesArray);
+    this.uploadFiles(filesArray, pathsArray);
   }
 
   //Método recursivo que recibe un array de archivos y los envía a una cuenta de dropbox referenciada por ACCESS_TOKEN
-  public uploadFiles(files: Array<File>) {
+  public uploadFiles(files: Array<File>, paths: Array<String>) {
     var ACCESS_TOKEN = "I0Ng9kItu5AAAAAAAAAAHR16cYlxD2zh7tyDcSjg7cRFs0brDmSS088zp6kwqIEx";
     var dbx = new Dropbox({ accessToken: ACCESS_TOKEN });
     var newFiles: Array<File> = files.slice(0, files.length - 1);
+    var newPaths: Array<String> = paths.slice(0, files.length - 1);
 
     if (files.length > 0) {
       for (let i = 0; i < files.length - 1; i++) {
@@ -94,11 +98,11 @@ export class AddRedComponent implements OnInit {
       }
 
       if (files[files.length - 1].name != ".DS_Store") {
-        dbx.filesUpload({path: "/"+ this.addRedForm.get('folder').value+"/" + files[files.length - 1].name, contents: files[files.length - 1]})
+        dbx.filesUpload({path: "/"+ paths[files.length - 1], contents: files[files.length - 1]})
         .then(function(response) {
             console.log(response);
             if (files.length - 1 > 0) {
-              return this.uploadFiles(newFiles);  
+              return this.uploadFiles(newFiles, newPaths);  
             }
             else {
               this.addRed();  
@@ -110,7 +114,7 @@ export class AddRedComponent implements OnInit {
       }
       else {
         if (files.length - 1 > 0) {
-          return this.uploadFiles(newFiles);   
+          return this.uploadFiles(newFiles, newPaths);   
         }
       }
       
