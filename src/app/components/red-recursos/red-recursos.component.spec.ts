@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RedsRecursosComponent } from './reds-recursos.component';
+import { RedRecursosComponent } from './red-recursos.component';
 
-describe('RedsRecursosComponent', () => {
-  let component: RedsRecursosComponent;
-  let fixture: ComponentFixture<RedsRecursosComponent>;
+describe('RedRecursosComponent', () => {
+  let component: RedRecursosComponent;
+  let fixture: ComponentFixture<RedRecursosComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RedsRecursosComponent ]
+      declarations: [ RedRecursosComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RedsRecursosComponent);
+    fixture = TestBed.createComponent(RedRecursosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { RedsRelacionadosComponent } from './components/reds-relacionados/reds-relacionados.component';
-import { RedsRecursosComponent } from './components/reds-recursos/reds-recursos.component';
-import { RecursosComponent } from './components/recursos/recursos.component';
+import { RedRecursosComponent } from './components/red-recursos/red-recursos.component';
+import { RedRecursosDetalleComponent } from './components/red-recursos-detalle/red-recursos-detalle.component';
 
 const routes: Routes = [
   {
@@ -12,11 +12,11 @@ const routes: Routes = [
   },
   {
     path: 'red/:id/recursos',
-    component: RedsRecursosComponent
+    component: RedRecursosComponent
   },
   {
     path: 'red/:id/recursos/:idrecurso',
-    component: RecursosComponent
+    component: RedRecursosDetalleComponent
   },
   {
     path: '**',

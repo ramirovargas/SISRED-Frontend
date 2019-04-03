@@ -6,15 +6,15 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { RedsRelacionadosComponent } from './components/reds-relacionados/reds-relacionados.component';
-import { RedsRecursosComponent } from './components/reds-recursos/reds-recursos.component';
-import { RecursosComponent } from './components/recursos/recursos.component';
+import { RedRecursosDetalleComponent } from './components/red-recursos-detalle/red-recursos-detalle.component';
+import { RedRecursosComponent } from './components/red-recursos/red-recursos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RedsRelacionadosComponent,
-    RedsRecursosComponent,
-    RecursosComponent
+    RedRecursosDetalleComponent,
+    RedRecursosComponent
   ],
   imports: [
     HttpClientModule,
