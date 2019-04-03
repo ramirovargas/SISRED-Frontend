@@ -1,7 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { RED } from './Models/red';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AdvanceRedRestClientService } from '../services/advance-red-rest-client.service';
 
 @Component({
@@ -14,17 +14,20 @@ export class VerAvanceRedComponent implements OnInit {
   public red: RED;
   subred: RED;
   public advanceRedForm: FormGroup;
+  private idRed: number;
 
-  constructor(
-    
+  constructor(    
     private route: ActivatedRoute,
-    private advanceRedRestClientService: AdvanceRedRestClientService) {
-      this.route.params.subscribe();
+    private advanceRedRestClientService: AdvanceRedRestClientService,
+    private _route: Router) {
+      this.route.params.subscribe(param => {
+        this.idRed = Number(param["id"]);
+      });
    }
 
   ngOnInit(): void {
     this.loadForm();
-    this.getAdvanceRed();
+    this.getAdvanceRed(this.idRed);
   }
 
   loadForm(): void {
@@ -35,13 +38,17 @@ export class VerAvanceRedComponent implements OnInit {
     });
   }
 
-  public getAdvanceRed(): void {
+  public getAdvanceRed(id: number): void {
     this.advanceRedRestClientService
-      .getAdvanceRed()
+      .getAdvanceRedById(id)
       .subscribe(response => {
         this.red = response[0];
         this.subred = response;
       });
+  }
+
+  public onChangePageRed(): void{
+    this._route.navigate(['/ver-detalle-red/' + this.idRed]);
   }
 
 }

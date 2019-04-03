@@ -15,7 +15,7 @@ const routes: Routes = [
         component: DetalleRecursoComponent
     },
     {
-        path: "ver/avance-red",
+        path: "ver/avance-red/:id",
         component: VerAvanceRedComponent
     }
 ];

@@ -4,7 +4,9 @@
     <div class="row">
       <div class="col-md-8">
         <div class="row">
-          <p>Avance del RED: <a href="https://agiles-grupo1-sisred.herokuapp.com/consultar-proyectos/recurso/">{{ red?.nombre }}</a></p>  
+          <p>Avance del RED:
+            <a href="" (click)="onChangePageRed()">{{ red?.nombre }}</a>
+          </p>  
         </div>
         <div class="row">
           <p>Proyecto Conecta-Te: <strong>{{ red?.getProyecto }}</strong></p>

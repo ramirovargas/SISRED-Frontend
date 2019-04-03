@@ -11,9 +11,9 @@ export class AdvanceRedRestClientService {
 
   constructor(private http: Http) { }
 
-  getAdvanceRed(): Observable<any> {
+  getAdvanceRedById(id: number): Observable<any> {
     return this.http
-      .get(UrlConstant.SERVER_URL + UrlConstant.ADVANCE_RED_ENDPOINT)
+      .get(UrlConstant.SERVER_URL + UrlConstant.ADVANCE_RED_ENDPOINT + id)
       .pipe(map(reponse => reponse.json()));
   }
 }
