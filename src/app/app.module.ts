@@ -17,6 +17,7 @@ import { RedRecursosComponent } from "./components/red-recursos/red-recursos.com
 import { RedAsignadosComponent } from "./components/red/asignaciones/red-asignados.component";
 import { RedsRelacionadosComponent } from "./components/reds-relacionados/reds-relacionados.component";
 import { VerAvanceRedComponent } from "./components/ver-avance-red/ver-avance-red.component";
+import { RedsPorPersonaComponent } from './components/reds-por-persona/reds-por-persona.component';
 import { AgregarRecursoClientService } from './services/recurso/agregar/agregar-recurso-client.service';
 import { ResourceDetailsRestClientService } from './services/recurso/detalle/resource-details-rest-client.service';
 
@@ -25,6 +26,7 @@ import { ResourceDetailsRestClientService } from './services/recurso/detalle/res
 @NgModule({
   declarations: [
     AppComponent,
+    RedsPorPersonaComponent,
     AddRedComponent,
     RedAsignadosComponent,
     DetalleREDComponent,
