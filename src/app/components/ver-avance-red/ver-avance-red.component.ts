@@ -12,7 +12,7 @@ import { AdvanceRedRestClientService } from 'src/app/services/red/advance-red-re
 export class VerAvanceRedComponent implements OnInit {
 
   public red: RED;
-  subred: RED;
+  subred: Array<RED>;
   public advanceRedForm: FormGroup;
   private idRed: number;
 
