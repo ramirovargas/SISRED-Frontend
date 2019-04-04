@@ -25,7 +25,7 @@ export class AsignacionService {
       };
 
     return new Promise((resolve, reject) => {
-      this.httpClient.get(`${environment.apiUrl}/asignaciones/`, options).subscribe((data: any) => {
+      this.httpClient.get(`${environment.apiUrl}asignaciones/`, options).subscribe((data: any) => {
         data.context.forEach( dataItem => {
           let asignacion1 = new RolAsignado();
           asignacion1.fechaInicio = dataItem.fecha_inicio;

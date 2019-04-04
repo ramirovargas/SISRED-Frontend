@@ -1,18 +1,60 @@
-<h2>REDs por persona</h2>
-<select class="form-control" id="selectorUsuario" (change)="onChangeUsuario($event.target.value)">
-  <option value="">--</option>
-  <option *ngFor="let usuario of usuarios" value="{{usuario.numeroIdentificacion}}">{{usuario.nombres}} {{usuario.apellidos}}</option>
-</select>
+<!-- Content Wrapper. Contains page content -->
+<div class="marginH content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      REDs por persona
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li class="active">REDs por persona</li>
+    </ol>
+  </section>
 
-<table *ngIf="valor && valor !==''">
-  <tr>
-    <th>Recurso Educativo Digital</th>
-    <th>Rol</th>
-    <th>Detalle</th>
-  </tr>
-  <tr *ngFor="let asign of asignFiltradas">
-    <td>{{asign.red.nombreCorto}}</td>
-    <td>{{asign.rol}}</td>
-    <td><button type="button" class="btn btn-block btn-primary fa fa-search">ver detalle</button></td>
-  </tr>
-</table>
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-12">
+        <!-- general form elements -->
+
+        <div class="box box-primary">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Usted ha sido asignado a los siguientes REDs:</h3>
+            </div>
+            <div class="box-body">
+              <select class="form-control" id="selectorUsuario" (change)="onChangeUsuario($event.target.value)">
+                <option value="">--</option>
+                <option *ngFor="let usuario of usuarios" value="{{usuario.numeroIdentificacion}}">{{usuario.nombres}} {{usuario.apellidos}}</option>
+              </select>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Recurso Educativo Digital</th>
+                    <th scope="col">Rol</th>
+                    <th scope="col">Detalle</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let asign of asignFiltradas">
+                    <td>{{asign.red.nombreCorto}}</td>
+                    <td>{{asign.rol}}</td>
+                    <td><button type="button" class="btn btn-block btn-primary fa fa-search">ver detalle</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.box primary-->
+      </div>
+      <!--/.col (left) -->
+    </div>
+    <!-- /.row -->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
