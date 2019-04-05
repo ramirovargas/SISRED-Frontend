@@ -138,6 +138,9 @@ THE SOFTWARE.
 
 
 
+ngx-spinner
+MIT
+
 rxjs
 Apache-2.0
                                Apache License
