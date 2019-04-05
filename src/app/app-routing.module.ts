@@ -1,3 +1,5 @@
+import { CommonModule } from '@angular/common';
+import { RedsPorPersonaComponent } from './components/reds-por-persona/reds-por-persona.component';
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
@@ -16,6 +18,7 @@ const routes: Routes = [
   { path: "", component: RedAsignadosComponent },
   { path: "red/:idRed/proyecto/agregar", component: AddRedComponent },
   { path: "red/asignados/:idUsuario", component: RedAsignadosComponent },
+  { path: 'asignaciones', component: RedsPorPersonaComponent },
   { path: "red/:idRed/detalle", component: DetalleREDComponent },
   { path: "red/:idRed/proyectos", component: ProyectosRedComponent },
   {
