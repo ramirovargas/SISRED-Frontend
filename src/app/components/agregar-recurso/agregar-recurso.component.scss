@@ -10,7 +10,7 @@
     text-rendering: optimizeLegibility;
 }
 .container {
-    max-width: 400px;
+    max-width: 600px;
     width: 100%;
     margin: 0 auto;
     position: relative;
@@ -22,12 +22,13 @@
 .card {
     background: #F9F9F9;
     padding: 25px;
-    margin: 150px 0;
+    margin: 20px 0;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
-title {
+h2 {
     text-align: center;
+    margin-bottom: 5px;
 }
 
 
