@@ -20,7 +20,7 @@ import { VerAvanceRedComponent } from "./components/ver-avance-red/ver-avance-re
 import { RedsPorPersonaComponent } from './components/reds-por-persona/reds-por-persona.component';
 import { AgregarRecursoClientService } from './services/recurso/agregar/agregar-recurso-client.service';
 import { ResourceDetailsRestClientService } from './services/recurso/detalle/resource-details-rest-client.service';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 @NgModule({
@@ -37,7 +37,7 @@ import { ResourceDetailsRestClientService } from './services/recurso/detalle/res
     RedRecursosComponent,
     DetalleRecursoComponent,
     VerAvanceRedComponent,
-    AgregarRecursoComponent
+    AgregarRecursoComponent    
   ],
   imports: [
     AppRoutingModule,
@@ -50,7 +50,8 @@ import { ResourceDetailsRestClientService } from './services/recurso/detalle/res
     NgSpinKitModule,
     NgbAlertModule,
     NgbPaginationModule,
-    HttpModule
+    HttpModule,
+    NgxSpinnerModule
   ],
   providers: [AgregarRecursoClientService, ResourceDetailsRestClientService],
   bootstrap: [AppComponent]

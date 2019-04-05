@@ -4,7 +4,8 @@ import { FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } 
 import { HttpClientModule } from '@angular/common/http';
 import { Dropbox } from 'dropbox';
 import {ActivatedRoute} from '@angular/router';
-import { Location } from '@angular/common'
+import { Location } from '@angular/common';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 declare function setup(): any;
 
@@ -25,7 +26,7 @@ export class AddRedComponent implements OnInit {
   public addRedForm: FormGroup;
 
 
-  constructor(private route: ActivatedRoute, private addRedService: AddRedService, private location: Location) { 
+  constructor(private route: ActivatedRoute, private addRedService: AddRedService, private location: Location, private spinner: NgxSpinnerService) { 
     
   }
 
@@ -75,6 +76,8 @@ export class AddRedComponent implements OnInit {
     var filesArray: Array<File> = new Array<File>();
     var pathsArray: Array<String> = new Array<String>();
 
+    this.spinner.show();
+
     for (let i = 0; i < files.length; i++) {
       filesArray.push(files.item(i));
       pathsArray.push('files/');
@@ -107,10 +110,12 @@ export class AddRedComponent implements OnInit {
               return this.uploadFiles(newFiles, newPaths);  
             }
             else {
-              this.addRed();  
+              this.spinner.hide();
+              this.addRed();                
             } 
           }.bind(this))
           .catch(function(error) {
+            this.spinner.hide();
             console.error(error);
         });
       }
@@ -118,9 +123,12 @@ export class AddRedComponent implements OnInit {
         if (files.length - 1 > 0) {
           return this.uploadFiles(newFiles, newPaths);   
         }
-      }
-      
-    }
+        else {
+          this.spinner.hide();
+          this.addRed(); 
+        }
+      }      
+    }    
 
     return
     
