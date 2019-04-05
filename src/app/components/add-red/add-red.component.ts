@@ -77,7 +77,7 @@ export class AddRedComponent implements OnInit {
 
     for (let i = 0; i < files.length; i++) {
       filesArray.push(files.item(i));
-      pathsArray.push('');
+      pathsArray.push('files/');
       console.log(pathsArray[i]);
     }
 
@@ -96,6 +96,8 @@ export class AddRedComponent implements OnInit {
         const file = files[i];
         newFiles.push()
       }      
+
+      console.log('/proyectored/'+ files[files.length - 1].name);
 
       if (files[files.length - 1].name != '.DS_Store') {
         dbx.filesUpload({path: '/proyectored/'+ files[files.length - 1].name, contents: files[files.length - 1]})
