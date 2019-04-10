@@ -20,7 +20,7 @@ export class RedRecursosComponent implements OnInit {
     ngOnInit() {}
 
     getReds = () => {
-      this.api.getRedDetail(this.id).subscribe(
+      this.api.getRedRecursosDetalle(this.id).subscribe(
        data => {
           this.reds = data;
           console.log(this.id);

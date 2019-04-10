@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container bg-white">
   <div *ngFor="let recurso of recursos" class="row">
     <div class="col-12 mt-4">
     <br>
@@ -9,7 +9,9 @@
       <br><br>
            <img src="{{recurso.thumbnail}}" alt="..." class="img-thumbnail shadow" style="width: 300px; height: 300px;">
       <br><br>
-      <button type="button" class="btn btn-secondary btn-lg btn-block" [routerLink]="['/red/'+idred+'/recursos/']">Regresar</button>
+      <div class="text-center mb-4">
+        <button type="button" class="btn btn-secondary btn-lg" [routerLink]="['/red/'+idred+'/recursos/']">Regresar</button>
+      </div>
     </div>
     <div class="col">
       <br><br><br><br>

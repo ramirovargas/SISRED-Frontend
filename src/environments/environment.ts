@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  requestBase: 'http://localhost:8000/api'
+  apiUrl: 'http://sisredbackend.herokuapp.com/api/'
 };
 
 /*
