@@ -24,7 +24,7 @@ export class RedsRelacionadosComponent implements OnInit {
 
   public nombreProyecto = null;
 
-  public success = '#28a745';
+  public sisredColor = '#3c8dbc';
 
   public idProyectoC = 0;
 
@@ -53,7 +53,7 @@ export class RedsRelacionadosComponent implements OnInit {
         console.log(this.idProyectoC);
       })
       .catch(err => {
-        alert(err);
+        console.log(err);
         this.loading = false;
       });
   }

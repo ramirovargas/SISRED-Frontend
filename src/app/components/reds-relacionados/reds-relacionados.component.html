@@ -23,11 +23,11 @@
 
             <div class="box-body">
               <div id="loadingContainer" *ngIf="loading" class="text-center">
-                <sk-chasing-dots [color]="success"></sk-chasing-dots>
+                <sk-chasing-dots [color]="sisredColor"></sk-chasing-dots>
               </div>
               <div *ngIf="!loading" class="row" style="display: flex; align-items: center;">
 
-                <div class="col-12">
+                <div *ngIf="redsList.length > 0" class="col-12">
                   <br />
                 </div>
 
@@ -68,15 +68,9 @@
 
                 </ng-container>
 
-                <div class="col-12" *ngIf="redsList.length === 0">
+                <div class="col-12 mt-1 mb-2" *ngIf="redsList.length === 0">
                   <h3>No hay reds relacionados al proyecto con id {{idProyectoC}}</h3>
                 </div>
-
-                <div class="col-12 mb-4">
-                  <br />
-                </div>
-              </div>
-              <div>
 
               </div>
             </div>

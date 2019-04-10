@@ -16,3 +16,7 @@
 .border-sisred-blue {
   border-color: #3c8dbc !important;
 }
+
+.pointer {
+  cursor: pointer;
+}
