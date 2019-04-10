@@ -1,3 +1,13 @@
 #loadingContainer {
   min-height: 500px;
 }
+
+.btn-outline-dark {
+  color: #3c8dbc;
+}
+
+.btn-outline-dark:hover {
+  color: white !important;
+  background-color: #3c8dbc !important;
+  border-color: #3c8dbc !important;
+}
