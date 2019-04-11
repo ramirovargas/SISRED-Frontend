@@ -12,7 +12,7 @@ import {MetadataService} from '../../services/metadata/metadata.service';
 import {DetalleRedService} from '../../services/red/detalle-red/detalle-red.service';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
-import {VersionService} from "../../services/version/version.service";
+import {VersionService} from '../../services/version/version.service';
 
 declare function setup(): any;
 

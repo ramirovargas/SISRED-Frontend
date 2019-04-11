@@ -1,8 +1,8 @@
 // Model Version
 export class Version {
   numero: number;
-  fecha: string;
+  fechaCreacion: string;
   creadoPor: string;
-  miniatura: string;
+  imagen: string;
   esFinal: boolean;
 }
