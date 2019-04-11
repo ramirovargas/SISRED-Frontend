@@ -7,10 +7,12 @@ import {DetalleRed} from '../../services/red/detalle-red/detalle-red.model';
 import {ProyectoRed} from '../../services/proyectoRed/proyecto-red.model';
 import {RecursoAsociado} from '../../services/recurso/recursos-asociados/recurso-asociado.model';
 import {Metadata} from '../../services/metadata/metadata.model';
+import {Version} from '../../services/version/version.model';
 import {MetadataService} from '../../services/metadata/metadata.service';
 import {DetalleRedService} from '../../services/red/detalle-red/detalle-red.service';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
+import {VersionService} from "../../services/version/version.service";
 
 declare function setup(): any;
 
@@ -28,6 +30,7 @@ export class DetalleREDComponent implements OnInit {
   recursos: RecursoAsociado[];
   proyectos: ProyectoRed[];
   metadata: Metadata[];
+  versiones: Version[];
   idRed: number;
 
   constructor(private route: ActivatedRoute,
@@ -36,6 +39,7 @@ export class DetalleREDComponent implements OnInit {
               private recursosAsociadosService: RecursosAsociadosService,
               private proyectosRedService: ProyectosRedService,
               private metadataService: MetadataService,
+              private versionesService: VersionService,
               private location: Location) { }
 
 
@@ -47,6 +51,7 @@ export class DetalleREDComponent implements OnInit {
     this.getRecursosAsociados();
     this.getProyectosRed();
     this.getMetadata();
+    this.getVersiones();
 
   }
 
@@ -78,6 +83,12 @@ export class DetalleREDComponent implements OnInit {
   getMetadata(): void {
     this.metadataService.getMetadata(this.idRed)
       .subscribe(metadata => this.metadata = metadata);
+  }
+
+  // Metodo que obtiene las versiones del RED
+  getVersiones(): void {
+    this.versionesService.getVersiones(this.idRed)
+      .subscribe(versiones => this.versiones = versiones);
   }
 
   // Metodo que regresa a la pantella anterior

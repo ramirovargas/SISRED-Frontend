@@ -124,6 +124,40 @@
                 </div>
               </div>
               <!-- /.tdiv metadata del RED -->
+              <!-- table versiones del RED -->
+              <table class="table table-hover table-bordered table-margin">
+                <thead>
+                <tr>
+                  <td colspan="5">
+                    <h3 class="text-center">Versiones</h3>
+                  </td>
+                </tr>
+                <tr class="thead-light text-center">
+                  <th scope="col">Versión</th>
+                  <th scope="col">Fecha</th>
+                  <th scope="col">Creado por</th>
+                  <th scope="col">Imagen miniatura</th>
+                  <th scope="col">Definitiva</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let version of versiones">
+                  <td>Versión {{version.numero}}</td>
+                  <td>{{version.fecha}}</td>
+                  <td>{{version.creadoPor}}</td>
+                  <td>{{version.miniatura}}</td>
+                  <td class="text-center">
+                    <div *ngIf="version.esFinal; else marcarComoDef">
+                      Versión definitiva
+                    </div>
+                    <ng-template #marcarComoDef>
+                      <button type="button" class="btn btn-primary">Marcar como definitivo</button>
+                    </ng-template>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <!-- /.table Versiones del RED -->
             </div>
             <!-- /.box-body -->
           </div>
