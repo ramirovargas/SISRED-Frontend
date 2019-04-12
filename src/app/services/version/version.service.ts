@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class VersionService {
-  API_URL = environment.apiUrl + 'reds/{id}/versiones';
+  API_URL = environment.apiUrl + 'reds/{id}/versiones/';
   MARCAR_VERSION_URL = environment.apiUrl + 'versiones/{id}/marcar';
   private versiones: Array<Version> = [];
 
@@ -20,23 +20,22 @@ export class VersionService {
   getVersiones(idRed: number): Observable<Version[]> {
     const apiUrlFinal = this.API_URL.replace('{id}', idRed.toString());
     this.versiones = [];
-    return this.httpClient.get(apiUrlFinal).pipe(map((data: Array<any>) => {
-
-      return data.map(dataItem => {
+    this.httpClient.get(apiUrlFinal).subscribe((data: any) => {
+      data.context.forEach(dataItem => {
         const version = new Version();
         version.numero = dataItem.numero;
         version.fechaCreacion = dataItem.fecha_creacion;
-        version.creadoPor = dataItem.creadoPor;
+        version.creadoPor = dataItem.creado_por.usuario.username;
         version.esFinal = dataItem.es_final;
         version.imagen = dataItem.imagen;
-        return version;
+        this.versiones.push(version);
       });
-
-    }));
+    });
+    return of(this.versiones);
   }
 
-  markAsFinal(idRed: number): Observable<Version> {
-    const apiUrlMarcar = this.MARCAR_VERSION_URL.replace('{id}', idRed.toString());
+  markAsFinal(versionNumero: number): Observable<Version> {
+    const apiUrlMarcar = this.MARCAR_VERSION_URL.replace('{id}', versionNumero.toString());
     return this.httpClient.post<Version>(apiUrlMarcar, "");
   }
 }
