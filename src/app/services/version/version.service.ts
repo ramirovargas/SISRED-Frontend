@@ -34,5 +34,6 @@ export class VersionService {
   
   markAsFinal(idRed: number): Observable<Version> {
     const apiUrlMarcar = this.MARCAR_VERSION_URL.replace('{id}', idRed.toString());
-	this.httpClient.post(apiUrlMarcar)  
+	this.httpClient.post(apiUrlMarcar)
+  }
 }
