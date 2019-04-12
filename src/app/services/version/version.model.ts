@@ -4,5 +4,6 @@ export class Version {
   fechaCreacion: string;
   creadoPor: string;
   imagen: string;
+  url: string;
   esFinal: boolean;
 }

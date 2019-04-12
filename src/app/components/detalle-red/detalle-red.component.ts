@@ -88,7 +88,22 @@ export class DetalleREDComponent implements OnInit {
   // Metodo que obtiene las versiones del RED
   getVersiones(): void {
     this.versionesService.getVersiones(this.idRed)
-      .subscribe(versiones => this.versiones = versiones);
+      .then(versiones => {
+        this.versiones = versiones;
+        this.getImagenesVersiones();
+      });
+  }
+
+  getImagenesVersiones(): void {
+    this.versiones.forEach(version => {
+      this.versionesService.getImagenVersion(version.imagen)
+        .then(response => {
+          version.url=response.link;
+        })
+        .catch(err => {
+          console.error(err);
+        });
+    });
   }
 
   // Metodo que regresa a la pantella anterior
