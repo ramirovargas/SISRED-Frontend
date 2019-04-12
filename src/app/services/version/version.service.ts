@@ -10,6 +10,7 @@ import { environment } from './../../../environments/environment';
 })
 export class VersionService {
   API_URL = environment.apiUrl + 'reds/{id}/versiones';
+  MARCAR_VERSION_URL = environment.apiUrl + 'versiones/{id}/marcar';
   private versiones: Array<Version> = [];
 
   constructor(private httpClient: HttpClient) { }
@@ -18,17 +19,20 @@ export class VersionService {
   getVersiones(idRed: number): Observable<Version[]> {
     const apiUrlFinal = this.API_URL.replace('{id}', idRed.toString());
     this.versiones = [];
-    this.httpClient.get(apiUrlFinal).subscribe((data: any) => {
-      data.context.forEach(dataItem => {
-        const version = new Version();
-        version.numero = dataItem.numero;
-        version.fechaCreacion = dataItem.fecha_creacion;
-        version.creadoPor = dataItem.creado_por.usuario.username;
-        version.esFinal = dataItem.es_final;
-        version.imagen = dataItem.imagen;
-        this.versiones.push(version);
-      });
-    });
-    return of(this.versiones);
+    return this.httpClient.get(apiUrlFinal).pipe(map((data: Array<any>) => {
+        data.forEach(dataItem => {
+          const version = new Version();
+          version.numero = dataItem.numero;
+          version.fechaCreacion = dataItem.fecha_creacion;
+          version.creadoPor = dataItem.creadoPor;
+          version.esFinal = dataItem.es_final;
+          version.imagen = dataItem.imagen;
+          return version;
+        });
+      }));
   }
+  
+  markAsFinal(idRed: number): Observable<Version> {
+    const apiUrlMarcar = this.MARCAR_VERSION_URL.replace('{id}', idRed.toString());
+	this.httpClient.post(apiUrlMarcar)  
 }

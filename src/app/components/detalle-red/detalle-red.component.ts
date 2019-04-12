@@ -96,5 +96,10 @@ export class DetalleREDComponent implements OnInit {
     this.location.back();
     console.log(this.location);
   }
+  
+  // Marcar versión como final
+  markAsFinal(version:Version): void {
+    this.versionesService.markAsFinal(version.iDRed).subscribe(()=>this.getVersiones())
+  }
 
 }
