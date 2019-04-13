@@ -15,7 +15,7 @@ export class RedsPorPersonaComponent implements OnInit {
   asignaciones: RolAsignado[] = [];
   asignFiltradas: RolAsignado[] = [];
   usuarios: Usuario[] = [];
-  valor: string;
+  valor: string = '';
 
   initUsuarios() {
     for (let asign of this.asignaciones) {

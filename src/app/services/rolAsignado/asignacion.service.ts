@@ -26,13 +26,14 @@ export class AsignacionService {
 
     return new Promise((resolve, reject) => {
       this.httpClient.get(`${environment.apiUrl}asignaciones/`, options).subscribe((data: any) => {
+        this.asignaciones = [];
         data.context.forEach( dataItem => {
           let asignacion1 = new RolAsignado();
           asignacion1.fechaInicio = dataItem.fecha_inicio;
           asignacion1.fechaFin = dataItem.fecha_fin === null ? '' : dataItem.fecha_fin;
           asignacion1.rol = dataItem.rol.nombre;
           let red = new Red();
-          red.codigo = dataItem.red.codigo;
+          red.id = dataItem.red.id;
           red.nombre = dataItem.red.nombre;
           red.nombreCorto = dataItem.red.nombre_corto;
           red.descripcion = dataItem.red.descripcion;
@@ -49,7 +50,7 @@ export class AsignacionService {
           red.fase = '';
           asignacion1.red = red;
           let usuario = new Usuario();
-          usuario.nombres = dataItem.usuario.usuario.username;
+          usuario.nombres = dataItem.usuario.usuario.first_name;
           usuario.email = dataItem.usuario.usuario.email;
           usuario.apellidos = dataItem.usuario.usuario.last_name;
           usuario.tipoIdentificacion = dataItem.usuario.tipo_identificacion;
