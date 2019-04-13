@@ -32,7 +32,7 @@ export class RedsRelacionadosComponent implements OnInit {
     private redService: RedService,
     private activatedRoute: ActivatedRoute
   ) {
-    this.idProyectoC = this.activatedRoute.snapshot.params['idProyectoC'];
+    this.idProyectoC = this.activatedRoute.snapshot.params['idRed'];
     console.log(this.idProyectoC);
   }
 
