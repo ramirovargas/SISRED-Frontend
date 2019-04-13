@@ -2,7 +2,7 @@ import { ProyectoConectate } from '../proyectoConectate/proyectoConectate';
 import { HistorialEstados } from './historialEstados';
 
 export class Red {
-  codigo: string;
+  id: string;
   nombre: string;
   nombreCorto: string;
   descripcion: string;
