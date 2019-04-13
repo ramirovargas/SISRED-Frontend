@@ -1,51 +1,89 @@
-<div class="container bg-white">
-<div class="row" style="display: flex; align-items: center;">
-  <div class="col-1"></div>
-  <div class="col-lg-5 col-md-6 col-12">
-    <div class="form-group mr-2 ml-2">
-      <br>
-      <br>
-      <label class="text-bold col-form-label font-weight-bold">REDs relacionados al proyecto &nbsp;{{nombreCortoProyecto}}</label>
-    </div>
-  </div>
-</div>
+<!-- Content Wrapper. Contains page content -->
+<div class="marginH content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      REDs relacionados al proyecto <b>{{nombreCortoProyecto}}</b>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li class="active">REDs relacionados</li>
+    </ol>
+  </section>
 
-<div *ngIf="!loading" class="row" style="display: flex; align-items: center;">
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-12">
+        <!-- general form elements -->
 
-  <div class="col-12">
-    <br />
-  </div>
+        <div class="box box-primary">
+          <div class="box">
 
-  <div *ngFor="let red of redsList" class="col-md-3 col-sm-6 col-12 mb-4">
-    <div class="card mx-auto shadow" style="height: 320px; ">
-      <div class="card-body text-dark">
+            <div class="box-body">
+              <div id="loadingContainer" *ngIf="loading" class="text-center">
+                <sk-chasing-dots [color]="sisredColor"></sk-chasing-dots>
+              </div>
+              <div *ngIf="!loading" class="row" style="display: flex; align-items: center;">
 
-        <div class="text-center">
-          <br />
-          <i *ngIf="red.tipo === 'mp4' || red.tipo === 'mpg'" class="fas fa-video fa-3x"></i>
-          <i *ngIf="red.tipo == 'jpg' || red.tipo == 'png' || red.tipo == 'gif'" class="fa fa-image fa-3x"></i>
-          <i *ngIf="red.tipo == 'mp3'" class="far fa-file-audio fa-3x"></i>
-          <i *ngIf="red.tipo != 'mp3' && red.tipo != 'jpg' && red.tipo != 'png' && red.tipo != 'mp4'" class="fas fa-file fa-3x"></i>
+                <div *ngIf="redsList.length > 0" class="col-12">
+                  <br />
+                </div>
 
+                <ng-container *ngIf="redsList.length > 0">
+                  <div class="col-12">
+                    <div class="row">
+                      <div *ngFor="let red of redsList"
+                        class="col-lg-4 col-md-6 col-12 col-12 mb-5 d-flex align-items-stretch">
+                        <div class="card mx-auto shadow w-75 border-sisred-blue">
+                          <div class="card-body text-dark">
+
+                            <div class="text-center mb-4">
+                              <br />
+                              <i *ngIf="red.tipo === 'mp4' || red.tipo === 'mpg'" class="fas fa-video fa-3x"></i>
+                              <i *ngIf="red.tipo == 'jpg' || red.tipo == 'png' || red.tipo == 'gif'"
+                                class="fa fa-image fa-3x"></i>
+                              <i *ngIf="red.tipo == 'mp3'" class="far fa-file-audio fa-3x"></i>
+                              <i *ngIf="red.tipo != 'mp3' && red.tipo != 'jpg' && red.tipo != 'png' && red.tipo != 'mp4'"
+                                class="fas fa-file fa-3x"></i>
+                            </div>
+
+                            <h4 class="card-title mt-2 text-center"><b>{{red.nombreCortoRed}}</b></h4>
+                            <p class="card-text"><b>Fecha creación: </b>{{red.fechaCreacion}}</p>
+                            <p class="card-text"><b>Tipo:</b>&nbsp;{{red.tipo}}</p>
+                            <p class="card-text"><b>Asesor: &nbsp;</b>{{red.asesor}}</p>
+                            <p class="card-text"><b>Proyecto: &nbsp;</b>{{nombreProyecto}}</p>
+                          </div>
+
+                          <div class="card-footer text-center">
+                            <button type="button" class="btn btn-outline-dark shadow-none"><i
+                                class="fas fa-eye"></i>&nbsp;Ver
+                              detalles</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </ng-container>
+
+                <div class="col-12 mt-1 mb-2" *ngIf="redsList.length === 0">
+                  <h3>No hay reds relacionados al proyecto con id {{idProyectoC}}</h3>
+                </div>
+
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
         </div>
-
-        <h5 class="card-title mt-2">{{red.nombreCortoRed}}</h5>
-        <p class="card-text">Fecha creación: &nbsp;{{red.fechaCreacion}} <br /> Tipo: &nbsp;{{red.tipo}} <br />Asesor: &nbsp;{{red.asesor}} <br />Proyecto: &nbsp;{{nombreProyecto}}</p>
+        <!-- /.box primary-->
       </div>
-
-      <div class="card-footer text-center">
-        <button type="button" class="btn btn-outline-dark shadow-none"><i
-            class="fas fa-eye"></i>Ver detalles</button>
-      </div>
+      <!--/.col (left) -->
     </div>
-  </div>
-
-  <div class="col-12 mb-4">
-    <br />
-  </div>
+    <!-- /.row -->
+  </section>
+  <!-- /.content -->
 </div>
-
-<div id="loadingContainer" *ngIf="loading" class="text-center">
-  <sk-chasing-dots [color]="success"></sk-chasing-dots>
-</div>
-</div>
+<!-- /.content-wrapper -->

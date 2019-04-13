@@ -1,3 +1,4 @@
+    
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { RedsPorPersonaComponent } from './components/reds-por-persona/reds-por-persona.component';
 import { HttpClientModule } from "@angular/common/http";
@@ -15,7 +16,7 @@ import { RedsRelacionadosComponent } from "./components/reds-relacionados/reds-r
 import { VerAvanceRedComponent } from "./components/ver-avance-red/ver-avance-red.component";
 import { VersionRedRevisionComponent } from './components/version-red-revision/version-red-revision.component';
 
-const routes: Routes = [  
+const routes: Routes = [
   { path: "", component: RedAsignadosComponent },
   { path: "red/:idRed/proyecto/agregar", component: AddRedComponent },
   { path: "red/asignados/:idUsuario", component: RedAsignadosComponent },

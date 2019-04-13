@@ -8,7 +8,6 @@ import { RedService } from 'src/app/services/red/red.service';
   styleUrls: ['./reds-relacionados.component.css']
 })
 export class RedsRelacionadosComponent implements OnInit {
-
   @Input() proyectoConectate;
 
   private modal = null;
@@ -25,9 +24,9 @@ export class RedsRelacionadosComponent implements OnInit {
 
   public nombreProyecto = null;
 
-  public success = '#28a745';
+  public sisredColor = '#3c8dbc';
 
-  private idProyectoC = 0;
+  public idProyectoC = 0;
 
   constructor(
     private redService: RedService,
@@ -54,7 +53,7 @@ export class RedsRelacionadosComponent implements OnInit {
         console.log(this.idProyectoC);
       })
       .catch(err => {
-        alert(err);
+        console.log(err);
         this.loading = false;
       });
   }

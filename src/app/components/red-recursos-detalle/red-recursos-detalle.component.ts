@@ -8,29 +8,42 @@ import { RecursoService } from 'src/app/services/recurso/recurso.service';
   styleUrls: ['./red-recursos-detalle.component.css']
 })
 export class RedRecursosDetalleComponent implements OnInit {
-
-  recursos: [] = [];
+  recursos = [];
   idrecurso: number = 0;
   idred: number = 0;
 
-    constructor(private activatedRoute: ActivatedRoute, private api: RecursoService) {
-      this.idrecurso = this.activatedRoute.snapshot.params['idrecurso'];
-      this.getResources();
-      this.idred = this.activatedRoute.snapshot.params['id'];
-    }
+  public recurso;
 
-    ngOnInit() {}
+  public loading = true;
 
-      getResources = () => {
-        this.api.getRecursos(this.idrecurso).subscribe(
-         data => {
-            this.recursos = data;
-            console.log(this.idrecurso);
-            console.log(data);
-          },
-          error => {
-            console.log(error);
-          }
-        )
+  public sisredColor = '#3c8dbc';
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private api: RecursoService
+  ) {
+    this.idrecurso = this.activatedRoute.snapshot.params['idrecurso'];
+    this.getResources();
+    this.idred = this.activatedRoute.snapshot.params['id'];
+  }
+
+  ngOnInit() {}
+
+  getResources = () => {
+    this.api.getRecursos(this.idrecurso).subscribe(
+      data => {
+        this.recursos = data;
+        console.log(this.idrecurso);
+        console.log(data);
+        if (this.recursos.length > 0) {
+          this.recurso = this.recursos[0];
+        }
+        this.loading = false;
+      },
+      error => {
+        console.log(error);
+        this.loading = false;
       }
+    );
+  };
 }
