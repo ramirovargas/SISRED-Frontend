@@ -4,6 +4,8 @@ import { Usuario } from '../../services/rolAsignado/usuario';
 import { Red } from '../../services/red/red';
 import { AsignacionService } from '../../services/rolAsignado/asignacion.service';
 
+declare function setup(): any;
+
 @Component({
   selector: 'app-reds-por-persona',
   templateUrl: './reds-por-persona.component.html',
@@ -42,6 +44,7 @@ export class RedsPorPersonaComponent implements OnInit {
   constructor(private asignacionService: AsignacionService) { }
 
   ngOnInit() {
+    setup();
     this.getAsignaciones();
   }
 

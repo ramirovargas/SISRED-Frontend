@@ -19,9 +19,9 @@ import { VersionRedRevisionComponent } from './components/version-red-revision/v
 const routes: Routes = [
   { path: "", component: RedAsignadosComponent },
   { path: "red/:idRed/proyecto/agregar", component: AddRedComponent },
-  { path: "red/asignados/:idUsuario", component: RedAsignadosComponent },
-  { path: 'asignaciones', component: RedsPorPersonaComponent },
   { path: "red/:idRed/detalle", component: DetalleREDComponent },
+  { path: "reds/:idUsuario", component: RedAsignadosComponent },
+  { path: "asignaciones", component: RedsPorPersonaComponent },
   { path: "red/:idRed/version/:version", component: VersionRedRevisionComponent },
   { path: "red/:idRed/proyectos", component: ProyectosRedComponent },
   {
