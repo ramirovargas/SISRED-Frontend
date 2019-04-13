@@ -27,7 +27,7 @@ const routes: Routes = [
   },
   { path: 'red/:idRed/proyectos', component: ProyectosRedComponent },
   {
-    path: 'reds/:idRed/relacionados',
+    path: 'red/:idRed/relacionados',
     component: RedsRelacionadosComponent
   },
   {
@@ -35,19 +35,19 @@ const routes: Routes = [
     component: RedRecursosComponent
   },
   {
-    path: 'red/:id/recursos/:idrecurso',
-    component: RedRecursosDetalleComponent
-  },
-  {
-    path: 'recurso/agregar-recurso',
+    path: 'red/:idRed/recursos/agregar',
     component: AgregarRecursoComponent
   },
+  // {
+  //   path: 'red/:id/recursos/:idrecurso',
+  //   component: RedRecursosDetalleComponent
+  // },
   {
-    path: 'recurso/detalle/:id',
+    path: 'red/:idRed/recursos/:id',
     component: DetalleRecursoComponent
   },
   {
-    path: 'ver/avance-red/:id',
+    path: 'reds/:id/avance',
     component: VerAvanceRedComponent
   },
   { path: '**', component: NotFoundComponent }

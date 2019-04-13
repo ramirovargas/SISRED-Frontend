@@ -47,6 +47,8 @@ export class RedsRelacionadosComponent implements OnInit {
         this.nombreCortoProyecto = data.nombreCortoProyecto;
         this.nombreProyecto = data.nombreProyecto;
         this.redsListOptions = data.redsRelacionados;
+        console.log(data);
+
         this.redsListOptions.sort(this.compare);
         this.redsList = this.redsListOptions;
         this.loading = false;
