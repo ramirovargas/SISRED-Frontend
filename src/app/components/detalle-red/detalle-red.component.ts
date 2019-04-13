@@ -99,7 +99,7 @@ export class DetalleREDComponent implements OnInit {
   
   // Marcar versión como final
   markAsFinal(version:Version): void {
-    this.versionesService.markAsFinal(version.numero).subscribe(()=>this.getVersiones())
+    this.versionesService.markAsFinal(version.id).subscribe(()=>this.getVersiones())
   }
 
 }
