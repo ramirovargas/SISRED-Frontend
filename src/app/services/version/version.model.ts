@@ -6,4 +6,6 @@ export class Version {
   imagen: string;
   url: string;
   esFinal: boolean;
+  nombreRed: string;
+  nombreConectate: string;
 }
