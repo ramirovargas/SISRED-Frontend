@@ -5,6 +5,7 @@
 @import url(assets/AdminLTE/dist/css/AdminLTE.min.css);
 @import url(assets/AdminLTE/dist/css/skins/skin-blue.min.css);
 @import url(assets/AdminLTE/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css);
+@import url(assets/AdminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css);
 @import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic';
 
 
