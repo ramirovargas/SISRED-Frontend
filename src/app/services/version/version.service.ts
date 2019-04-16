@@ -18,6 +18,7 @@ export class VersionService {
 
   // Metodo que invoca al servicio que obtiene las versiones del RED
   getVersiones(idRed: number): Promise<Version[]> {
+    this.versiones = [];
     const apiUrlFinal = this.API_URL.replace('{id}', idRed.toString());
     return new Promise((resolve, reject) => {
       this.httpClient.get(apiUrlFinal).subscribe((data: any) => {
