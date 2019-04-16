@@ -28,6 +28,7 @@ import { HeaderComponent } from './components/dashboard/header/header.component'
 import { SideBarComponent } from './components/dashboard/side-bar/side-bar.component';
 import { FooterComponent } from './components/dashboard/footer/footer.component';
 import { TabPanesComponent } from './components/dashboard/tab-panes/tab-panes.component';
+import { VersionRedRevisionService } from './services/version/version-red-revision.service';
 
 
 @NgModule({
@@ -67,7 +68,7 @@ import { TabPanesComponent } from './components/dashboard/tab-panes/tab-panes.co
     HttpModule,
     NgxSpinnerModule
   ],
-  providers: [AgregarRecursoClientService, ResourceDetailsRestClientService],
+  providers: [AgregarRecursoClientService, ResourceDetailsRestClientService, VersionRedRevisionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
