@@ -33,15 +33,16 @@ export class DetalleREDComponent implements OnInit {
   versiones: Version[];
   idRed: number;
 
-  constructor(private route: ActivatedRoute,
-              private detalleRedService: DetalleRedService,
-              private personaAsignadaService: PersonasAsignadasService,
-              private recursosAsociadosService: RecursosAsociadosService,
-              private proyectosRedService: ProyectosRedService,
-              private metadataService: MetadataService,
-              private versionesService: VersionService,
-              private location: Location) { }
-
+  constructor(
+    private route: ActivatedRoute,
+    private detalleRedService: DetalleRedService,
+    private personaAsignadaService: PersonasAsignadasService,
+    private recursosAsociadosService: RecursosAsociadosService,
+    private proyectosRedService: ProyectosRedService,
+    private metadataService: MetadataService,
+    private versionesService: VersionService,
+    private location: Location
+  ) {}
 
   ngOnInit() {
     setup();
@@ -52,37 +53,41 @@ export class DetalleREDComponent implements OnInit {
     this.getProyectosRed();
     this.getMetadata();
     this.getVersiones();
-
   }
 
   // Metodo que obtiene informacion del RED
   getDetalleRed(): void {
-    this.detalleRedService.getDetalleRed(this.idRed)
-        .subscribe(detalle => this.detalle = detalle);
+    this.detalleRedService
+      .getDetalleRed(this.idRed)
+      .subscribe(detalle => (this.detalle = detalle));
   }
 
   // Metodo que obtiene personas asignadas al RED
   getPersonasAsignadas(): void {
-    this.personaAsignadaService.getPersonasAsignadas(this.idRed)
-      .subscribe(personas => this.personas = personas);
+    this.personaAsignadaService
+      .getPersonasAsignadas(this.idRed)
+      .subscribe(personas => (this.personas = personas));
   }
 
   // Metodo que obtiene los recursos asociados al RED
   getRecursosAsociados(): void {
-    this.recursosAsociadosService.getRecursosAsociados(this.idRed)
-      .subscribe(recursos => this.recursos = recursos);
+    this.recursosAsociadosService
+      .getRecursosAsociados(this.idRed)
+      .subscribe(recursos => (this.recursos = recursos));
   }
 
   // Metodo que obtiene los proyectos RED
   getProyectosRed(): void {
-    this.proyectosRedService.getProyectosRed(this.idRed)
-      .subscribe(proyectos => this.proyectos = proyectos);
+    this.proyectosRedService
+      .getProyectosRed(this.idRed)
+      .subscribe(proyectos => (this.proyectos = proyectos));
   }
 
   // Metodo que obtiene la metadata del RED
   getMetadata(): void {
-    this.metadataService.getMetadata(this.idRed)
-      .subscribe(metadata => this.metadata = metadata);
+    this.metadataService
+      .getMetadata(this.idRed)
+      .subscribe(metadata => (this.metadata = metadata));
   }
 
   // Metodo que obtiene las versiones del RED
@@ -98,7 +103,7 @@ export class DetalleREDComponent implements OnInit {
     this.versiones.forEach(version => {
       this.versionesService.getImagenVersion(version.imagen)
         .then(response => {
-          version.url=response.link;
+          version.url = response.link;
         })
         .catch(err => {
           console.error(err);
@@ -111,5 +116,4 @@ export class DetalleREDComponent implements OnInit {
     this.location.back();
     console.log(this.location);
   }
-
 }

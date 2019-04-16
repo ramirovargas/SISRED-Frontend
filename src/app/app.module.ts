@@ -21,6 +21,13 @@ import { RedsPorPersonaComponent } from './components/reds-por-persona/reds-por-
 import { AgregarRecursoClientService } from './services/recurso/agregar/agregar-recurso-client.service';
 import { ResourceDetailsRestClientService } from './services/recurso/detalle/resource-details-rest-client.service';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { VersionRedRevisionComponent } from './components/version-red-revision/version-red-revision.component';
+import { LoginComponent } from './components/login/login.component';
+import { HeaderComponent } from './components/dashboard/header/header.component';
+import { SideBarComponent } from './components/dashboard/side-bar/side-bar.component';
+import { FooterComponent } from './components/dashboard/footer/footer.component';
+import { TabPanesComponent } from './components/dashboard/tab-panes/tab-panes.component';
 
 
 @NgModule({
@@ -37,7 +44,14 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     RedRecursosComponent,
     DetalleRecursoComponent,
     VerAvanceRedComponent,
-    AgregarRecursoComponent    
+    AgregarRecursoComponent,
+    NotFoundComponent,
+    VersionRedRevisionComponent,
+    LoginComponent,
+    HeaderComponent,
+    SideBarComponent,
+    FooterComponent,
+    TabPanesComponent    
   ],
   imports: [
     AppRoutingModule,
