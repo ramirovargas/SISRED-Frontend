@@ -14,6 +14,7 @@ import { RedAsignadosComponent } from './components/red/asignaciones/red-asignad
 import { RedsRelacionadosComponent } from './components/reds-relacionados/reds-relacionados.component';
 import { VerAvanceRedComponent } from './components/ver-avance-red/ver-avance-red.component';
 import { VersionRedRevisionComponent } from './components/version-red-revision/version-red-revision.component';
+import { ComentariosVersionVideoComponent } from './components/comentarios-version-video/comentarios-version-video.component';
 
 const routes: Routes = [
   { path: '', component: RedAsignadosComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'red/:idRed/detalle', component: DetalleREDComponent },
   { path: 'reds/:idUsuario', component: RedAsignadosComponent },
   { path: 'asignaciones', component: RedsPorPersonaComponent },
+  { path: 'comentarios/video', component: ComentariosVersionVideoComponent },
   {
     path: 'red/:idRed/version/:version',
     component: VersionRedRevisionComponent
@@ -51,6 +53,7 @@ const routes: Routes = [
     component: VerAvanceRedComponent
   },
   { path: '**', component: NotFoundComponent }
+
 ];
 
 @NgModule({
