@@ -74,8 +74,9 @@ export class AgregarRecursoClientService {
     return status;
   }
 
+  //Call rest service to add recurso.
   register(user: any): Observable<any> {
-    return this.http.post("https://grupo1-sisred.herokuapp.com/recurso/recurso_post/", user).pipe(map(response => { }));
+    return this.http.post("http://sisredbackend.herokuapp.com/api/recursos_post/", user).pipe(map(response => { }));
   }
 
 }
