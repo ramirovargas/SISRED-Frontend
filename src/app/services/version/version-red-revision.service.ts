@@ -42,10 +42,12 @@ export class VersionRedRevisionService {
       data.forEach(dataItem => {
         const recurso = new Recurso();        
         recurso.nombre = dataItem['fields'].nombre;
-        recurso.thumbnail = dataItem['fields'].thumbnail;  
+        recurso.thumbnail = dataItem['fields'].thumbnail;
+        recurso.tipo = dataItem['fields'].tipo;
 
         this.recursos.push(recurso);
         console.log(recurso.nombre)
+        console.log(recurso.thumbnail)
       });      
     });
 

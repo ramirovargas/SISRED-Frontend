@@ -59,10 +59,16 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of recursos">
-                        <td *ngIf="item.tipo = 'imagen'"><img src="{{ item.thumbnail }}"></td>                      
-                        <td>{{ item.nombre }}
-                        </td>                  
-                    </tr>                                             
+                        <td>
+                          <img src="{{item.thumbnail}}" width="193" height="130" *ngIf="item.tipo == 'imagen'">
+                          <video id="player" width="193" height="130" src={{item.thumbnail}} allowfullscreen controls #media *ngIf="item.tipo == 'video'"></video>
+
+                        </td>
+                        <td>
+                          {{ item.nombre }}
+                          <button type="submit" class="btn btn-info">Revisar recurso</button>
+                        </td>
+                    </tr>
                 </tbody>
                 <tfoot>
                 <tr>
