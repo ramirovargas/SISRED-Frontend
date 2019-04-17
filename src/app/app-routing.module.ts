@@ -14,6 +14,7 @@ import { RedAsignadosComponent } from './components/red/asignaciones/red-asignad
 import { RedsRelacionadosComponent } from './components/reds-relacionados/reds-relacionados.component';
 import { VerAvanceRedComponent } from './components/ver-avance-red/ver-avance-red.component';
 import { VersionRedRevisionComponent } from './components/version-red-revision/version-red-revision.component';
+import { RedCrearVersionComponent } from './components/red-crear-version/red-crear-version.component';
 
 const routes: Routes = [
   { path: '', component: RedAsignadosComponent },
@@ -50,6 +51,7 @@ const routes: Routes = [
     path: 'reds/:id/avance',
     component: VerAvanceRedComponent
   },
+  { path: 'crearVersion/:idRed', component: RedCrearVersionComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
