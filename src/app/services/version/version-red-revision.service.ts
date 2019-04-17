@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { environment } from './../../../environments/environment';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of} from 'rxjs';
-import { UrlConstant } from 'src/app/constants/url-constant';
 import { Version } from './version.model'
 import { Recurso } from './recurso.model'
+import { Red } from '../red/red';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VersionRedRevisionService {
-  API_URL = environment.apiUrl +  'post_proyecto_red/';
+  API_URL_VERSION = environment.apiUrl +  'get_version/';
+  API_URL_RECURSOS = environment.apiUrl +  'get_recursos_by_version/';
   private version: Version = new Version();
+  private red: Red = new Red();
   private recursos: Array<Recurso> = [];
 
   constructor(private httpClient: HttpClient) { 
@@ -22,14 +24,31 @@ export class VersionRedRevisionService {
     let params = new HttpParams();
     params = params.append('id', id.toString());
     
-    this.httpClient.get(this.API_URL, {params}).subscribe((data: any) => {
-      this.version.id = data.id;
-      this.version.imagen = data.imagen;
-      this.version.numero = data.numero;
-      this.version.recursos = data.recursos;
-      this.version.red = data.red;    
+    this.httpClient.get(this.API_URL_VERSION, {params}).subscribe((data: any) => {
+      this.version.nombreRed = data[0]['fields']['nombre'];            
+      this.version.numero = data[1]['fields']['numero'];
+      this.version.recursos = data[1]['fields']['recursos'].length;
+      
     });
 
     return of(this.version)
+  }
+
+  getRecursos(id: number): Observable<Recurso[]> {
+    let params = new HttpParams();
+    params = params.append('id', id.toString());
+    
+    this.httpClient.get(this.API_URL_RECURSOS, {params}).subscribe((data: Array<any>) => {
+      data.forEach(dataItem => {
+        const recurso = new Recurso();        
+        recurso.nombre = dataItem['fields'].nombre;
+        recurso.thumbnail = dataItem['fields'].thumbnail;  
+
+        this.recursos.push(recurso);
+        console.log(recurso.nombre)
+      });      
+    });
+
+    return of(this.recursos)
   }
 }

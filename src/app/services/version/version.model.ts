@@ -6,6 +6,6 @@ export class Version {
   id: string;
   numero: string;
   imagen: string;
-  red: Red| undefined;
-  recursos: Recurso[] | undefined
+  nombreRed: string;
+  recursos: number
 }
