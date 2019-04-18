@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {}
 
+  // Se invoca el método que borra los datos de la sesión
   cerrarSesion() {
     this.autenticacionService.borrarDatos();
   }

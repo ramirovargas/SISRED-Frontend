@@ -94,6 +94,7 @@ export class AutenticacionService {
     );
   }
 
+  // Elimina los datos de la sesión. Borrando el local storage
   borrarDatos() {
     localStorage.clear();
     window.location.reload();
