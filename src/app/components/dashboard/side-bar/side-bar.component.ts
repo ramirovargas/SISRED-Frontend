@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { DatosUsuario } from 'src/app/models/datos-usuario';
 
 @Component({
   selector: 'app-side-bar',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./side-bar.component.css']
 })
 export class SideBarComponent implements OnInit {
+  @Input() usuario: DatosUsuario;
 
-  constructor() { }
+  public link = '';
+
+  constructor() {}
 
   ngOnInit() {
+    this.link = '/reds/' + this.usuario.idConectate;
   }
-
 }
