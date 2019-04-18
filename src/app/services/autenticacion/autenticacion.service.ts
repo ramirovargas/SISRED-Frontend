@@ -21,7 +21,6 @@ export class AutenticacionService {
     const token = localStorage.getItem('token');
     if (token === null) {
       this.borrarDatos();
-      window.location.reload();
     }
     return token;
   }
@@ -97,5 +96,6 @@ export class AutenticacionService {
 
   borrarDatos() {
     localStorage.clear();
+    window.location.reload();
   }
 }
