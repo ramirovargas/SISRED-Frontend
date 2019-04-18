@@ -12,11 +12,13 @@ export class AutenticacionService {
 
   public autenti = false;
 
+  // Verifica si existe un usuario autenticado
   autenticado(): boolean {
     console.log(localStorage.getItem('token'));
     return localStorage.getItem('token') !== null;
   }
 
+  // Obtiene el token de inicio de sesión
   obtenerToken() {
     const token = localStorage.getItem('token');
     if (token === null) {
@@ -25,6 +27,7 @@ export class AutenticacionService {
     return token;
   }
 
+  // Obtiene los datos del usuario
   obtenerDatosUsuario(): DatosUsuario {
     let datosUsuario = null;
     const token = this.obtenerToken();
@@ -53,6 +56,7 @@ export class AutenticacionService {
     return datosUsuario;
   }
 
+  // Inicia sesión para un usuario a partir de su usuario (correo) y contrasena
   login(username, password) {
     return new Promise((resolve, reject) => {
       const options = {
@@ -80,6 +84,7 @@ export class AutenticacionService {
     });
   }
 
+  // Guarda los datos de un usuario en el local storage usando crypto para asegurarlos
   guardarDatos(data, email) {
     const token = data.token;
     localStorage.setItem('token', token);

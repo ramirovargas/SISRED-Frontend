@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
+  // Función que inicia sesión para un usuario
   login() {
     this.enviado = true;
     this.mensajeError = '';
