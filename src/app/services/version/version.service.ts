@@ -35,7 +35,6 @@ export class VersionService {
         resolve(this.versiones)
       });
     });
-    
   }
 
   getImagenVersion(ruta: string): Promise<any> {

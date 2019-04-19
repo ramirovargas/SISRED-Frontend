@@ -7,3 +7,12 @@ export class Version {
   url: string;
   esFinal: boolean;
 }
+
+export class CrearVersionModel {
+  nombre: string;
+  consecutivo: number;
+  creadoPor: string;
+  fechaCreacion: string;
+  descripcion: string;
+  archivos: string[];
+}
