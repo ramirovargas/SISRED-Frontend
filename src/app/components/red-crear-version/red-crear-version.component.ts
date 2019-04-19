@@ -16,6 +16,7 @@ export class RedCrearVersionComponent implements OnInit {
   detalle: DetalleRed;
   versionesExistentes: Version[];
   model: CrearVersionModel;
+  filesToUpload: Array<File> = [];
   idRed: number;
   constructor(private route: ActivatedRoute, private detalleRedService: DetalleRedService,
               private versionesService: VersionService, private location: Location) { }
@@ -26,9 +27,36 @@ export class RedCrearVersionComponent implements OnInit {
     this.getVersiones();
   }
 
+  // Metodo que procesa los archivos seleccionados para guardar versión
+  fileChangeEvent(fileInput: any) {
+    this.filesToUpload = fileInput.target.files as Array<File>;
+  }
+
   // Metodo ejecutado al darle enviar desde la vista
-  onSubmit(form: NgForm){
-    console.log(form.value);
+  onSubmit(form: NgForm) {
+    this.model.descripcion = form.value.descripcion;
+    this.model.archivos = [];
+    for (const file of this.filesToUpload) {
+      const path = (file as any).webkitRelativePath;
+      this.model.archivos.push(path.substring(path.indexOf('/')));
+    }
+    this.uploadFiles(this.model.consecutivo);
+    this.crearVersionRed(this.model);
+  }
+
+  // Método para crear versión de red. Envía información al backend.
+  crearVersionRed(model: CrearVersionModel) {
+    this.versionesService.crearVersionRed(model, this.idRed)
+      .subscribe(status => {
+        if (status) {
+          this.goBack();
+        }
+      });
+  }
+
+  // Método que sube los archivos a dropbox
+  uploadFiles(consecutivo: number) {
+    this.versionesService.uploadFiles(this.idRed, consecutivo, this.filesToUpload);
   }
 
   // Metodo que obtiene informacion del RED
@@ -49,10 +77,10 @@ export class RedCrearVersionComponent implements OnInit {
   // Metodo que llena la información necesaria para el modelo de la vista
   populateModel(): void {
     this.model = new CrearVersionModel();
-    this.model.nombre =  this.detalle.nameRed;
     this.model.consecutivo = this.versionesExistentes.length + 1;
+    this.model.nombre =  this.detalle.nameRed + ' ' + this.model.consecutivo;
     this.model.fechaCreacion = new Date().toLocaleString();
-    this.model.creadoPor = 'se-mende';
+    this.model.creado_por = 'se-mende';
   }
 
   // Metodo que regresa a la pantella anterior

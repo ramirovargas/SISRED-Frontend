@@ -11,7 +11,7 @@ export class Version {
 export class CrearVersionModel {
   nombre: string;
   consecutivo: number;
-  creadoPor: string;
+  creado_por: string;
   fechaCreacion: string;
   descripcion: string;
   archivos: string[];
