@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Red } from '../../services/red/red';
+import { BuscarRedsService } from '../../services/red/buscar-reds/buscar-reds.service';
 
 declare function setup(): any;
 
@@ -16,8 +18,9 @@ export class BuscarRedComponent implements OnInit {
   reds: Red[] = [];
   pagina: number = 1;
   paginaSize: number = 5;
+  cargando: boolean = false;
 
-  constructor() { }
+  constructor(private buscarRedsService: BuscarRedsService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     setup();
@@ -29,28 +32,30 @@ export class BuscarRedComponent implements OnInit {
   }
 
   buscarRed() {
-    this.reds = [{
-      id: '1',
-      nombre: 'mi red',
-      nombreCorto: 'mi red',
-      descripcion: 'esta es una descripción',
-      fechaInicio: '2019-02-12',
-      fechaCierre: '2019-04-22',
-      fechaCreacion: 'string',
-      porcentajeAvance: 1,
-      tipo: '3',
-      solicitante: 'string',
-      horasTrabajadas: 1,
-      horasEstimadas: 1,
-      proyectoConectate: undefined,
-      historialEstados: undefined,
-      fase: 'string',
-    },];
-    console.log({
-      fechaInicio: this.buscarRedForm.get('fechaInicio').value,
-      fechaCierre: this.buscarRedForm.get('fechaCierre').value,
-      palabra: this.buscarRedForm.get('palabra').value,
-    });
+    this.cargando = true;
+    this.spinner.show()
+    this.buscarRedsService.buscarReds(this.userId, this.formatFecha(this.buscarRedForm.get('fechaInicio').value), 
+      this.formatFecha(this.buscarRedForm.get('fechaCierre').value), this.buscarRedForm.get('palabra').value)
+      .then(reds => {
+        console.log(reds);
+        this.spinner.hide()
+        this.reds = reds;
+      })
+      .catch(err => {
+        this.spinner.hide();
+        console.log(err);
+      });
+  }
+
+  formatFecha(fecha) {
+    let res = null;
+    if(fecha !== null) {
+      let year = fecha.year;
+      let month = fecha.month<10 ? `0${fecha.month}` : fecha.month;
+      let day = fecha.day<10 ? `0${fecha.day}` : fecha.day;
+      res = `${year}-${month}-${day}`;
+    }
+    return res
   }
 
 }
