@@ -17,15 +17,20 @@ export class DetalleRedService {
   ) { }
 
   // Metodo que invoca al servicio que obtiene la informacion del RED
-  getDetalleRed(idRed: number): Observable<DetalleRed> {
-    let params = new HttpParams();
-    params = params.append('RED', idRed.toString());
-    this.httpClient.get(this.API_URL, {params}).subscribe((data: any) => {
+  getDetalleRed(idRed: number) {
+    return new Promise((resolve, reject) => {
+      let params = new HttpParams();
+      params = params.append('RED', idRed.toString());
+      this.httpClient.get(this.API_URL, {params}).subscribe((data: any) => {
       this.detalleRed.nameRed = data.nombreRed;
       this.detalleRed.nameProject = data.nombreProject;
       this.detalleRed.url = data.url;
       this.detalleRed.status = data.status;
+      this.detalleRed.fase = data.fase;
+      resolve(this.detalleRed);
+    },error => {
+      reject('Error');
     });
-    return of(this.detalleRed);
+    });
   }
 }

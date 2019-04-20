@@ -22,22 +22,34 @@
             <div class="box-header with-border">
               <div class="row">
                 <div class="col col-md-9">
-                  <h3 class="box-title">{{detalle.nameRed}}</h3>
+                  <h3 class="box-title">{{detalle?.nameRed}}</h3>
                 </div>
               </div>
               <div class="row">
-                <div class="col col-md-9">
+                <div class="col col-md-6">
                   <a href="" routerLink="">
-                    <h3 class="box-title">{{detalle.nameProject}}</h3>
+                    <h3 class="box-title">{{detalle?.nameProject}}</h3>
                   </a>
                 </div>
-                <div class="col col-md-3">
+                <!--<div class="col col-md-3">
                   <h3 class="box-title">Estado: {{detalle.status}}</h3>
+                </div>-->
+                <div class="col col-md-3 text-right">
+                  <h3 class="box-title">Fase: </h3>
+                </div>
+                <!--{{edu(detalle?.fase?.idConectate)}}-->
+                <div class="col col-md-3" >
+                  <select id="fases" (ngModel)="fases" class="form-control input-sm" #faseSelect
+                          (change)="onOptionsSelected(faseSelect.value)" [selectedIndex]="detalle?.fase?.idConectate">
+                   <option *ngFor="let fase_item of fases" [value]="fase_item.idConectate">
+                    {{fase_item?.nombre}}
+                   </option>
+                  </select>
                 </div>
               </div>
               <div class="row">
                 <div class="col col-md-9">
-                  <h3 class="box-title">{{detalle.url}}</h3>
+                  <h3 class="box-title">{{detalle?.url}}</h3>
                 </div>
               </div>
             </div>

@@ -11,6 +11,8 @@ import { MetadataService } from '../../services/metadata/metadata.service';
 import { DetalleRedService } from '../../services/red/detalle-red/detalle-red.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import {FaseService} from '../../services/fase/fase.service';
+import {Fase} from '../../services/fase/fase.model';
 
 declare function setup(): any;
 
@@ -29,6 +31,7 @@ export class DetalleREDComponent implements OnInit {
   proyectos: ProyectoRed[];
   metadata: Metadata[];
   idRed: number;
+  fases: Fase[];
 
   constructor(
     private route: ActivatedRoute,
@@ -37,7 +40,8 @@ export class DetalleREDComponent implements OnInit {
     private recursosAsociadosService: RecursosAsociadosService,
     private proyectosRedService: ProyectosRedService,
     private metadataService: MetadataService,
-    private location: Location
+    private location: Location,
+    private faseService: FaseService,
   ) {}
 
   ngOnInit() {
@@ -48,13 +52,14 @@ export class DetalleREDComponent implements OnInit {
     this.getRecursosAsociados();
     this.getProyectosRed();
     this.getMetadata();
+    this.getFases();
   }
 
   // Metodo que obtiene informacion del RED
   getDetalleRed(): void {
-    this.detalleRedService
-      .getDetalleRed(this.idRed)
-      .subscribe(detalle => (this.detalle = detalle));
+    this.detalleRedService.getDetalleRed(this.idRed).then((data: DetalleRed) => {
+      this.detalle = data;
+    }).catch(error => {});
   }
 
   // Metodo que obtiene personas asignadas al RED
@@ -89,5 +94,20 @@ export class DetalleREDComponent implements OnInit {
   goBack(): void {
     this.location.back();
     console.log(this.location);
+  }
+
+  // Metodo que obtiene las fases
+  getFases(): void {
+    this.faseService.getFases()
+        .subscribe(fases => this.fases = fases);
+  }
+
+   // Metodo para cambiar fase
+  cambiarFase(idFase): void {
+    this.faseService.cambiarFase(this.idRed, idFase);
+  }
+
+  onOptionsSelected(value: number) {
+    this.cambiarFase(value);
   }
 }
