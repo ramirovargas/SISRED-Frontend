@@ -15,6 +15,8 @@ export class VersionService {
   API_URL = environment.apiUrl + 'reds/{id}/versiones/';
   API_URL_CREAR = environment.apiUrl + 'reds/{id}/crear/';
   ACCESS_TOKEN = 'FOsYIGqxyoAAAAAAAAAACo5sRYD5XCAOZy15c341h99QLcgRWBeiWQfRgnCOt0Gq';
+  MARCAR_VERSION_URL = environment.apiUrl + 'versiones/{id}/marcar';
+
   private versiones: Array<Version> = [];
 
   constructor(private httpClient: HttpClient) { }
@@ -27,6 +29,7 @@ export class VersionService {
       this.httpClient.get(apiUrlFinal).subscribe((data: any) => {
         data.context.forEach(dataItem => {
           const version = new Version();
+          version.id = dataItem.id;
           version.numero = dataItem.numero;
           version.fechaCreacion = dataItem.fecha_creacion;
           version.creadoPor = dataItem.creado_por.usuario.username;
@@ -35,7 +38,17 @@ export class VersionService {
           version.url = '';
           this.versiones.push(version);
         });
-        resolve(this.versiones);
+        // Ordena la lista de versiones por fecha de manera descendiente
+        let versionesSorted: Array<Version>;
+        versionesSorted = this.versiones.slice(0);
+        versionesSorted.sort((leftSide, rightSide): number => {
+          const leftSideDate = new Date(leftSide.fechaCreacion);
+          const rightSideDate = new Date(rightSide.fechaCreacion);
+          if (leftSideDate < rightSideDate) { return 1; }
+          if (leftSideDate > rightSideDate) { return -1; }
+          return 0;
+        });
+        resolve(versionesSorted);
       });
     });
   }
@@ -72,5 +85,10 @@ export class VersionService {
           console.error('dropbox error', error);
         });
     }
+  }
+
+  markAsFinal(versionNumero: number): Observable<Version> {
+    const apiUrlMarcar = this.MARCAR_VERSION_URL.replace('{id}', versionNumero.toString());
+    return this.httpClient.post<Version>(apiUrlMarcar, '');
   }
 }
