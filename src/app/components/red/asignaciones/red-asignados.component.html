@@ -5,6 +5,7 @@
     <h1>
       REDs Asignados
     </h1>
+    <app-pdf-viewer pdfSrc='http://eduplan.educando.edu.do/uploads/documentos/propuesta/_1_/1434382501.pdf'></app-pdf-viewer>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
       <li class="active">Agregar proyecto RED</li>
@@ -27,23 +28,23 @@
             <div class="box-body">
               <table class="table">
                 <thead>
-                <tr>
-                  <th scope="col">Nombre del RED</th>
-                  <th scope="col">Rol</th>
-                  <th scope="col"></th>
-                </tr>
+                  <tr>
+                    <th scope="col">Nombre del RED</th>
+                    <th scope="col">Rol</th>
+                    <th scope="col"></th>
+                  </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let red of redsAsignados">
-                  <th scope="row">{{red.nombre}}</th>
-                  <td>{{red.rol}}</td>
-                  <td>
-                    <button type="button" class="btn btn-primary" routerLink="/red/{{red.id}}/detalle">Ver Detalle
-                    </button>&nbsp;&nbsp;
-                    <button type="button" class="btn btn-warning" routerLink="/red/{{red.id}}/proyectos">Ver Proyectos
-                    </button>
-                  </td>
-                </tr>
+                  <tr *ngFor="let red of redsAsignados">
+                    <th scope="row">{{red.nombre}}</th>
+                    <td>{{red.rol}}</td>
+                    <td>
+                      <button type="button" class="btn btn-primary" routerLink="/red/{{red.id}}/detalle">Ver Detalle
+                      </button>&nbsp;&nbsp;
+                      <button type="button" class="btn btn-warning" routerLink="/red/{{red.id}}/proyectos">Ver Proyectos
+                      </button>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>

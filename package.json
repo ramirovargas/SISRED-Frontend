@@ -35,6 +35,7 @@
     "express": "^4.16.4",
     "isomorphic-fetch": "^2.2.1",
     "ng-spin-kit": "^5.1.1",
+    "ng2-pdf-viewer": "^5.2.4",
     "ngx-spinner": "^7.0.0",
     "node-sass": "^4.11.0",
     "path": "^0.12.7",
