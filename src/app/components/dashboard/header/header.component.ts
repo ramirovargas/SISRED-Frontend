@@ -16,6 +16,15 @@ export class HeaderComponent implements OnInit {
 
   // Se invoca el método que borra los datos de la sesión
   cerrarSesion() {
-    this.autenticacionService.borrarDatos();
+    this.autenticacionService
+      .cerrarSesion()
+      .then(data => {
+        console.log(data);
+        this.autenticacionService.borrarDatos();
+      })
+      .catch(err => {
+        console.log(err);
+        this.autenticacionService.borrarDatos();
+      });
   }
 }
