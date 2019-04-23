@@ -56,6 +56,30 @@ export class AutenticacionService {
     return datosUsuario;
   }
 
+  confirmarAutorizado(idRed) {
+    return new Promise((resolve, reject) => {
+      const tokenSisred = this.obtenerToken();
+      const options = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: 'Token ' + tokenSisred
+        })
+      };
+      this.http
+        .get(environment.apiUrl + 'getRolAsignadoRED/' + idRed + '/', options)
+        .subscribe(
+          data => {
+            console.log(data);
+            resolve(data);
+          },
+          err => {
+            console.log(err);
+            reject(err);
+          }
+        );
+    });
+  }
+
   // Inicia sesión para un usuario a partir de su usuario (correo) y contrasena
   login(username, password) {
     return new Promise((resolve, reject) => {
