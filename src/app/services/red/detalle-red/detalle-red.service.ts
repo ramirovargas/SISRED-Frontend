@@ -15,7 +15,7 @@ export class DetalleRedService {
   constructor(
     private httpClient: HttpClient,
     private autenticacionService: AutenticacionService
-  ) {}
+  ) { }
 
   // Metodo que invoca al servicio que obtiene la informacion del RED
   getDetalleRed(idRed: number): Observable<DetalleRed> {
@@ -35,6 +35,8 @@ export class DetalleRedService {
         this.detalleRed.nameProject = data.nombreProject;
         this.detalleRed.url = data.url;
         this.detalleRed.status = data.status;
+        this.detalleRed.fase = data.fase;
       });
     return of(this.detalleRed);
+  }
 }
