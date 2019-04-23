@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { DatosUsuario } from 'src/app/models/datos-usuario';
+import { AutenticacionService } from 'src/app/services/autenticacion/autenticacion.service';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  @Input() usuario: DatosUsuario;
 
-  constructor() { }
+  constructor(private autenticacionService: AutenticacionService) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  // Se invoca el método que borra los datos de la sesión
+  cerrarSesion() {
+    this.autenticacionService.borrarDatos();
   }
-
 }
