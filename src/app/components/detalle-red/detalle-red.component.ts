@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { PersonasAsignadasService } from '../../services/rolAsignado/personas-asignadas/personas-asignadas.service';
 import { RecursosAsociadosService } from '../../services/recurso/recursos-asociados/recursos-asociados.service';
 import { ProyectosRedService } from '../../services/proyectoRed/proyectos-red/proyectos-red.service';
@@ -11,8 +11,10 @@ import { MetadataService } from '../../services/metadata/metadata.service';
 import { DetalleRedService } from '../../services/red/detalle-red/detalle-red.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import {FaseService} from '../../services/fase/fase.service';
-import {Fase} from '../../services/fase/fase.model';
+import { FaseService } from '../../services/fase/fase.service';
+import { Fase } from '../../services/fase/fase.model';
+
+declare let $: any;
 
 declare function setup(): any;
 
@@ -32,7 +34,14 @@ export class DetalleREDComponent implements OnInit {
   metadata: Metadata[];
   idRed: number;
   fases: Fase[];
+  body: string;
+  mensajeAdvertencia: string;
+  heading: string;
+  idFaseCambiar: number;
+  cambioFaseExitoso: boolean;
 
+  @ViewChild('modalFase') modal: ElementRef;
+  @ViewChild('modalFaseRespuesta') modalRespuesta: ElementRef;
   constructor(
     private route: ActivatedRoute,
     private detalleRedService: DetalleRedService,
@@ -42,7 +51,7 @@ export class DetalleREDComponent implements OnInit {
     private metadataService: MetadataService,
     private location: Location,
     private faseService: FaseService,
-  ) {}
+  ) { }
 
   ngOnInit() {
     setup();
@@ -59,7 +68,7 @@ export class DetalleREDComponent implements OnInit {
   getDetalleRed(): void {
     this.detalleRedService.getDetalleRed(this.idRed).then((data: DetalleRed) => {
       this.detalle = data;
-    }).catch(error => {});
+    }).catch(error => { });
   }
 
   // Metodo que obtiene personas asignadas al RED
@@ -99,15 +108,61 @@ export class DetalleREDComponent implements OnInit {
   // Metodo que obtiene las fases
   getFases(): void {
     this.faseService.getFases()
-        .subscribe(fases => this.fases = fases);
+      .subscribe(fases => this.fases = fases);
   }
 
-   // Metodo para cambiar fase
-  cambiarFase(idFase): void {
-    this.faseService.cambiarFase(this.idRed, idFase);
+  // Metodo para cambiar fase
+  cambiarFase(): void {
+    var respuesta: string;
+    this.faseService.cambiarFase(this.idRed, this.idFaseCambiar)
+      .then(data => {
+        this.cambioFaseExitoso = true;
+        this.mensajeAdvertencia = 'El cambio de fase fue exitoso.';
+      }
+      ).catch(error => {
+        this.cambioFaseExitoso = false;
+        this.mensajeAdvertencia = error.error;
+      });
+    $(this.modalRespuesta.nativeElement).modal('show');
   }
 
-  onOptionsSelected(value: number) {
-    this.cambiarFase(value);
+  onOptionsSelected(idFase: number) {
+    this.idFaseCambiar = idFase;
+    this.heading = 'Cambiar de fase';
+    this.body = '¿Desea cambiar de fase a ' + this.fases[idFase].nombre + '?'
+    this.mensajeAdvertencia = this.seleccionarTexto(idFase.toString());
+    $(this.modal.nativeElement).modal('show');
   }
+
+  closeModal() {
+    this.idFaseCambiar = null;
+    location.reload();
+    console.log('message');
+  }
+
+  seleccionarTexto(value: string): string {
+    var mensaje;
+    switch (value) {
+      case "0":
+        mensaje = 'El RED está listo para generar los recursos asociados.';
+        break;
+      case "1":
+        mensaje = 'Los recursos del RED estan hechos.';
+        break;
+      case "2":
+        mensaje = 'La version ya fue revisada por Control de calidad.';
+        break;
+      case "3":
+        mensaje = 'Debe existir una versión para revisión. ';
+        break;
+      case "4":
+        mensaje = 'El cliente final ya dio su aprobación.';
+        break;
+      default:
+        mensaje = '';
+        break;
+    }
+    return mensaje;
+  }
+
 }
