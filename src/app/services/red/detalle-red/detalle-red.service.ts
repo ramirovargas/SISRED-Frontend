@@ -37,5 +37,4 @@ export class DetalleRedService {
         this.detalleRed.status = data.status;
       });
     return of(this.detalleRed);
-  }
 }
