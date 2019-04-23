@@ -56,6 +56,7 @@ export class AutenticacionService {
     return datosUsuario;
   }
 
+  // Obtiene los roles que tiene el usuario en cuestión del RED
   confirmarAutorizado(idRed) {
     return new Promise((resolve, reject) => {
       const tokenSisred = this.obtenerToken();

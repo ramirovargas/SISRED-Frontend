@@ -32,15 +32,16 @@ export class AutenticacionGuard implements CanActivate {
       this.router.navigate(['']);
       return false;
     } else {
+      const usuario = this.autenticacionService.obtenerDatosUsuario();
       const idRed = next.paramMap.get('idRed');
       const idUsuario = next.paramMap.get('idUsuario');
 
+      // Verifica si la ruta a acceder es de un RED
       if (idRed) {
         return this.autenticacionService
           .confirmarAutorizado(idRed)
           .then((data: any) => {
             if (data.error) {
-              const usuario = this.autenticacionService.obtenerDatosUsuario();
               this.router.navigate(['/reds/' + usuario.idConectate]);
               alert(
                 'No tienes autorización para realizar acciones sobre este RED'
@@ -53,6 +54,14 @@ export class AutenticacionGuard implements CanActivate {
           .catch(err => {
             return true;
           });
+      } else if (idUsuario) {
+        // Verifica si la ruta a acceder es de un USUARIO
+        if (idUsuario === usuario.idConectate) {
+          return true;
+        } else {
+          this.router.navigate(['/reds/' + usuario.idConectate]);
+          return false;
+        }
       } else {
         return true;
       }
