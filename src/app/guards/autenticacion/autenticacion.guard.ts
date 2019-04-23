@@ -32,7 +32,30 @@ export class AutenticacionGuard implements CanActivate {
       this.router.navigate(['']);
       return false;
     } else {
-      return true;
+      const idRed = next.paramMap.get('idRed');
+      const idUsuario = next.paramMap.get('idUsuario');
+
+      if (idRed) {
+        return this.autenticacionService
+          .confirmarAutorizado(idRed)
+          .then((data: any) => {
+            if (data.error) {
+              const usuario = this.autenticacionService.obtenerDatosUsuario();
+              this.router.navigate(['/reds/' + usuario.idConectate]);
+              alert(
+                'No tienes autorización para realizar acciones sobre este RED'
+              );
+              return false;
+            } else {
+              return true;
+            }
+          })
+          .catch(err => {
+            return true;
+          });
+      } else {
+        return true;
+      }
     }
   }
 }
