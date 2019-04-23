@@ -66,9 +66,9 @@ export class DetalleREDComponent implements OnInit {
 
   // Metodo que obtiene informacion del RED
   getDetalleRed(): void {
-    this.detalleRedService.getDetalleRed(this.idRed).then((data: DetalleRed) => {
-      this.detalle = data;
-    }).catch(error => { });
+    this.detalleRedService
+      .getDetalleRed(this.idRed)
+      .subscribe(detalle => (this.detalle = detalle));
   }
 
   // Metodo que obtiene personas asignadas al RED
@@ -114,7 +114,7 @@ export class DetalleREDComponent implements OnInit {
   // Metodo para cambiar fase
   cambiarFase(): void {
     var respuesta: string;
-    this.faseService.cambiarFase(this.idRed, this.idFaseCambiar)
+    this.faseService.cambiarFase(this.idRed, this.detalle.fase.idConectate)
       .then(data => {
         this.cambioFaseExitoso = true;
         this.mensajeAdvertencia = 'El cambio de fase fue exitoso.';
@@ -129,7 +129,7 @@ export class DetalleREDComponent implements OnInit {
   onOptionsSelected(idFase: number) {
     this.idFaseCambiar = idFase;
     this.heading = 'Cambiar de fase';
-    this.body = '¿Desea cambiar de fase a ' + this.fases[idFase].nombre + '?'
+    this.body = '¿Desea cambiar de fase a ' + this.fases[this.detalle.fase.idConectate].nombre + '?'
     this.mensajeAdvertencia = this.seleccionarTexto(idFase.toString());
     $(this.modal.nativeElement).modal('show');
   }
