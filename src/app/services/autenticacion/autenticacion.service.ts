@@ -99,6 +99,28 @@ export class AutenticacionService {
     );
   }
 
+  // Se encarga de hacer la petición para borrar el token de la base de datos
+  cerrarSesion() {
+    return new Promise((resolve, reject) => {
+      const tokenSisred = this.obtenerToken();
+      const options = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: 'Token ' + tokenSisred
+        })
+      };
+      this.http.get(environment.apiUrl + 'logout/', options).subscribe(
+        data => {
+          resolve(data);
+        },
+        err => {
+          console.log(err);
+          reject(err);
+        }
+      );
+    });
+  }
+
   // Elimina los datos de la sesión. Borrando el local storage
   borrarDatos() {
     localStorage.clear();
