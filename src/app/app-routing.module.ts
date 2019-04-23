@@ -20,8 +20,16 @@ import { NoAutenticadoGuard } from './guards/no-autenticado/no-autenticado.guard
 
 const routes: Routes = [
   { path: '', component: LoginComponent, canActivate: [NoAutenticadoGuard] },
-  { path: 'red/:idRed/proyecto/agregar', component: AddRedComponent },
-  { path: 'red/:idRed/detalle', component: DetalleREDComponent },
+  {
+    path: 'red/:idRed/proyecto/agregar',
+    component: AddRedComponent,
+    canActivate: [AutenticacionGuard]
+  },
+  {
+    path: 'red/:idRed/detalle',
+    component: DetalleREDComponent,
+    canActivate: [AutenticacionGuard]
+  },
   {
     path: 'reds/:idUsuario',
     component: RedAsignadosComponent,

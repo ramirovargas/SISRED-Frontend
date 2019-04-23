@@ -22,22 +22,31 @@
             <div class="box-header with-border">
               <div class="row">
                 <div class="col col-md-9">
-                  <h3 class="box-title">{{detalle.nameRed}}</h3>
+                  <h3 class="box-title">{{detalle?.nameRed}}</h3>
                 </div>
               </div>
               <div class="row">
-                <div class="col col-md-9">
+                <div class="col col-md-6">
                   <a href="" routerLink="">
-                    <h3 class="box-title">{{detalle.nameProject}}</h3>
+                    <h3 class="box-title">{{detalle?.nameProject}}</h3>
                   </a>
                 </div>
-                <div class="col col-md-3">
+                <!--<div class="col col-md-3">
                   <h3 class="box-title">Estado: {{detalle.status}}</h3>
+                </div>-->
+                <div class="col col-md-3 text-right">
+                </div>
+                <div class="col col-md-3" *ngIf="detalle?.fase?.idConectate">
+                  <select id="fases" [(ngModel)]="detalle.fase.idConectate" class="form-control input-sm" #faseSelect (change)="onOptionsSelected(faseSelect.value)">
+                    <option *ngFor="let fase_item of fases" [value]="fase_item.idConectate">
+                      {{fase_item?.nombre}}
+                    </option>
+                  </select>
                 </div>
               </div>
               <div class="row">
                 <div class="col col-md-9">
-                  <h3 class="box-title">{{detalle.url}}</h3>
+                  <h3 class="box-title">{{detalle?.url}}</h3>
                 </div>
               </div>
             </div>
@@ -61,16 +70,14 @@
                   <tr *ngFor="let recurso of recursos">
                     <td>{{recurso.name}}</td>
                     <td>{{recurso.typeFormat}}</td>
-                    <td class="text-center" [routerLink]="['/red/' + idRed + '/recursos/' + recurso.id]"
-                      routerLinkActive="router-link-active">
+                    <td class="text-center" [routerLink]="['/red/' + idRed + '/recursos/' + recurso.id]" routerLinkActive="router-link-active">
                       <button type="button" class="btn btn-primary">Detalle</button>
                     </td>
                   </tr>
                 </tbody>
               </table>
               <div class="text-center">
-                <button type="button" class="btn btn-info m-2" [routerLink]="['/red/' + idRed + '/recursos']"
-                  routerLinkActive="router-link-active">Ver recursos</button>
+                <button type="button" class="btn btn-info m-2" [routerLink]="['/red/' + idRed + '/recursos']" routerLinkActive="router-link-active">Ver recursos</button>
               </div>
               <hr />
               <!-- table Personas asignadas al RED -->
@@ -137,12 +144,9 @@
           </div>
           <!-- /.box -->
           <div class="box-footer">
-            <button type="button" (click)="goBack()" class="btn btn-default spaceDer m-2"><i
-                class="fas fa-chevron-left"></i>&nbsp;Volver</button>
-            <button type="button" class="btn btn-primary m-2" [routerLink]="['/red/' + idRed + '/relacionados']"
-              routerLinkActive="router-link-active">Ver REDs relacionados</button>
-            <button type="button" class="btn btn-dark m-2 text-white" [routerLink]="['/reds/' + idRed + '/avance']"
-              routerLinkActive="router-link-active">Ver avance red</button>
+            <button type="button" (click)="goBack()" class="btn btn-default spaceDer m-2"><i class="fas fa-chevron-left"></i>&nbsp;Volver</button>
+            <button type="button" class="btn btn-primary m-2" [routerLink]="['/red/' + idRed + '/relacionados']" routerLinkActive="router-link-active">Ver REDs relacionados</button>
+            <button type="button" class="btn btn-dark m-2 text-white" [routerLink]="['/reds/' + idRed + '/avance']" routerLinkActive="router-link-active">Ver avance red</button>
           </div>
           <!-- /.box-footer -->
         </div>
@@ -157,3 +161,52 @@
 
 </div>
 <!-- /.content-wrapper -->
+
+<!-- The Modal -->
+<div class="modal" id="myModal" #modalFase>
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">{{heading}}</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-center">{{body}}</h4>
+        <br>
+        <p class="text-secondary text-center">{{mensajeAdvertencia}}</p>
+      </div>
+      <div class="modal-footer text-center">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="cambiarFase()">Sí</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="closeModal()">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- The Modalexitoso -->
+<div class="modal" id="modalRespuesta" #modalFaseRespuesta>
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Cambio de fase</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-2 mt-3 text-right">
+            <i class="fa fa-check" *ngIf="cambioFaseExitoso"></i>
+            <i class="fa fa-close" *ngIf="!cambioFaseExitoso"></i>
+          </div>
+          <div class="col-lg-10">
+            <h4>{{mensajeAdvertencia}}</h4>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer text-center">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="closeModal()">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>

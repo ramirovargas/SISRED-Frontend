@@ -30,8 +30,9 @@ export class AutenticacionGuard implements CanActivate {
 
     if (!autenticado) {
       this.router.navigate(['']);
+      return false;
+    } else {
+      return true;
     }
-
-    return true;
   }
 }
