@@ -1,18 +1,28 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest, HttpEventType, HttpResponse, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpRequest,
+  HttpEventType,
+  HttpResponse,
+  HttpHeaders
+} from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AutenticacionService } from '../../autenticacion/autenticacion.service';
 const url = 'https://content.dropboxapi.com/2/files/upload';
-const token = 'n8Swy7K2KQAAAAAAAAAAEhPhfmBUFQIkLeX-JZ5wHeCntHYtZr1WFAGKwv8yaz0-';
+const token =
+  'n8Swy7K2KQAAAAAAAAAAEhPhfmBUFQIkLeX-JZ5wHeCntHYtZr1WFAGKwv8yaz0-';
 
 @Injectable()
 export class AgregarRecursoClientService {
+  constructor(
+    private http: HttpClient,
+    private autenticacionService: AutenticacionService
+  ) {}
 
-  constructor(private http: HttpClient) { }
-
-  public upload(files: Set<File>):
-    { [key: string]: { progress: Observable<number> } } {
-
+  public upload(
+    files: Set<File>
+  ): { [key: string]: { progress: Observable<number> } } {
     // this will be the our resulting map
     const status: { [key: string]: { progress: Observable<number> } } = {};
 
@@ -22,17 +32,16 @@ export class AgregarRecursoClientService {
       formData.append('file', file, file.name);
 
       const reqHeaders = new HttpHeaders({
-        'Authorization': 'Bearer ' + token,
+        Authorization: 'Bearer ' + token,
         'Content-Type': 'application/octet-stream',
         'Dropbox-API-Arg': JSON.stringify({
-          path: '/' +  file.name,
+          path: '/' + file.name,
           mode: 'overwrite',
           autorename: true,
           mute: false
         }),
-        'User-Agent': 'api-explorer-client',
+        'User-Agent': 'api-explorer-client'
       });
-
 
       // create a http-post request and pass the form
       // tell it to report the upload progress
@@ -50,14 +59,12 @@ export class AgregarRecursoClientService {
       // send the http-request and subscribe for progress-updates
       this.http.request(req).subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
-
           // calculate the progress percentage
-          const percentDone = Math.round(100 * event.loaded / event.total);
+          const percentDone = Math.round((100 * event.loaded) / event.total);
 
           // pass the percentage into the progress-stream
           progress.next(percentDone);
         } else if (event instanceof HttpResponse) {
-
           // Close the progress-stream if we get an answer form the API
           // The upload is complete
           progress.complete();
@@ -75,7 +82,17 @@ export class AgregarRecursoClientService {
   }
 
   register(user: any): Observable<any> {
-    return this.http.post("https://grupo1-sisred.herokuapp.com/recurso/recurso_post/", user).pipe(map(response => { }));
-  }
+    const tokenSisred = this.autenticacionService.obtenerToken();
 
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Token ' + tokenSisred
+    });
+
+    return this.http
+      .post('https://grupo1-sisred.herokuapp.com/recurso/recurso_post/', user, {
+        headers
+      })
+      .pipe(map(response => {}));
+  }
 }

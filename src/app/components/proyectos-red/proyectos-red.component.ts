@@ -40,12 +40,13 @@ export class ProyectosRedComponent implements OnInit {
   }
 
   getDetalleRed(): void {
-    this.detalleRedService.getDetalleRed(this.idRed)
-      .subscribe(detalleRed => this.detalleRed = detalleRed);
+    this.detalleRedService.getDetalleRed(this.idRed).then((data: DetalleRed) =>{
+      this.detalleRed = data;
+    }).catch(error => {});
   }
 
   goBack(): void {
-    this.location.back()
+    this.location.back();
   }
 
 }
