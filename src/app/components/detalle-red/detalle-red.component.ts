@@ -36,8 +36,8 @@ export class DetalleREDComponent implements OnInit {
   fases: Fase[];
   body: string;
   mensajeAdvertencia: string;
+  mensaje: string;
   heading: string;
-  idFaseCambiar: number;
   cambioFaseExitoso: boolean;
 
   @ViewChild('modalFase') modal: ElementRef;
@@ -117,30 +117,31 @@ export class DetalleREDComponent implements OnInit {
     this.faseService.cambiarFase(this.idRed, this.detalle.fase.idConectate)
       .then(data => {
         this.cambioFaseExitoso = true;
-        this.mensajeAdvertencia = 'El cambio de fase fue exitoso.';
+        this.mensaje = 'El cambio de fase fue exitoso.';
       }
       ).catch(error => {
         this.cambioFaseExitoso = false;
-        this.mensajeAdvertencia = error.error;
+        this.mensaje = error.error;
       });
+    console.log('message', this.modalRespuesta);
     $(this.modalRespuesta.nativeElement).modal('show');
   }
 
   onOptionsSelected(idFase: number) {
-    this.idFaseCambiar = idFase;
     this.heading = 'Cambiar de fase';
     this.body = '¿Desea cambiar de fase a ' + this.fases[this.detalle.fase.idConectate].nombre + '?'
-    this.mensajeAdvertencia = this.seleccionarTexto(idFase.toString());
+    this.mensajeAdvertencia = this.seleccionarTexto(this.detalle.fase.idConectate.toString());
     $(this.modal.nativeElement).modal('show');
   }
 
   closeModal() {
-    this.idFaseCambiar = null;
+    this.mensaje = null;
     location.reload();
     console.log('message');
   }
 
   seleccionarTexto(value: string): string {
+    console.log('id fase', value);
     var mensaje;
     switch (value) {
       case "0":
