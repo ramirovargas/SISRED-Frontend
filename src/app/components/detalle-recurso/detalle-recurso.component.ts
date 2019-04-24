@@ -50,6 +50,9 @@ export class DetalleRecursoComponent implements OnInit {
     this.showInputText = false;
   }
 
+  public addMetadata(): void {
+  }
+
   loadForm(): void {
     this.detailResourceForm = new FormGroup({
       type: new FormControl(""),

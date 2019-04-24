@@ -73,7 +73,18 @@
 
     <div class="row">
       <div class="col-sm-6 border">Metadata</div>
-      <div class="col-sm-6 border">
+      <div *ngIf="!showInputText" class="col-sm-6 border">
+        <div class="btn-group btn-space" role="group" *ngFor="let metadata of resourceDetailsoModel?.metadata">
+          <button type="button" class="btn btn-outline-primary">
+            {{ metadata.tag }}
+          </button>
+        </div>
+      </div>
+      <div *ngIf="showInputText" class="col-sm-6 border" style="display: inline; align-items: center;">
+        <input formControlName="newMetadata" [(ngModel)]="resourceDetailsoModel.newMetadata" type="text" id="newMetadata"
+            placeholder="Metadata" />
+        <button type="button" class="btn btn-success btn-sm" (click)="addMetadata()"><i class="fas fa-plus"></i>&nbsp;Agregar</button>
+        <br>
         <div class="btn-group btn-space" role="group" *ngFor="let metadata of resourceDetailsoModel?.metadata">
           <button type="button" class="btn btn-outline-primary">
             {{ metadata.tag }}
