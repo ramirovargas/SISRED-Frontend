@@ -31,6 +31,7 @@ import { VersionRedRevisionComponent } from './components/version-red-revision/v
 import { AgregarRecursoClientService } from './services/recurso/agregar/agregar-recurso-client.service';
 import { ResourceDetailsRestClientService } from './services/recurso/detalle/resource-details-rest-client.service';
 import { PdfViewerComponent } from './common/pdf-viewer/pdf-viewer.component';
+import { ClickOutsideDirectiveDirective } from './common/pdf-viewer/click-outside-directive.directive';
 
 
 
@@ -56,7 +57,8 @@ import { PdfViewerComponent } from './common/pdf-viewer/pdf-viewer.component';
     SideBarComponent,
     FooterComponent,
     TabPanesComponent,
-    PdfViewerComponent
+    PdfViewerComponent,
+    ClickOutsideDirectiveDirective
   ],
   imports: [
     AppRoutingModule,

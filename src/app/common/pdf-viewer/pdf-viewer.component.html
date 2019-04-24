@@ -1,1 +1,33 @@
-<pdf-viewer [src]="pdfSrc" [render-text]="true" style="display: block;"></pdf-viewer>
+<div class="container">
+
+    <div class="container__left-side">
+        <div class="list">
+            <div class="list-row" *ngFor="let list of areaInfo;" (click)="moveTo(list); $event.stopPropagation();">
+                <div class="delete-btn">
+                    <i class="material-icons icon" (click)="delete(list); $event.stopPropagation();">close</i>
+                </div>
+                <div class="title">Position:</div>
+                <pre>
+            <div [innerHTML]="list?.rect | json"></div> 
+          </pre>
+                <div class="page-number">
+                    Page {{list?.pageNumber}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div #pdfContainer class="container__right-side" (mousemove)="mouseEvent($event)" (mousedown)="mouseEvent($event)"
+        (mouseup)="mouseEvent($event)">
+        <pdf-viewer src="http://eduplan.educando.edu.do/uploads/documentos/propuesta/_1_/1434382501.pdf" [stick-to-page]="true" [render-text]="true" (page-rendered)="pageRendered($event)" style="display: block;">
+        </pdf-viewer>
+
+    </div>
+
+
+    <div class="js-popper popper" [style.display]="getStyle()">
+        <div class="icons">
+            <i class="fas fa-plus" (click)="save()"></i>
+            <i class="fas fa-close" (click)="cancel($event)"></i>
+        </div>
+    </div>
