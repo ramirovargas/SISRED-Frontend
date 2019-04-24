@@ -34,10 +34,10 @@
                 <!--<div class="col col-md-3">
                   <h3 class="box-title">Estado: {{detalle.status}}</h3>
                 </div>-->
-                <div class="col col-md-3 text-right">
+                <div class="col col-md-3 text-right">Fase:
                 </div>
                 <div class="col col-md-3" *ngIf="detalle?.fase?.idConectate">
-                  <select id="fases" [(ngModel)]="detalle.fase.idConectate" class="form-control input-sm" #faseSelect (change)="onOptionsSelected(faseSelect.value)">
+                  <select id="fases" [(ngModel)]="detalle.fase.idConectate" class="form-control input-sm" #faseSelect (change)="onOptionsSelected()">
                     <option *ngFor="let fase_item of fases" [value]="fase_item.idConectate">
                       {{fase_item?.nombre}}
                     </option>
@@ -185,7 +185,7 @@
 </div>
 
 <!-- The Modalexitoso -->
-<div class="modal" id="modalRespuesta" #modalFaseRespuesta>
+<div class="modal" id="modalRespuesta" *ngIf="mensaje != ''" #modalFaseRespuesta>
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -200,7 +200,7 @@
             <i class="fa fa-close" *ngIf="!cambioFaseExitoso"></i>
           </div>
           <div class="col-lg-10">
-            <h4>{{mensajeAdvertencia}}</h4>
+            <h4>{{mensaje}}</h4>
           </div>
         </div>
       </div>
