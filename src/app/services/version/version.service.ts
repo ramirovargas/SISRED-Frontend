@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { CrearVersionModel, Version } from './version.model';
+import { Recurso } from '../recurso/recurso.model';
 import { HttpClient } from '@angular/common/http';
 import { Dropbox } from 'dropbox';
 import fetch from 'isomorphic-fetch';

@@ -72,13 +72,38 @@
                 </tr>
               </table>
               <!-- /.static data table -->
+              <!-- dynamic data table -->
+              <table class="table table-hover table-bordered table-margin">
+                <thead>
+                <tr>
+                  <td colspan="7">
+                    <h3 class="text-center">Recursos Existentes</h3>
+                  </td>
+                </tr>
+                <tr class="thead-light text-center">
+                  <th scope="col">Seleccionar</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Archivo</th>
+                  <th scope="col">Fecha Creación</th>
+                  <th scope="col">Fecha Modificación</th>
+                  <th scope="col">Descripción</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let recurso of recursosExistentes">
+                  <td class="text-center"><input id="checkbox_{{recurso.nombre}}" type="checkbox" name="checkbox_{{recurso.nombre}}" value="{{recurso.nombre}}" (click)="onSelectRecurso(recurso.nombre)"></td>
+                  <td>{{recurso.nombre}}</td>
+                  <td>{{recurso.archivo}}</td>
+                  <td>{{recurso.fechaCreacion}}</td>
+                  <td>{{recurso.fechaUltimaModificacion}}</td>
+                  <td>{{recurso.descripcion}}</td>
+                </tr>
+                </tbody>
+              </table>
+              <!-- /.dynamic data table -->
               <!-- form start -->
               <form #versionForm="ngForm" role="form" (ngSubmit)="onSubmit(versionForm)">
                 <div class="box-body">
-                  <div class="form-group">
-                    <label>Archivos (Seleccione carpeta contenedora)</label>
-                    <input type="file" name="archivos" id="archivos" (change)="fileChangeEvent($event)" webkitdirectory directory multiple>
-                  </div>
                   <div class="form-group">
                     <label>Descripción</label>
                     <textarea class="form-control" name="descripcion" rows="3" ngModel></textarea>

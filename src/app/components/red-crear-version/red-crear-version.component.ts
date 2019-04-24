@@ -3,9 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { DetalleRed } from '../../services/red/detalle-red/detalle-red.model';
 import { DetalleRedService } from '../../services/red/detalle-red/detalle-red.service';
 import { CrearVersionModel, Version } from '../../services/version/version.model';
+import { Recurso } from '../../services/recurso/recurso.model';
 import { VersionService } from '../../services/version/version.service';
 import { NgForm } from '@angular/forms';
 import { Location } from '@angular/common';
+import { RecursoService } from '../../services/recurso/recurso.service';
 
 @Component({
   selector: 'app-red-crear-version',
@@ -15,32 +17,25 @@ import { Location } from '@angular/common';
 export class RedCrearVersionComponent implements OnInit {
   detalle: DetalleRed;
   versionesExistentes: Version[];
+  recursosExistentes: Recurso[];
+  recursosSeleccionados: Recurso[];
   model: CrearVersionModel;
-  filesToUpload: Array<File> = [];
   idRed: number;
   constructor(private route: ActivatedRoute, private detalleRedService: DetalleRedService,
-              private versionesService: VersionService, private location: Location) { }
+              private versionesService: VersionService, private recursosService: RecursoService, private location: Location) { }
 
   ngOnInit() {
     this.idRed = this.route.snapshot.params.idRed;
     this.getDetalleRed();
+    this.getRecursos();
     this.getVersiones();
-  }
-
-  // Metodo que procesa los archivos seleccionados para guardar versión
-  fileChangeEvent(fileInput: any) {
-    this.filesToUpload = fileInput.target.files as Array<File>;
+    this.recursosSeleccionados = [];
   }
 
   // Metodo ejecutado al darle enviar desde la vista
   onSubmit(form: NgForm) {
     this.model.descripcion = form.value.descripcion;
-    this.model.archivos = [];
-    for (const file of this.filesToUpload) {
-      const path = (file as any).webkitRelativePath;
-      this.model.archivos.push(path.substring(path.indexOf('/')));
-    }
-    this.uploadFiles(this.model.consecutivo);
+    this.model.recursosSeleccionados = this.recursosSeleccionados;
     this.crearVersionRed(this.model);
   }
 
@@ -54,16 +49,19 @@ export class RedCrearVersionComponent implements OnInit {
       });
   }
 
-  // Método que sube los archivos a dropbox
-  uploadFiles(consecutivo: number) {
-    this.versionesService.uploadFiles(this.idRed, consecutivo, this.filesToUpload);
-  }
-
   // Metodo que obtiene informacion del RED
   getDetalleRed(): void {
     this.detalleRedService
       .getDetalleRed(this.idRed)
       .subscribe(detalle => (this.detalle = detalle));
+  }
+
+  // Método que obtiene los recursos con la información completa del RED
+  getRecursos(): void {
+    this.recursosService.getRecursosFull(this.idRed)
+      .then( recursos => {
+        this.recursosExistentes = recursos;
+      });
   }
 
   // Metodo que obtiene las versiones del RED
@@ -81,6 +79,21 @@ export class RedCrearVersionComponent implements OnInit {
     this.model.nombre =  this.detalle.nameRed + ' ' + this.model.consecutivo;
     this.model.fechaCreacion = new Date().toLocaleString();
     this.model.creado_por = 'se-mende';
+  }
+
+  // Método para guardar la información de los recursos seleccionados
+  onSelectRecurso(nombre: string): void {
+    const seleccionado = document.getElementById('checkbox_' + nombre) as HTMLInputElement;
+    const isChecked = seleccionado.checked;
+    const index = this.recursosSeleccionados.findIndex(r => r.nombre === nombre);
+    console.log(index);
+    if (isChecked && index === -1) {
+      const sel = this.recursosExistentes.find(r => r.nombre === nombre);
+      this.recursosSeleccionados.push(sel);
+    }
+    else if (!isChecked && index >= 0) {
+      this.recursosSeleccionados.splice(index, 1);
+    }
   }
 
   // Metodo que regresa a la pantella anterior

@@ -1,4 +1,6 @@
 // Model Version
+import { Recurso } from '../recurso/recurso.model';
+
 export class Version {
   id: number;
   numero: number;
@@ -15,5 +17,5 @@ export class CrearVersionModel {
   creado_por: string;
   fechaCreacion: string;
   descripcion: string;
-  archivos: string[];
+  recursosSeleccionados: Array<Recurso>;
 }
