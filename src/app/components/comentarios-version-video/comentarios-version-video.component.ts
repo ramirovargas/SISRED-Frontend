@@ -14,25 +14,30 @@ declare let videojs: any;
   styleUrls: ['./comentarios-version-video.component.css']
 })
 export class ComentariosVersionVideoComponent implements OnInit {
-  idRecurso = 2;
+  
+  idVersion = 0;
   pluginOptions: any;
-  annotations = this.commentsVersionVideoService.getCommentsVersionVideo(this.idRecurso);
+  annotations = null;
   mostrar = true;
   playerOptions = {controlBar: {volumePanel: {inline: false}}};
   player: any;
 
   constructor(
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private commentsVersionVideoService: CommentsVersionVideoService
-  ) {}
+  ) {
+    this.idVersion = this.activatedRoute.snapshot.params['idVersion'];
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.addPluginVideo();
+  }
 
   addPluginVideo(): void {
-    this.annotations = this.commentsVersionVideoService.getCommentsVersionVideo(this.idRecurso);
+    //this.annotations = this.commentsVersionVideoService.getCommentsVersionVideo(this.idVersion);
 
     this.pluginOptions = {
-      annotationsObjects: this.annotations,
+      annotationsObjects: [],
       bindArrowKeys: true,
       meta: {
         user_id: 2,
@@ -50,10 +55,10 @@ export class ComentariosVersionVideoComponent implements OnInit {
       videojs.log('Your player is ready!');
 
       // In this context, `this` is the player that was created by Video.js.
-      this.play();
+      //this.play();
 
       // muted
-      this.muted(true);
+      this.muted(false);
 
       // How about an event listener?
       /*this.on('ended', function() {
@@ -63,6 +68,11 @@ export class ComentariosVersionVideoComponent implements OnInit {
 
     const plugin = this.player.annotationComments(this.pluginOptions);
     plugin.onReady(console.log('PLUGIN IS READY!'));
+    plugin.on('onStateChanged', (event) => {
+      console.log("Persistiendo Comentarios->");
+      console.log(event.detail);
+      this.commentsVersionVideoService.addVideoComments(this.idVersion, event.detail);
+    });
   }
 
 }

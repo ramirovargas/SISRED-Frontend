@@ -1,11 +1,87 @@
-<div id="video_wrap">
 
-  <video id='my-video' class='video-js' controls preload='auto' width='720' height='405' data-setup='{}'>
-    <source
-      src='https://static.videezy.com/system/resources/previews/000/011/809/original/crystal_clear_water___caustic_ripples___23s___4kres.mp4'
-      type='video/mp4'>
-  </video>
-  <div>
-    <button id="seeVideo" *ngIf="mostrar" (click)="addPluginVideo()" style="margin-top:20px">Agregar Comentario</button>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Agregar Comentarios a Video
+    </h1>
+  </section>
+
+  <!-- Main content -->
+<div class="container">
+
+  <div id="video_wrap">
+
+    <video id='my-video' class='video-js' controls preload='auto' width='720' height='405' data-setup='{}'>
+      <source
+        src='https://www.dropbox.com/s/df9eg5pifn7ny9g/%233.%20Scrum%20en%206%20minutos%20-%20Metodolog%C3%ADas%20%C3%81giles.mp4?raw=1'
+        type='video/mp4'>
+    </video>
+    <div>
+      <button id="seeVideo" *ngIf="mostrar" (click)="addPluginVideo()" style="margin-top:20px">Agregar Comentario</button>
+    </div>
+
+    <div class="row bootstrap snippets">
+      <div class="col-md-8 col-md-offset-2 col-sm-12">
+          <div class="comment-wrapper">
+              <div class="panel panel-info">
+                  <div class="panel-heading">
+                      Listado de Comentarios
+                  </div>
+                  <div class="panel-body">
+                      <ul class="media-list">
+                          <li class="media">
+                              <a href="#" class="pull-left">
+                                  <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                              </a>
+                              <div class="media-body">
+                                  <span class="text-muted pull-right">
+                                      <small class="text-muted">30 min ago</small>
+                                  </span>
+                                  <strong class="text-success">@MartinoMont</strong>
+                                  <p>
+                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                      Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
+                                  </p>
+                              </div>
+                          </li>
+                          <li class="media">
+                              <a href="#" class="pull-left">
+                                  <img src="https://bootdey.com/img/Content/user_2.jpg" alt="" class="img-circle">
+                              </a>
+                              <div class="media-body">
+                                  <span class="text-muted pull-right">
+                                      <small class="text-muted">30 min ago</small>
+                                  </span>
+                                  <strong class="text-success">@LaurenceCorreil</strong>
+                                  <p>
+                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                      Lorem ipsum dolor <a href="#">#ipsumdolor </a>adipiscing elit.
+                                  </p>
+                              </div>
+                          </li>
+                          <li class="media">
+                              <a href="#" class="pull-left">
+                                  <img src="https://bootdey.com/img/Content/user_3.jpg" alt="" class="img-circle">
+                              </a>
+                              <div class="media-body">
+                                  <span class="text-muted pull-right">
+                                      <small class="text-muted">30 min ago</small>
+                                  </span>
+                                  <strong class="text-success">@JohnNida</strong>
+                                  <p>
+                                      Lorem ipsum dolor <a href="#">#sitamet</a> sit amet, consectetur adipiscing elit.
+                                  </p>
+                              </div>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+    </div>
+
   </div>
 </div>

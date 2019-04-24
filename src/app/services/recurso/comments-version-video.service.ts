@@ -7,7 +7,9 @@ import {Observable, of} from 'rxjs';
   providedIn: 'root'
 })
 export class CommentsVersionVideoService {
+
   API_URL = environment.apiUrl + 'comentarios/video/';
+
   annotations: any;
   constructor(private httpClient: HttpClient) { }
 
@@ -18,4 +20,12 @@ export class CommentsVersionVideoService {
     });
     return this.annotations;
   }
+
+  // Metodo que invoca al servcio que obitiene los comentarios del video
+  addVideoComments(idRecurso: number, commentsDetail: object) {
+    this.httpClient.post(this.API_URL + idRecurso, commentsDetail).subscribe((data: any) => {
+
+    });
+  }
+
 }

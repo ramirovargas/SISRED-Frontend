@@ -41,7 +41,7 @@
     "path": "^0.12.7",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
-    "video.js": "^7.4.1",
+    "video.js": "^7.5.4",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
