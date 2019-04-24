@@ -16,6 +16,7 @@ declare let videojs: any;
 export class ComentariosVersionVideoComponent implements OnInit {
   
   idVersion = 0;
+  idRecurso = 0;
   pluginOptions: any;
   annotations = null;
   mostrar = true;
@@ -27,6 +28,7 @@ export class ComentariosVersionVideoComponent implements OnInit {
     private commentsVersionVideoService: CommentsVersionVideoService
   ) {
     this.idVersion = this.activatedRoute.snapshot.params['idVersion'];
+    this.idRecurso = this.activatedRoute.snapshot.params['idRecurso'];
   }
 
   ngOnInit() {
@@ -34,7 +36,7 @@ export class ComentariosVersionVideoComponent implements OnInit {
   }
 
   addPluginVideo(): void {
-    //this.annotations = this.commentsVersionVideoService.getCommentsVersionVideo(this.idVersion);
+    //this.annotations = this.commentsVersionVideoService.getCommentsVersionVideo(this.idRecurso);
 
     this.pluginOptions = {
       annotationsObjects: [],
@@ -71,7 +73,7 @@ export class ComentariosVersionVideoComponent implements OnInit {
     plugin.on('onStateChanged', (event) => {
       console.log("Persistiendo Comentarios->");
       console.log(event.detail);
-      this.commentsVersionVideoService.addVideoComments(this.idVersion, event.detail);
+      this.commentsVersionVideoService.addVideoComments(this.idVersion, this.idRecurso, event.detail);
     });
   }
 

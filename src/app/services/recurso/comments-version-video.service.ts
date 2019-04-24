@@ -22,7 +22,7 @@ export class CommentsVersionVideoService {
   }
 
   // Metodo que invoca al servcio que obitiene los comentarios del video
-  addVideoComments(idRecurso: number, commentsDetail: object) {
+  addVideoComments(idVersion: number, idRecurso: number, commentsDetail: object) {
     this.httpClient.post(this.API_URL + idRecurso, commentsDetail).subscribe((data: any) => {
 
     });

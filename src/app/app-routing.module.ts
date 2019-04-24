@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'red/:idRed/detalle', component: DetalleREDComponent },
   { path: 'reds/:idUsuario', component: RedAsignadosComponent },
   { path: 'asignaciones', component: RedsPorPersonaComponent },
-  { path: 'red/version/:idVersion/comentarios', component: ComentariosVersionVideoComponent },
+  { path: 'red/version/:idVersion/recurso/:idRecurso/comentarios', component: ComentariosVersionVideoComponent },
   {
     path: 'red/:idRed/version/:version',
     component: VersionRedRevisionComponent
