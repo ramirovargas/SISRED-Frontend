@@ -121,25 +121,29 @@ export class DetalleREDComponent implements OnInit {
       }
       ).catch(error => {
         this.cambioFaseExitoso = false;
+        console.log('error',error.error);
         this.mensaje = error.error;
       });
     console.log('message', this.modalRespuesta);
     $(this.modalRespuesta.nativeElement).modal('show');
   }
 
-  onOptionsSelected(idFase: number) {
+  //Metodo para cuando una fase es seleccionada
+  onOptionsSelected() {
     this.heading = 'Cambiar de fase';
     this.body = '¿Desea cambiar de fase a ' + this.fases[this.detalle.fase.idConectate].nombre + '?'
     this.mensajeAdvertencia = this.seleccionarTexto(this.detalle.fase.idConectate.toString());
     $(this.modal.nativeElement).modal('show');
   }
 
+  //Metodo para cerrar el modal
   closeModal() {
     this.mensaje = null;
     location.reload();
     console.log('message');
   }
 
+  //Metodo para traer el mensaje del modal
   seleccionarTexto(value: string): string {
     console.log('id fase', value);
     var mensaje;
