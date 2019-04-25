@@ -72,7 +72,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let red of reds.slice((pagina-1)*paginaSize, pagina*paginaSize)">
+                    <tr *ngFor="let red of redsSinRepetir.slice((pagina-1)*paginaSize, pagina*paginaSize)">
                       <td>{{red.nombre}}</td>
                       <td>{{red.descripcion}}</td>
                       <td>{{red.fechaInicio}}</td>
@@ -86,7 +86,7 @@
                     </tr>
                   </tbody>
                 </table>
-                <ngb-pagination class="d-flex justify-content-center" *ngIf="reds.length > paginaSize" [collectionSize]="reds.length" [(page)]="pagina" [maxSize]="5" [pageSize]="paginaSize" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
+                <ngb-pagination class="d-flex justify-content-center" *ngIf="reds.length > paginaSize" [collectionSize]="redsSinRepetir.length" [(page)]="pagina" [maxSize]="5" [pageSize]="paginaSize" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
               </div>
               <span *ngIf="reds.length === 0">Sin Resultados</span>
             </div>

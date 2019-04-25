@@ -11,7 +11,7 @@ export class BuscarRedsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  buscarReds(userId, fechaInicio, fechaCierre, texto): Promise<Red[]> {
+  buscarReds(idUsuario, fechaInicio, fechaCierre, texto): Promise<Red[]> {
 
     let params = new HttpParams();
 
@@ -27,7 +27,7 @@ export class BuscarRedsService {
     };
 
     return new Promise((resolve, reject) => {
-      this.httpClient.get(`${environment.apiUrl}buscarReds`, options).subscribe((data: Array<any>) => {
+      this.httpClient.get(`${environment.apiUrl}buscarReds/${idUsuario}/`, options).subscribe((data: Array<any>) => {
         let reds = [];
         data.forEach(item => {
           let red = new Red();
