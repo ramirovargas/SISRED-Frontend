@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { BrowserModule } from "@angular/platform-browser";
 import { NgbAlertModule, NgbPaginationModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgSpinKitModule } from "ng-spin-kit";
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { AddRedComponent } from "./components/add-red/add-red.component";
@@ -28,6 +29,7 @@ import { HeaderComponent } from './components/dashboard/header/header.component'
 import { SideBarComponent } from './components/dashboard/side-bar/side-bar.component';
 import { FooterComponent } from './components/dashboard/footer/footer.component';
 import { TabPanesComponent } from './components/dashboard/tab-panes/tab-panes.component';
+import { ComentarImagenComponent } from './components/comentar-imagen/comentar-imagen.component';
 
 
 @NgModule({
@@ -51,7 +53,8 @@ import { TabPanesComponent } from './components/dashboard/tab-panes/tab-panes.co
     HeaderComponent,
     SideBarComponent,
     FooterComponent,
-    TabPanesComponent    
+    TabPanesComponent,
+    ComentarImagenComponent    
   ],
   imports: [
     AppRoutingModule,
@@ -65,7 +68,8 @@ import { TabPanesComponent } from './components/dashboard/tab-panes/tab-panes.co
     NgbAlertModule,
     NgbPaginationModule,
     HttpModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    CKEditorModule
   ],
   providers: [AgregarRecursoClientService, ResourceDetailsRestClientService],
   bootstrap: [AppComponent]
