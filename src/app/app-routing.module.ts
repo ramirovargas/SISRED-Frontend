@@ -1,3 +1,4 @@
+import { NotFoundComponent } from './components/not-found/not-found.component';
 import { RedsPorPersonaComponent } from './components/reds-por-persona/reds-por-persona.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -13,6 +14,8 @@ import { RedAsignadosComponent } from './components/red/asignaciones/red-asignad
 import { RedsRelacionadosComponent } from './components/reds-relacionados/reds-relacionados.component';
 import { VerAvanceRedComponent } from './components/ver-avance-red/ver-avance-red.component';
 import {VerVersionRedComponent} from './components/ver-version-red/ver-version-red.component';
+import { VersionRedRevisionComponent } from './components/version-red-revision/version-red-revision.component';
+import { BuscarRedComponent } from './components/buscar-red/buscar-red.component';
 
 const routes: Routes = [
   { path: '', component: RedAsignadosComponent },
@@ -25,6 +28,13 @@ const routes: Routes = [
     path: 'redrel/:idProyectoC',
     component: RedsRelacionadosComponent
   },
+  { path: 'reds/:idUsuario', component: RedAsignadosComponent },
+  { path: 'buscarRed', component: BuscarRedComponent },
+  {
+    path: 'red/:idRed/version/:version',
+    component: VersionRedRevisionComponent
+  },
+  { path: 'red/:idRed/proyectos', component: ProyectosRedComponent },
   {
     path: 'red/:id/recursos',
     component: RedRecursosComponent
@@ -32,20 +42,29 @@ const routes: Routes = [
   {
     path: 'red/:id/recursos/:idrecurso',
     component: RedRecursosDetalleComponent
+  }, 
+  {
+    path: 'red/:idRed/relacionados',
+    component: RedsRelacionadosComponent
   },
   {
-    path: 'recurso/agregar-recurso',
+    path: 'red/:idRed/recursos/agregar',
     component: AgregarRecursoComponent
   },
+  // {
+  //   path: 'red/:id/recursos/:idrecurso',
+  //   component: RedRecursosDetalleComponent
+  // },
   {
     path: 'recurso/detalle/:id',
     component: DetalleRecursoComponent
   },
+  { path: 'red/version/:id', component: VerVersionRedComponent },
   {
-    path: 'ver/avance-red/:id',
+    path: 'reds/:id/avance',
     component: VerAvanceRedComponent
   },
-    { path: 'red/version/:id', component: VerVersionRedComponent },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({

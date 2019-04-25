@@ -27,7 +27,9 @@
               </div>
               <div class="row">
                 <div class="col col-md-9">
-                  <a href="" routerLink=""><h3 class="box-title">{{detalle.nameProject}}</h3></a>
+                  <a href="" routerLink="">
+                    <h3 class="box-title">{{detalle.nameProject}}</h3>
+                  </a>
                 </div>
                 <div class="col col-md-3">
                   <h3 class="box-title">Estado: {{detalle.status}}</h3>
@@ -44,69 +46,75 @@
               <!-- table Recursos asociados -->
               <table class="table table-hover table-bordered table-margin">
                 <thead>
-                <tr>
-                  <td colspan="3">
-                    <h3 class="text-center">Recursos asociados</h3>
-                  </td>
-                </tr>
-                <tr class="thead-light text-center">
-                  <th scope="col">Nombre recursos</th>
-                  <th scope="col">Formato archivo</th>
-                  <th scope="col">Detalle</th>
-                </tr>
+                  <tr>
+                    <td colspan="3">
+                      <h3 class="text-center">Recursos asociados</h3>
+                    </td>
+                  </tr>
+                  <tr class="thead-light text-center">
+                    <th scope="col">Nombre recursos</th>
+                    <th scope="col">Formato archivo</th>
+                    <th scope="col">Detalle</th>
+                  </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let recurso of recursos">
-                  <td>{{recurso.name}}</td>
-                  <td>{{recurso.typeFormat}}</td>
-                  <td class="text-center">
-                    <button type="button" class="btn btn-primary">Detalle</button>
-                  </td>
-                </tr>
+                  <tr *ngFor="let recurso of recursos">
+                    <td>{{recurso.name}}</td>
+                    <td>{{recurso.typeFormat}}</td>
+                    <td class="text-center" [routerLink]="['/red/' + idRed + '/recursos/' + recurso.id]"
+                      routerLinkActive="router-link-active">
+                      <button type="button" class="btn btn-primary">Detalle</button>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
+              <div class="text-center">
+                <button type="button" class="btn btn-info m-2" [routerLink]="['/red/' + idRed + '/recursos']"
+                  routerLinkActive="router-link-active">Ver recursos</button>
+              </div>
+              <hr />
               <!-- table Personas asignadas al RED -->
               <table class="table table-hover table-bordered table-margin">
                 <thead>
-                <tr>
-                  <td colspan="2">
-                    <h3 class="text-center">Personas asignadas al RED</h3>
-                  </td>
-                </tr>
-                <tr class="thead-light text-center">
-                  <th scope="col">Nombre completo</th>
-                  <th scope="col">Rol</th>
-                </tr>
+                  <tr>
+                    <td colspan="2">
+                      <h3 class="text-center">Personas asignadas al RED</h3>
+                    </td>
+                  </tr>
+                  <tr class="thead-light text-center">
+                    <th scope="col">Nombre completo</th>
+                    <th scope="col">Rol</th>
+                  </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let persona of personas">
-                  <td>{{persona.name}}</td>
-                  <td>{{persona.rol}}</td>
-                </tr>
+                  <tr *ngFor="let persona of personas">
+                    <td>{{persona.name}}</td>
+                    <td>{{persona.rol}}</td>
+                  </tr>
                 </tbody>
               </table>
               <!-- table Proyectos del RED -->
               <table class="table table-hover table-bordered table-margin">
                 <thead>
-                <tr>
-                  <td colspan="4">
-                    <h3 class="text-center">Proyectos del RED</h3>
-                  </td>
-                </tr>
-                <tr class="thead-light text-center">
-                  <th scope="col">Autor</th>
-                  <th scope="col">Tipo archivo</th>
-                  <th scope="col">Fecha creación</th>
-                  <th scope="col">Descripción</th>
-                </tr>
+                  <tr>
+                    <td colspan="4">
+                      <h3 class="text-center">Proyectos del RED</h3>
+                    </td>
+                  </tr>
+                  <tr class="thead-light text-center">
+                    <th scope="col">Autor</th>
+                    <th scope="col">Tipo archivo</th>
+                    <th scope="col">Fecha creación</th>
+                    <th scope="col">Descripción</th>
+                  </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let proyecto of proyectos">
-                  <td>{{proyecto.autor}}</td>
-                  <td>{{proyecto.typeFile}}</td>
-                  <td>{{proyecto.createdDate}}</td>
-                  <td>{{proyecto.description}}</td>
-                </tr>
+                  <tr *ngFor="let proyecto of proyectos">
+                    <td>{{proyecto.autor}}</td>
+                    <td>{{proyecto.typeFile}}</td>
+                    <td>{{proyecto.createdDate}}</td>
+                    <td>{{proyecto.description}}</td>
+                  </tr>
                 </tbody>
               </table>
               <!-- /.table Proyectos del RED -->
@@ -145,13 +153,13 @@
                   <td>Versión {{version.numero}}</td>
                   <td>{{version.fechaCreacion}}</td>
                   <td>{{version.creadoPor}}</td>
-                  <td class="text-center"><img style="max-width: 100px; max-height: 100px;" [src]="version.url"></td>
-                  <td class="text-center">
+                  <td><img style="max-width: 100px; max-height: 100px;" [src]="version.url"></td>
+                  <td>
                     <div *ngIf="version.esFinal; else marcarComoDef">
                       Versión definitiva
                     </div>
                     <ng-template #marcarComoDef>
-                      <button type="button" class="btn btn-primary">Marcar como definitivo</button>
+                      <button type="button" (click)="markAsFinal(version)" class="btn btn-primary">Marcar como definitivo</button>
                     </ng-template>
                   </td>
                 </tr>
@@ -163,8 +171,12 @@
           </div>
           <!-- /.box -->
           <div class="box-footer">
-            <button type="button" (click)="goBack()" class="btn btn-default spaceDer">Volver</button>
-            <button type="button" class="btn btn-info">Ver REDs asociados</button>
+            <button type="button" (click)="goBack()" class="btn btn-default spaceDer m-2"><i
+                class="fas fa-chevron-left"></i>&nbsp;Volver</button>
+            <button type="button" class="btn btn-primary m-2" [routerLink]="['/red/' + idRed + '/relacionados']"
+              routerLinkActive="router-link-active">Ver REDs relacionados</button>
+            <button type="button" class="btn btn-dark m-2 text-white" [routerLink]="['/reds/' + idRed + '/avance']"
+              routerLinkActive="router-link-active">Ver avance red</button>
           </div>
           <!-- /.box-footer -->
         </div>
