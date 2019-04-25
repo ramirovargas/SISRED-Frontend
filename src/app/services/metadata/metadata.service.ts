@@ -4,6 +4,9 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from './../../../environments/environment';
 import { Metadata } from './metadata.model';
 import { AutenticacionService } from '../autenticacion/autenticacion.service';
+import {observableToBeFn} from "rxjs/internal/testing/TestScheduler";
+import {promise} from "selenium-webdriver";
+import {reject} from "q";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +17,7 @@ export class MetadataService {
 
   constructor(
     private httpClient: HttpClient,
-    private autenticacionService: AutenticacionService
+    private autenticacionService: AutenticacionService,
   ) {}
 
   // Metodo que invoca al servicio que obtiene la metadata del RED
@@ -40,4 +43,45 @@ export class MetadataService {
       });
     return of(this.metadata);
   }
+
+  //Servicio para agregar metadata a un recurso
+    addMetadataRecurso(
+    idRecurso: number,
+    tag: string
+  ) {
+    return new Promise((resolve, reject) => {
+      if (
+        idRecurso === 0 ||
+        tag === ''
+      ) {
+        reject('Datos Invalidos');
+      } else {
+        const options = {
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json'
+          })
+        };
+
+        const requestBody = {
+          tag
+        };
+
+        this.httpClient
+          .post(environment.apiUrl + 'addMetadataRecurso/' + idRecurso + '/', requestBody, options)
+          .subscribe(
+            (data: any) => {
+              resolve(data);
+            },
+            err => {
+              console.log(err);
+              reject(err);
+            }
+          );
+      }
+    });
+  }
+
+
+
+
 }
