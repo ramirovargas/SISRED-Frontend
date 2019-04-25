@@ -20,3 +20,11 @@
 .pointer {
   cursor: pointer;
 }
+
+.bg-sisred-blue {
+  background-color: #3c8dbc !important;
+}
+
+.text-sisred-blue {
+  color: #3c8dbc !important;
+}

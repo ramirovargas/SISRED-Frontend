@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RED } from './Models/red';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdvanceRedRestClientService } from 'src/app/services/red/advance-red-rest-client.service';
@@ -10,20 +10,20 @@ import { AdvanceRedRestClientService } from 'src/app/services/red/advance-red-re
   styleUrls: ['./ver-avance-red.component.css']
 })
 export class VerAvanceRedComponent implements OnInit {
-
   public red: RED;
   subred: Array<RED>;
   public advanceRedForm: FormGroup;
   private idRed: number;
 
-  constructor(    
+  constructor(
     private route: ActivatedRoute,
     private advanceRedRestClientService: AdvanceRedRestClientService,
-    private _route: Router) {
-      this.route.params.subscribe(param => {
-        this.idRed = Number(param["id"]);
-      });
-   }
+    private _route: Router
+  ) {
+    this.route.params.subscribe(param => {
+      this.idRed = Number(param['idRed']);
+    });
+  }
 
   ngOnInit(): void {
     this.loadForm();
@@ -32,9 +32,9 @@ export class VerAvanceRedComponent implements OnInit {
 
   loadForm(): void {
     this.advanceRedForm = new FormGroup({
-      nombre: new FormControl(""),
-      getProyecto: new FormControl(""),
-      getFase: new FormControl(""),
+      nombre: new FormControl(''),
+      getProyecto: new FormControl(''),
+      getFase: new FormControl('')
     });
   }
 
@@ -47,8 +47,7 @@ export class VerAvanceRedComponent implements OnInit {
       });
   }
 
-  public onChangePageRed(): void{
+  public onChangePageRed(): void {
     this._route.navigate(['/ver-detalle-red/' + this.idRed]);
   }
-
 }

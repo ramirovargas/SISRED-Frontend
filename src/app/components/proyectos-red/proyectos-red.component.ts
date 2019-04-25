@@ -41,11 +41,11 @@ export class ProyectosRedComponent implements OnInit {
 
   getDetalleRed(): void {
     this.detalleRedService.getDetalleRed(this.idRed)
-      .subscribe(detalleRed => this.detalleRed = detalleRed);
+     .subscribe(detalleRed => this.detalleRed = detalleRed);
   }
 
   goBack(): void {
-    this.location.back()
+    this.location.back();
   }
 
 }

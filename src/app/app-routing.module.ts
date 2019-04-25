@@ -14,29 +14,56 @@ import { RedAsignadosComponent } from './components/red/asignaciones/red-asignad
 import { RedsRelacionadosComponent } from './components/reds-relacionados/reds-relacionados.component';
 import { VerAvanceRedComponent } from './components/ver-avance-red/ver-avance-red.component';
 import { VersionRedRevisionComponent } from './components/version-red-revision/version-red-revision.component';
+import { LoginComponent } from './components/login/login.component';
+import { AutenticacionGuard } from './guards/autenticacion/autenticacion.guard';
+import { NoAutenticadoGuard } from './guards/no-autenticado/no-autenticado.guard';
 
 const routes: Routes = [
-  { path: '', component: RedAsignadosComponent },
-  { path: 'red/:idRed/proyecto/agregar', component: AddRedComponent },
-  { path: 'red/:idRed/detalle', component: DetalleREDComponent },
-  { path: 'reds/:idUsuario', component: RedAsignadosComponent },
-  { path: 'asignaciones', component: RedsPorPersonaComponent },
+  { path: '', component: LoginComponent, canActivate: [NoAutenticadoGuard] },
+  {
+    path: 'red/:idRed/proyecto/agregar',
+    component: AddRedComponent,
+    canActivate: [AutenticacionGuard]
+  },
+  {
+    path: 'red/:idRed/detalle',
+    component: DetalleREDComponent,
+    canActivate: [AutenticacionGuard]
+  },
+  {
+    path: 'reds/:idUsuario',
+    component: RedAsignadosComponent,
+    canActivate: [AutenticacionGuard]
+  },
+  {
+    path: 'asignaciones',
+    component: RedsPorPersonaComponent,
+    canActivate: [AutenticacionGuard]
+  },
   {
     path: 'red/:idRed/version/:version',
-    component: VersionRedRevisionComponent
+    component: VersionRedRevisionComponent,
+    canActivate: [AutenticacionGuard]
   },
-  { path: 'red/:idRed/proyectos', component: ProyectosRedComponent },
+  {
+    path: 'red/:idRed/proyectos',
+    component: ProyectosRedComponent,
+    canActivate: [AutenticacionGuard]
+  },
   {
     path: 'red/:idRed/relacionados',
-    component: RedsRelacionadosComponent
+    component: RedsRelacionadosComponent,
+    canActivate: [AutenticacionGuard]
   },
   {
-    path: 'red/:id/recursos',
-    component: RedRecursosComponent
+    path: 'red/:idRed/recursos',
+    component: RedRecursosComponent,
+    canActivate: [AutenticacionGuard]
   },
   {
     path: 'red/:idRed/recursos/agregar',
-    component: AgregarRecursoComponent
+    component: AgregarRecursoComponent,
+    canActivate: [AutenticacionGuard]
   },
   // {
   //   path: 'red/:id/recursos/:idrecurso',
@@ -44,11 +71,13 @@ const routes: Routes = [
   // },
   {
     path: 'red/:idRed/recursos/:id',
-    component: DetalleRecursoComponent
+    component: DetalleRecursoComponent,
+    canActivate: [AutenticacionGuard]
   },
   {
-    path: 'reds/:id/avance',
-    component: VerAvanceRedComponent
+    path: 'reds/:idRed/avance',
+    component: VerAvanceRedComponent,
+    canActivate: [AutenticacionGuard]
   },
   { path: '**', component: NotFoundComponent }
 ];
