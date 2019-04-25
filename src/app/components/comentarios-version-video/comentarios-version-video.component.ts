@@ -14,11 +14,11 @@ declare let videojs: any;
   styleUrls: ['./comentarios-version-video.component.css']
 })
 export class ComentariosVersionVideoComponent implements OnInit {
-  
+
   idVersion = 0;
-  idRecurso = 0;
+  idRecurso = 1;
   pluginOptions: any;
-  annotations = null;
+  annotations = this.commentsVersionVideoService.getCommentsVersionVideo(this.idRecurso);
   mostrar = true;
   playerOptions = {controlBar: {volumePanel: {inline: false}}};
   player: any;
@@ -27,19 +27,19 @@ export class ComentariosVersionVideoComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private commentsVersionVideoService: CommentsVersionVideoService
   ) {
-    this.idVersion = this.activatedRoute.snapshot.params['idVersion'];
-    this.idRecurso = this.activatedRoute.snapshot.params['idRecurso'];
+    this.idVersion = this.activatedRoute.snapshot.params.idVersion;
+    this.idRecurso = this.activatedRoute.snapshot.params.idRecurso;
   }
 
   ngOnInit() {
-    this.addPluginVideo();
+    //this.addPluginVideo();
   }
 
   addPluginVideo(): void {
-    //this.annotations = this.commentsVersionVideoService.getCommentsVersionVideo(this.idRecurso);
+    this.annotations = this.commentsVersionVideoService.getCommentsVersionVideo(this.idRecurso);
 
     this.pluginOptions = {
-      annotationsObjects: [],
+      annotationsObjects: this.annotations,
       bindArrowKeys: true,
       meta: {
         user_id: 2,
@@ -57,7 +57,7 @@ export class ComentariosVersionVideoComponent implements OnInit {
       videojs.log('Your player is ready!');
 
       // In this context, `this` is the player that was created by Video.js.
-      //this.play();
+      // this.play();
 
       // muted
       this.muted(false);
@@ -71,7 +71,7 @@ export class ComentariosVersionVideoComponent implements OnInit {
     const plugin = this.player.annotationComments(this.pluginOptions);
     plugin.onReady(console.log('PLUGIN IS READY!'));
     plugin.on('onStateChanged', (event) => {
-      console.log("Persistiendo Comentarios->");
+      console.log('Persistiendo Comentarios->');
       console.log(event.detail);
       this.commentsVersionVideoService.addVideoComments(this.idVersion, this.idRecurso, event.detail);
     });
