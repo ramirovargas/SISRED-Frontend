@@ -54,11 +54,8 @@ import { BuscarRedComponent } from './components/buscar-red/buscar-red.component
     SideBarComponent,
     FooterComponent,
     TabPanesComponent,
-<<<<<<< HEAD
-    RedCrearVersionComponent    
-=======
-    BuscarRedComponent    
->>>>>>> origin/Equipo2Sprint2Develop
+    RedCrearVersionComponent,
+    BuscarRedComponent
   ],
   imports: [
     AppRoutingModule,
