@@ -16,6 +16,7 @@ export class CommentsVersionVideoService {
   // Metodo que invoca al servcio que obitiene los comentarios del video
   getCommentsVersionVideo(idRecurso: number): Array<any> {
     this.httpClient.get(this.API_URL + idRecurso).subscribe((data: any) => {
+      console.log(data);
       this.annotations = data;
     });
     return this.annotations;

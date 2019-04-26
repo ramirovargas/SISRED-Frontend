@@ -18,7 +18,7 @@ export class ComentariosVersionVideoComponent implements OnInit {
   idVersion = 0;
   idRecurso = 1;
   pluginOptions: any;
-  annotations = this.commentsVersionVideoService.getCommentsVersionVideo(this.idRecurso);
+  annotations = [];
   mostrar = true;
   playerOptions = {controlBar: {volumePanel: {inline: false}}};
   player: any;
@@ -32,7 +32,7 @@ export class ComentariosVersionVideoComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.addPluginVideo();
+    this.addPluginVideo();
   }
 
   addPluginVideo(): void {

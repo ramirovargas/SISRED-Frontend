@@ -6574,7 +6574,7 @@ module.exports = function (_PlayerComponent) {
         key: "annotations",
         set: function set(annotationsData) {
             var _this3 = this;
-
+            annotationsData = (annotationsData !== undefined) ? annotationsData : [];
             this._annotations = annotationsData.map(function (a) {
                 return new Annotation(a, _this3.player);
             });
