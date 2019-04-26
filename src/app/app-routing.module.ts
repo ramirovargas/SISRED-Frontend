@@ -8,13 +8,13 @@ import { AgregarRecursoComponent } from './components/agregar-recurso/agregar-re
 import { DetalleRecursoComponent } from './components/detalle-recurso/detalle-recurso.component';
 import { DetalleREDComponent } from './components/detalle-red/detalle-red.component';
 import { ProyectosRedComponent } from './components/proyectos-red/proyectos-red.component';
-import { RedRecursosDetalleComponent } from './components/red-recursos-detalle/red-recursos-detalle.component';
 import { RedRecursosComponent } from './components/red-recursos/red-recursos.component';
 import { RedAsignadosComponent } from './components/red/asignaciones/red-asignados.component';
 import { RedsRelacionadosComponent } from './components/reds-relacionados/reds-relacionados.component';
 import { VerAvanceRedComponent } from './components/ver-avance-red/ver-avance-red.component';
 import { VersionRedRevisionComponent } from './components/version-red-revision/version-red-revision.component';
 import { RedCrearVersionComponent } from './components/red-crear-version/red-crear-version.component';
+import { BuscarRedComponent } from './components/buscar-red/buscar-red.component';
 
 const routes: Routes = [
   { path: '', component: RedAsignadosComponent },
@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: 'red/:idRed/detalle', component: DetalleREDComponent },
   { path: 'reds/:idUsuario', component: RedAsignadosComponent },
   { path: 'asignaciones', component: RedsPorPersonaComponent },
+  { path: 'buscarRed', component: BuscarRedComponent },
   {
     path: 'red/:idRed/version/:version',
     component: VersionRedRevisionComponent

@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from "@angular/platform-browser";
-import { NgbAlertModule, NgbPaginationModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbAlertModule, NgbPaginationModule, NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgSpinKitModule } from "ng-spin-kit";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -29,6 +29,7 @@ import { SideBarComponent } from './components/dashboard/side-bar/side-bar.compo
 import { FooterComponent } from './components/dashboard/footer/footer.component';
 import { TabPanesComponent } from './components/dashboard/tab-panes/tab-panes.component';
 import { RedCrearVersionComponent } from './components/red-crear-version/red-crear-version.component';
+import { BuscarRedComponent } from './components/buscar-red/buscar-red.component';
 
 
 @NgModule({
@@ -53,7 +54,11 @@ import { RedCrearVersionComponent } from './components/red-crear-version/red-cre
     SideBarComponent,
     FooterComponent,
     TabPanesComponent,
+<<<<<<< HEAD
     RedCrearVersionComponent    
+=======
+    BuscarRedComponent    
+>>>>>>> origin/Equipo2Sprint2Develop
   ],
   imports: [
     AppRoutingModule,
@@ -66,6 +71,7 @@ import { RedCrearVersionComponent } from './components/red-crear-version/red-cre
     NgSpinKitModule,
     NgbAlertModule,
     NgbPaginationModule,
+    NgbModule,
     HttpModule,
     NgxSpinnerModule
   ],
