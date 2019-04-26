@@ -9,4 +9,5 @@ export class Version {
   esFinal: boolean;
   nombreRed: string;
   nombreConectate: string;
+  archivos: string;
 }

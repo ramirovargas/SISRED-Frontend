@@ -29,6 +29,7 @@ export class VerVersionRedService {
         vVersion.url = '';
         vVersion.nombreRed = dataItem.red.nombre;
         vVersion.nombreConectate = dataItem.red.proyecto_conectate.nombre;
+        vVersion.archivos = dataItem.archivos;
         resolve(vVersion);
       }, err => {
         reject(err);
@@ -63,7 +64,11 @@ export class VerVersionRedService {
     return dbx.filesGetTemporaryLink({path: ruta});
   }
 
-
+  descargarZip(ruta: string): Promise<any> {
+    let ACCESS_TOKEN = 'FOsYIGqxyoAAAAAAAAAACo5sRYD5XCAOZy15c341h99QLcgRWBeiWQfRgnCOt0Gq';
+    let dbx = new Dropbox({ accessToken: ACCESS_TOKEN, fetch });
+    return dbx.filesDownloadZip({path: ruta});
+  }
 
 
 }
