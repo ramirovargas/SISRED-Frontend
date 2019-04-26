@@ -54,7 +54,7 @@
                   <img class="img-config" [src]="objVersion.url" alt="">
                 </div>
                 <div class="col-md-12 center italic">
-                  <a class="button" id="linkDescarga">{{mensajeLink}}</a>
+                  <a id="linkDescarga">{{mensajeLink}}</a>
                 </div>
               </div>
               <div class="row">
@@ -72,14 +72,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor="let recurso of objRecursosVersion">
+                    <tr *ngFor="let recurso of objRecursosVersion; let i = index">
                       <td>{{recurso.nombre}}</td>
-                      <td>{{recurso.tipo}}</td>
+                      <td>{{getExtencion(recurso.archivo)}}</td>
                       <td class="text-center">
                         <button type="button" class="btn btn-primary">Detalle</button>
                       </td>
                       <td class="text-center">
-                        <button type="button" class="btn btn-primary">Descargar</button>
+                        <a id="linkRecurso{{i}}">Descargar</a>
                       </td>
                     </tr>
                     </tbody>

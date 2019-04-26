@@ -38,23 +38,27 @@ export class VerVersionRedService {
     
   }
 
-  getRecursosVersion(idVersion: number): Observable<Array<Recurso>> {
+  getRecursosVersion(idVersion: number): Promise<Array<Recurso>> {
     const urlVersion = environment.apiUrl + 'versiones/{id}/recursos/';
     const apiUrl = urlVersion.replace('{id}', idVersion.toString());
-    const vLstRecurso: Array<Recurso> = [];
-    this.http.get<any>(apiUrl).subscribe(dataItem => {
-      dataItem.context.forEach(item => {
-        const vObjeto = new Recurso();
-        vObjeto.nombre = item.nombre;
-        vObjeto.fechaCreacion = item.fecha_creacion;
-        vObjeto.tipo = item.tipo;
-        vObjeto.thumbnail = item.thumbnail;
-        vObjeto.descripcion = item.descripcion;
-        vObjeto.archivo = item.archivo;
-        vLstRecurso.push(vObjeto);
+    let vLstRecurso: Array<Recurso> = [];
+    return new Promise((resolve, reject) => {
+      this.http.get<any>(apiUrl).subscribe(dataItem => {
+        dataItem.context.forEach(item => {
+          const vObjeto = new Recurso();
+          vObjeto.nombre = item.nombre;
+          vObjeto.fechaCreacion = item.fecha_creacion;
+          vObjeto.tipo = item.tipo;
+          vObjeto.thumbnail = item.thumbnail;
+          vObjeto.descripcion = item.descripcion;
+          vObjeto.archivo = item.archivo;
+          vLstRecurso.push(vObjeto);
+        });
+        resolve(vLstRecurso)
+      }, err => {
+        reject(err);
       });
     });
-    return of(vLstRecurso);
   }
 
   getImagenVersion(ruta: string): Promise<any> {
@@ -70,5 +74,9 @@ export class VerVersionRedService {
     return dbx.filesDownloadZip({path: ruta});
   }
 
-
+  descargarArchivo(ruta: string): Promise<any> {
+    let ACCESS_TOKEN = 'FOsYIGqxyoAAAAAAAAAACo5sRYD5XCAOZy15c341h99QLcgRWBeiWQfRgnCOt0Gq';
+    let dbx = new Dropbox({ accessToken: ACCESS_TOKEN, fetch });
+    return dbx.filesDownload({path: ruta});
+  }
 }

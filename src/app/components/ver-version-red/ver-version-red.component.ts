@@ -38,7 +38,6 @@ export class VerVersionRedComponent implements OnInit {
       console.log(vVersion);
       this.getImagenesVersiones();
       this.initDescargarZip();
-
     })
     .catch(err => {
       console.log(err);
@@ -46,7 +45,13 @@ export class VerVersionRedComponent implements OnInit {
   }
 
   getRecursosVersion(): void {
-    this.verVersionRedService.getRecursosVersion(this.idVersion).subscribe(vLstRecurso => this.objRecursosVersion = vLstRecurso);
+    this.verVersionRedService.getRecursosVersion(this.idVersion)
+      .then(vLstRecurso => {
+        this.objRecursosVersion = vLstRecurso;
+        console.log('aver');
+        console.log(vLstRecurso);
+        this.initDescartaRecursos();
+      });
   }
 
    // Metodo que obtiene las versiones del RED
@@ -64,7 +69,12 @@ export class VerVersionRedComponent implements OnInit {
           console.log(err);
         });
     }
-    
+  }
+
+  getExtencion(archivo: string) {
+    let re = /(?:\.([^.]+))?$/;
+    let ext = re.exec(archivo)[1];
+    return ext === undefined ? 'Sin extención' : ext;
   }
 
   initDescargarZip(): void {
@@ -74,7 +84,6 @@ export class VerVersionRedComponent implements OnInit {
         let linkDescarga = document.getElementById('linkDescarga');
         linkDescarga.setAttribute('href', urlDescarga);
         linkDescarga.setAttribute('download', `version${this.objVersion.numero}.zip`)
-        linkDescarga.setAttribute('class', 'button');
         this.mensajeLink = 'Descargar archivos de la versión';
         console.log('yesss');
       })
@@ -84,7 +93,16 @@ export class VerVersionRedComponent implements OnInit {
       });
   }
 
-
-
-
+  initDescartaRecursos(): void {
+    this.objRecursosVersion.forEach((recurso, i) => {
+      this.verVersionRedService.descargarArchivo(recurso.archivo)
+        .then(response => {
+          let urlDescarga = URL.createObjectURL(response.fileBlob);
+          let linkDescarga = document.getElementById(`linkRecurso${i}`);
+          linkDescarga.setAttribute('href', urlDescarga);
+          linkDescarga.setAttribute('download', recurso.archivo.substr(recurso.archivo.lastIndexOf('/')+1))
+          console.log('bien uno');
+        });
+    })
+  } 
 }
