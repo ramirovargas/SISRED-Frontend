@@ -27,6 +27,7 @@ export class RecursoService {
       this.http.get(apiUrlFinal).subscribe((data: any) => {
         data.context.forEach(dataItem => {
           const recurso = new Recurso();
+          recurso.id = dataItem.id;
           recurso.nombre = dataItem.nombre;
           recurso.archivo = dataItem.archivo;
           recurso.thumbnail = dataItem.thumbnail;

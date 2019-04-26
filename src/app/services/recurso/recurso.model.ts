@@ -1,5 +1,6 @@
 // Model Recurso
 export class Recurso {
+  id: number;
   nombre: string;
   archivo: string;
   thumbnail: string;

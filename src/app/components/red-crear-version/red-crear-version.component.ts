@@ -41,8 +41,15 @@ export class RedCrearVersionComponent implements OnInit {
 
   // Metodo ejecutado al darle enviar desde la vista
   onSubmit(form: NgForm) {
+    this.model.redId = this.idRed;
     this.model.descripcion = form.value.descripcion;
     this.model.recursosSeleccionados = this.recursosSeleccionados;
+    this.model.archivos = '/Reds/' + this.idRed + '/Versiones/' + this.model.consecutivo + '/';
+    this.model.imagen = this.model.archivos + this.thumbnail.name;
+    this.model.recursos = [];
+    this.model.recursosSeleccionados.forEach(recurso => {
+      this.model.recursos.push(recurso.id);
+    });
     this.crearVersionRed(this.model);
     this.crearVersionDropbox(this.idRed, this.model.consecutivo, this.model.recursosSeleccionados, this.thumbnail);
   }
@@ -91,7 +98,7 @@ export class RedCrearVersionComponent implements OnInit {
     this.model.consecutivo = this.versionesExistentes.length + 1;
     this.model.nombre =  this.detalle.nameRed + ' ' + this.model.consecutivo;
     this.model.fechaCreacion = new Date().toLocaleString();
-    this.model.creado_por = 'se-mende';
+    this.model.creado_por = 'jmendez';
   }
 
   // Método para guardar la información de los recursos seleccionados

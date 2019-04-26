@@ -14,7 +14,7 @@ import { Observable } from 'rxjs';
 })
 export class VersionService {
   API_URL = environment.apiUrl + 'reds/{id}/versiones/';
-  API_URL_CREAR = environment.apiUrl + 'reds/{id}/crear/';
+  API_URL_CREAR = environment.apiUrl + 'versiones/';
   ACCESS_TOKEN = 'FOsYIGqxyoAAAAAAAAAACo5sRYD5XCAOZy15c341h99QLcgRWBeiWQfRgnCOt0Gq';
   MARCAR_VERSION_URL = environment.apiUrl + 'versiones/{id}/marcar';
 
@@ -60,14 +60,13 @@ export class VersionService {
   }
 
   crearVersionRed(model: CrearVersionModel, idRed: number): Observable<any> {
-    const apiUrlCrearFinal = this.API_URL_CREAR.replace('{id}', idRed.toString());
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
         Authorization: 'my-auth-token'
       })
     };
-    return this.httpClient.post<CrearVersionModel>(apiUrlCrearFinal, model, httpOptions);
+    return this.httpClient.post<CrearVersionModel>(this.API_URL_CREAR, model, httpOptions);
   }
 
   crearVersionDropbox(idRed: number, consecutivo: number, recursos: Array<Recurso>, thumbnail: File) {
