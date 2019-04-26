@@ -3,7 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {VerVersionRedService} from '../../services/version/ver-version-red/ver-version-red.service';
 import {Version} from '../../services/version/version.model';
 import {Recurso} from '../../services/version/ver-version-red/recurso.model';
-
+import { Dropbox } from 'dropbox';
 
 @Component({
   selector: 'app-ver-version-red',
@@ -12,29 +12,25 @@ import {Recurso} from '../../services/version/ver-version-red/recurso.model';
 })
 export class VerVersionRedComponent implements OnInit {
 
+  constructor(private route: ActivatedRoute, private verVersionRedService: VerVersionRedService) {}
+
   objVersion: Version = null;
   objRecursosVersion: Array<Recurso> = null;
   idVersion: number;
-  
-
-  constructor(private route: ActivatedRoute,
-     private verVersionRedService: VerVersionRedService
-          ) {}
+  lstUrl: Array<Url> = new Array<Url>();
 
   ngOnInit() {
      this.idVersion = this.route.snapshot.params.id;
      this.getVersion();
-     this.getRecursosVersion();     
+     this.getRecursosVersion();
+     // this.getImagenesVersiones('/REDs/1/Versiones/459938-dragon-ball-z-goku-ss3.jpg');
   }
 
   getVersion(): void {
     this.verVersionRedService.getVersion(this.idVersion)
-    .then(vVersion =>{
+    .then(vVersion => {
       this.objVersion = vVersion;
-      console.log('prueba 2');
-      console.log(vVersion);
-      this.getImagenesVersiones();
-
+      // this.getArchivo(this.objVersion.imagen, 'MINIATURA');
     })
     .catch(err => {
       console.log(err);
@@ -45,27 +41,21 @@ export class VerVersionRedComponent implements OnInit {
     this.verVersionRedService.getRecursosVersion(this.idVersion).subscribe(vLstRecurso => this.objRecursosVersion = vLstRecurso);
   }
 
-   // Metodo que obtiene las versiones del RED
+  getArchivo(ruta: string, nombre: string): void {
+    const ACCESS_TOKEN = 'FOsYIGqxyoAAAAAAAAAAMg1bkfJ0WKhDIy4fQtWjI0hl9U6Q5jI-Y8qy-hv5KiiH';
+    const dbx = new Dropbox({ accessToken: ACCESS_TOKEN });
 
-   
-  getImagenesVersiones(): void {
-    if (this.objVersion){
-      console.log('prueba');
-      console.log(this.objVersion);
-      this.verVersionRedService.getImagenVersion(this.objVersion.imagen)
-        .then(response => {
-          this.objVersion.url = response.link;
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    }
-    
+    dbx.filesGetTemporaryLink({path: ruta})
+       .then(vResponse => {
+         // vResponse.link
+       })
+       .catch(vError => {
+         alert(vError);
+       });
   }
+}
 
-
-
-
-
-
+export class Url {
+  name: string;
+  url: string;
 }
