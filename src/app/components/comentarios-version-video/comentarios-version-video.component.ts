@@ -4,6 +4,7 @@ import {CommentsVersionVideoService} from '../../services/recurso/comments-versi
 import {ActivatedRoute} from '@angular/router';
 
 declare let videojs: any;
+declare function setup(): any;
 
 /**
  * Componente encargado de los Comentarios de una version de recurso video.
@@ -18,7 +19,7 @@ export class ComentariosVersionVideoComponent implements OnInit {
   idVersion = 0;
   idRecurso = 1;
   pluginOptions: any;
-  annotations = [];
+  annotations: any;
   mostrar = true;
   playerOptions = {controlBar: {volumePanel: {inline: false}}};
   player: any;
@@ -36,7 +37,7 @@ export class ComentariosVersionVideoComponent implements OnInit {
   }
 
   addPluginVideo(): void {
-    this.annotations = this.commentsVersionVideoService.getCommentsVersionVideo(this.idRecurso);
+    this.commentsVersionVideoService.getCommentsVersionVideo(this.idRecurso).subscribe(comments => (this.annotations = comments));
 
     this.pluginOptions = {
       annotationsObjects: this.annotations,

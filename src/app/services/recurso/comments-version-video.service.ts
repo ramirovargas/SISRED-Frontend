@@ -11,20 +11,18 @@ export class CommentsVersionVideoService {
   API_URL = environment.apiUrl + 'comentarios/video/';
 
   annotations: any[];
+  recursoVideo: string;
   constructor(private httpClient: HttpClient) { }
 
   // Metodo que invoca al servcio que obitiene los comentarios del video
-  getCommentsVersionVideo(idRecurso: number): Array<any> {
+  getCommentsVersionVideo(idRecurso: number): Observable<Array<any>> {
     this.annotations = [];
     this.httpClient.get(this.API_URL + idRecurso).subscribe((data: any) => {
-      console.log(data);
       for (let entry of data) {
           this.annotations.push(entry);
       }
     });
-    console.log("Retornando annotations");
-    console.log(this.annotations);
-    return this.annotations;
+    return of(this.annotations);
   }
 
   // Metodo que invoca al servcio que obitiene los comentarios del video
@@ -33,5 +31,12 @@ export class CommentsVersionVideoService {
 
     });
   }
+
+  /*getUrlRecursoVideo(idRecurso: number): Observable<string> {
+    this.recursoVideo = "";
+    this.httpClient.get(this.API_URL + "url/" + idRecurso).subscribe((data: any) => {
+
+    });
+  }*/
 
 }
