@@ -70,22 +70,34 @@ export class VersionService {
     return this.httpClient.post<CrearVersionModel>(apiUrlCrearFinal, model, httpOptions);
   }
 
-  uploadFiles(idRed: number, consecutivo: number, files: Array<File>) {
+  crearVersionDropbox(idRed: number, consecutivo: number, recursos: Array<Recurso>, thumbnail: File) {
     const dbx = new Dropbox({ accessToken: this.ACCESS_TOKEN });
-    const pathToVersion = '/REDs/' + idRed + '/Versiones/' + consecutivo;
+    const pathToVersion = '/Reds/' + idRed + '/Versiones/' + consecutivo;
 
-    // Sube los archivos
-    for (const file of files) {
-      let relativeName = (file as any).webkitRelativePath;
-      relativeName = relativeName.substring(relativeName.indexOf('/') + 1);
-      dbx.filesUpload({path: pathToVersion + '/' + relativeName, contents: file.slice()})
-        .then(response => {
-          console.log(response);
-        })
-        .catch(error => {
-          console.error('dropbox error', error);
-        });
+    this.createFolderVersionDropbox(dbx, pathToVersion);
+    this.copyFiles(dbx, pathToVersion, idRed, recursos);
+    this.uploadThumbnail(dbx, thumbnail, pathToVersion);
+  }
+
+  createFolderVersionDropbox(dbx: Dropbox, pathToVersion: string) {
+    dbx.filesCreateFolderV2({path: pathToVersion, autorename: false});
+  }
+
+  uploadThumbnail(dbx: Dropbox, thumbnail: File, pathToVersion: string) {
+    const fullPath = pathToVersion + '/' + thumbnail.name;
+    dbx.filesUpload({contents: thumbnail.slice(), path: fullPath});
+  }
+
+  copyFiles(dbx: Dropbox, pathToVersion: string, idRed: number, recursos: Array<Recurso>) {
+    const filesRelocationPath = [];
+    for (const recurso of recursos) {
+      const pathName = 'Reds/' + idRed + '/Recursos/';
+      const fullPathRecursoRed = recurso.archivo;
+      const relativePathRecursoRed = recurso.archivo.substring(pathName.length, recurso.archivo.length);
+      const versionPath = pathToVersion + relativePathRecursoRed;
+      filesRelocationPath.push({from_path: fullPathRecursoRed, to_path: versionPath});
     }
+    dbx.filesCopyBatchV2({entries: filesRelocationPath, autorename: false});
   }
 
   markAsFinal(versionNumero: number): Observable<Version> {

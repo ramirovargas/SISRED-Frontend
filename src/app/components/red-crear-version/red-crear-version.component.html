@@ -105,6 +105,10 @@
               <form #versionForm="ngForm" role="form" (ngSubmit)="onSubmit(versionForm)">
                 <div class="box-body">
                   <div class="form-group">
+                    <label>Imágen miniatura</label>
+                    <input type="file" accept="image/*" (change)="fileChangeEvent($event)">
+                  </div>
+                  <div class="form-group">
                     <label>Descripción</label>
                     <textarea class="form-control" name="descripcion" rows="3" ngModel></textarea>
                   </div>

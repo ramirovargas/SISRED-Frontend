@@ -19,6 +19,7 @@ export class RedCrearVersionComponent implements OnInit {
   versionesExistentes: Version[];
   recursosExistentes: Recurso[];
   recursosSeleccionados: Recurso[];
+  thumbnail: File;
   model: CrearVersionModel;
   idRed: number;
   constructor(private route: ActivatedRoute, private detalleRedService: DetalleRedService,
@@ -32,11 +33,18 @@ export class RedCrearVersionComponent implements OnInit {
     this.recursosSeleccionados = [];
   }
 
+  // Metodo que procesa los archivos seleccionados para guardar versión
+  fileChangeEvent(fileInput: any) {
+    this.thumbnail = fileInput.target.files[0] as File;
+  }
+
+
   // Metodo ejecutado al darle enviar desde la vista
   onSubmit(form: NgForm) {
     this.model.descripcion = form.value.descripcion;
     this.model.recursosSeleccionados = this.recursosSeleccionados;
-    this.crearVersionRed(this.model);
+    // this.crearVersionRed(this.model);
+    this.crearVersionDropbox(this.idRed, this.model.consecutivo, this.model.recursosSeleccionados, this.thumbnail);
   }
 
   // Método para crear versión de red. Envía información al backend.
@@ -47,6 +55,11 @@ export class RedCrearVersionComponent implements OnInit {
           this.goBack();
         }
       });
+  }
+
+  // Método que copia los archivos internamente en dropbox
+  crearVersionDropbox(idRed: number, consecutivo: number, recursos: Array<Recurso>, thumbnail: File) {
+    this.versionesService.crearVersionDropbox(idRed, consecutivo, recursos, thumbnail);
   }
 
   // Metodo que obtiene informacion del RED
@@ -86,12 +99,11 @@ export class RedCrearVersionComponent implements OnInit {
     const seleccionado = document.getElementById('checkbox_' + nombre) as HTMLInputElement;
     const isChecked = seleccionado.checked;
     const index = this.recursosSeleccionados.findIndex(r => r.nombre === nombre);
-    console.log(index);
     if (isChecked && index === -1) {
       const sel = this.recursosExistentes.find(r => r.nombre === nombre);
       this.recursosSeleccionados.push(sel);
     }
-    else if (!isChecked && index >= 0) {
+    if (!isChecked && index >= 0) {
       this.recursosSeleccionados.splice(index, 1);
     }
   }
