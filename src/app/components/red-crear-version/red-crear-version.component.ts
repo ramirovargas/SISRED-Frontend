@@ -43,7 +43,7 @@ export class RedCrearVersionComponent implements OnInit {
   onSubmit(form: NgForm) {
     this.model.descripcion = form.value.descripcion;
     this.model.recursosSeleccionados = this.recursosSeleccionados;
-    // this.crearVersionRed(this.model);
+    this.crearVersionRed(this.model);
     this.crearVersionDropbox(this.idRed, this.model.consecutivo, this.model.recursosSeleccionados, this.thumbnail);
   }
 
