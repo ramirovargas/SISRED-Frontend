@@ -29,7 +29,8 @@
               <dd>Donec id elit non mi porta gravida at eget metus.</dd>
               <dt>Malesuada porta</dt>
               <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-            </dl>
+            </dl>      
+            <button type="button" class="btn btn-primary position" (click)="open(content)">Habilitar version de red</button>
           </div>
           <!-- /.box-body -->
         </div>
@@ -59,6 +60,7 @@
               </dd>
             </dl>
           </div>
+          
           <!-- /.box-body -->
         </div>
         <!-- /.box -->
@@ -70,3 +72,11 @@
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Habilitar RED</h4>
+  </div>
+  <div class="modal-body">
+    <a>Hello world</a>
+  </div>
+</ng-template>
