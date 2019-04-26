@@ -32,6 +32,7 @@ import { AgregarRecursoClientService } from './services/recurso/agregar/agregar-
 import { ResourceDetailsRestClientService } from './services/recurso/detalle/resource-details-rest-client.service';
 import { PdfViewerComponent } from './common/pdf-viewer/pdf-viewer.component';
 import { ClickOutsideDirectiveDirective } from './common/pdf-viewer/click-outside-directive.directive';
+import { RedComentarPdfComponent } from './components/red-comentar-pdf/red-comentar-pdf.component';
 
 
 
@@ -58,7 +59,8 @@ import { ClickOutsideDirectiveDirective } from './common/pdf-viewer/click-outsid
     FooterComponent,
     TabPanesComponent,
     PdfViewerComponent,
-    ClickOutsideDirectiveDirective
+    ClickOutsideDirectiveDirective,
+    RedComentarPdfComponent
   ],
   imports: [
     AppRoutingModule,
