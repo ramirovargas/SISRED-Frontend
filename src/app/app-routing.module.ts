@@ -15,6 +15,7 @@ import { RedsRelacionadosComponent } from './components/reds-relacionados/reds-r
 import { VerAvanceRedComponent } from './components/ver-avance-red/ver-avance-red.component';
 import {VerVersionRedComponent} from './components/ver-version-red/ver-version-red.component';
 import { VersionRedRevisionComponent } from './components/version-red-revision/version-red-revision.component';
+import { RedCrearVersionComponent } from './components/red-crear-version/red-crear-version.component';
 import { BuscarRedComponent } from './components/buscar-red/buscar-red.component';
 
 const routes: Routes = [
@@ -64,6 +65,7 @@ const routes: Routes = [
     path: 'reds/:id/avance',
     component: VerAvanceRedComponent
   },
+  { path: 'crearVersion/:idRed', component: RedCrearVersionComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
