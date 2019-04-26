@@ -27,6 +27,7 @@ export class VerVersionRedService {
         vVersion.url = '';
         vVersion.nombreRed = dataItem.red.nombre;
         vVersion.nombreConectate = dataItem.red.proyecto_conectate.nombre;
+        vVersion.archivos = dataItem.archivos;
         resolve(vVersion);
       }, err => {
         reject(err);
@@ -53,15 +54,9 @@ export class VerVersionRedService {
     return of(vLstRecurso);
   }
 
-  /*getArchivoVersion(ruta: string): Promise<any> {
-    const ACCESS_TOKEN = 'FOsYIGqxyoAAAAAAAAAAMg1bkfJ0WKhDIy4fQtWjI0hl9U6Q5jI-Y8qy-hv5KiiH';
-    const dbx = new Dropbox({ accessToken: ACCESS_TOKEN, fetch });
-    return dbx.filesGetTemporaryLink({path: ruta});
-  }*/
-
-  /*getArchivoVersion(ruta: string): any {
-    const ACCESS_TOKEN = 'FOsYIGqxyoAAAAAAAAAAMg1bkfJ0WKhDIy4fQtWjI0hl9U6Q5jI-Y8qy-hv5KiiH';
-    const dbx = new Dropbox({ accessToken: ACCESS_TOKEN });
-    return of(dbx.filesGetTemporaryLink({path: ruta}));
-  }*/
+  descargarZip(ruta: string): Promise<any> {
+    let ACCESS_TOKEN = 'FOsYIGqxyoAAAAAAAAAACo5sRYD5XCAOZy15c341h99QLcgRWBeiWQfRgnCOt0Gq';
+    let dbx = new Dropbox({ accessToken: ACCESS_TOKEN, fetch });
+    return dbx.filesDownloadZip({path: ruta});
+  }
 }
