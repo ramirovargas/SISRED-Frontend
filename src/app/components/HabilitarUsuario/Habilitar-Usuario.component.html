@@ -26,13 +26,12 @@
               <h3 class="box-title">Para habilitar usuario en SISRED, favor ingrese la identificación</h3>
             </div>
             <div class="box-body">
-              <input type="text" class="col-sm-3 form-control" id="usuario" formControlName="usuario" ng-keydown="$event.keyCode === 13 &&  User_Buscar()">
-            </div>
+              <input type="text" class="col-sm-3 form-control" id="usuario" formControlName="usuario">
               <div class="col-sm-2">
-                <button type="button" (click)="User_Buscar()"   class="btn btn-primary btn-sm btn-block">
-                    Buscar
-                  </button>
+                <button type="button" (click)="User_Buscar()"   class="btn btn-primary btn-sm btn-block">Buscar</button>
               </div>
+            </div>
+
               <div class="box-body">
                 <h3 class="box-title">Información del usuario</h3>
               </div>

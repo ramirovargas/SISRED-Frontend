@@ -25,12 +25,16 @@ export class HabilitarUsuarioComponent implements OnInit {
   }
 public  User_Habilitar(): void {
     this.showInputText = false;
-    debugger;
     if (this.HabilitarForm.valid && confirm("Está seguro de habilitar el usuario?")) {
       this.habilitarUsuarioClientService.User_Habilitar(this.usermodel.numero_identificacion).subscribe(response =>      {
-        debugger;
         this.usermodel=response[0];
-      }
+        alert('Usuario habilitado con exito');
+      },
+        error => {
+      console.log(error);
+        alert('Usuario no pudo ser habilitado. ocurrió un error durante el proceso; favor comunicarse con el administrador del sistema ');
+      this.showInputText =false;
+                          }
       );
     }
 }
