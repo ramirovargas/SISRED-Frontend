@@ -22,9 +22,10 @@ export class BuscarRecursoComponent implements OnInit {
   ngOnInit() {
     setup();
     this.buscarRecursoForm = new FormGroup({
+      nombre: new FormControl(),
       fechaDesde: new FormControl(),
       fechaHasta: new FormControl(),
-      text: new FormControl(),
+      tag: new FormControl(),
     });
   }
 
