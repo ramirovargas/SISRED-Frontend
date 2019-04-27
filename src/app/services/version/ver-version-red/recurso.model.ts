@@ -6,4 +6,5 @@ export class Recurso {
   descripcion: string;
   archivo: string;
   id: string;
+  url: string;
 }
