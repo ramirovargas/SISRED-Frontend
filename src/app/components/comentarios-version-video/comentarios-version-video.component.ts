@@ -24,7 +24,6 @@ export class ComentariosVersionVideoComponent implements OnInit, AfterViewInit {
   playerOptions = {controlBar: {volumePanel: {inline: false}}};
   player: any;
   respuestaVideo: any;
-  // urlVideo: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -35,12 +34,18 @@ export class ComentariosVersionVideoComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.getUrlRecursoVideo();
-    // this.addPluginVideo();
+    // this.getUrlRecursoVideo();
+    this.addPluginVideo();
   }
 
   ngAfterViewInit() {
-    this.addPluginVideo();
+
+    /*setTimeout(() =>
+      {
+          this.addPluginVideo();
+      },
+      1000);*/
+
   }
 
   getUrlRecursoVideo(): void {
