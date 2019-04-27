@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, AfterViewInit} from '@angular/core';
 import {AnnotationComments} from '@contently/videojs-annotation-comments';
 import {CommentsVersionVideoService} from '../../services/recurso/comments-version-video.service';
 import {ActivatedRoute} from '@angular/router';
@@ -14,7 +14,7 @@ declare function setup(): any;
   templateUrl: './comentarios-version-video.component.html',
   styleUrls: ['./comentarios-version-video.component.css']
 })
-export class ComentariosVersionVideoComponent implements OnInit {
+export class ComentariosVersionVideoComponent implements OnInit, AfterViewInit {
 
   idVersion = 0;
   idRecurso = 1;
@@ -23,6 +23,8 @@ export class ComentariosVersionVideoComponent implements OnInit {
   mostrar = true;
   playerOptions = {controlBar: {volumePanel: {inline: false}}};
   player: any;
+  respuestaVideo: any;
+  // urlVideo: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -33,10 +35,21 @@ export class ComentariosVersionVideoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getUrlRecursoVideo();
+    // this.addPluginVideo();
+  }
+
+  ngAfterViewInit() {
     this.addPluginVideo();
   }
 
+  getUrlRecursoVideo(): void {
+    console.log('URL FIRST');
+    this.commentsVersionVideoService.getUrlRecursoVideo(this.idRecurso).subscribe(url => (this.respuestaVideo = url));
+  }
+
   addPluginVideo(): void {
+    console.log('ADD FIRST');
     this.commentsVersionVideoService.getCommentsVersionVideo(this.idRecurso).subscribe(comments => (this.annotations = comments));
 
     this.pluginOptions = {

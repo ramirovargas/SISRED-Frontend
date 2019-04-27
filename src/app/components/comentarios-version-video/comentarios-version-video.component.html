@@ -12,12 +12,12 @@
 <div class="container">
 
   <div id="video_wrap">
+    <div *ngFor="let pathVideo of respuestaVideo">
+      <video id='my-video' class='video-js' controls preload='auto' width='720' height='405' data-setup='{}'>
+        <source src={{pathVideo.url}} type='video/mp4'>
+      </video>
+    </div>
 
-    <video id='my-video' class='video-js' controls preload='auto' width='720' height='405' data-setup='{}'>
-      <source
-        src='https://www.dropbox.com/s/df9eg5pifn7ny9g/%233.%20Scrum%20en%206%20minutos%20-%20Metodolog%C3%ADas%20%C3%81giles.mp4?raw=1'
-        type='video/mp4'>
-    </video>
 
     <div class="row bootstrap snippets">
       <div class="col-md-8 col-md-offset-2 col-sm-12">
@@ -38,7 +38,7 @@
                                   </span>
                                   <strong class="text-success">{{comment.meta.user_name}}</strong>
                                   <p>{{comment.body}}</p>
-                                  <p><small class="text-muted">Segundo inicial: {{multi.range.start}} - Segundo final: {{multi.range.stop}}</small></p>
+                                  <p><small class="text-muted">Segundo inicial: {{multi.range.start}} - Segundo final: {{multi.range.end}}</small></p>
 
                               </div>
                           </li>
