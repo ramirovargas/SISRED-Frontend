@@ -29,7 +29,7 @@
                 (mousemove)="mmEvent($event)">
                 </canvas>
                 <div *ngIf="mostrarCaja">
-                Prueba
+                <ckeditor [editor]="Editor" (change)="onChangeComentario($event)"></ckeditor>
                 </div>
             </div>
             <!-- /.box-body -->

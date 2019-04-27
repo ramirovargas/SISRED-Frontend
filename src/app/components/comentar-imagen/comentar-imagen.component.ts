@@ -1,3 +1,4 @@
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 declare function setup():any;
@@ -9,8 +10,16 @@ declare function setup():any;
 })
 export class ComentarImagenComponent implements OnInit {
 
+  public Editor = ClassicEditor;
+
   startX: number = null;
   startY: number = null;
+
+  x1: number = null;
+  y1: number = null;
+  x2: number = null;
+  y2: number = null;
+
   drag:boolean = false;
   mostrarCaja: boolean;
 
@@ -57,24 +66,20 @@ export class ComentarImagenComponent implements OnInit {
 
   muEvent(e) {
     //draw final rectangle on canvas
-    let x = this.startX - this.myCanvas.nativeElement.getBoundingClientRect().left;
-    let y = this.startY - this.myCanvas.nativeElement.getBoundingClientRect().top;
-    let w = e.clientX - this.myCanvas.nativeElement.getBoundingClientRect().left - x;
-    let h = e.clientY - this.myCanvas.nativeElement.getBoundingClientRect().top - y;
+    let x = this.x1 = this.startX - this.myCanvas.nativeElement.getBoundingClientRect().left;
+    let y = this.y1 = this.startY - this.myCanvas.nativeElement.getBoundingClientRect().top;
+    let w = this.x2 = e.clientX - this.myCanvas.nativeElement.getBoundingClientRect().left - x;
+    let h = this.y2 = e.clientY - this.myCanvas.nativeElement.getBoundingClientRect().top - y;
     this.myCanvas.nativeElement.getContext("2d").setLineDash([6]);
     this.myCanvas.nativeElement.getContext("2d").strokeRect(x, y, w, h);
 
     let ctx = CanvasRenderingContext2D = this.myCanvas.nativeElement.getContext("2d");
-    ctx.font = "30px Arial";
-    ctx.fillText("X,Y position:" + x.toString() + "," + y.toString(), 300, 150);
-    ctx.fillText("Z,W position:" + (x+w).toString() + "," + (y+h).toString(), 300, 200);
 
     this.mostrarCaja = true;
     this.drag = false;
   }
 
   ngOnInit() {
-
     
     setup();
     //draw image on canvas
@@ -84,12 +89,16 @@ export class ComentarImagenComponent implements OnInit {
       context.canvas.height = base_image.height;
       context.canvas.width = base_image.width;
       context.drawImage(base_image, 0, 0);
-      context.setLineDash([6]);
-      context.strokeRect(450, 100, 300, 300);
-      context.setLineDash([2]);
-      context.strokeRect(691, 231, (744-691), (293-231));
     };
     base_image.src = 'https://ak3.picdn.net/shutterstock/videos/10826363/thumb/1.jpg';
+  }
+
+  onChangeComentario(comentario){
+    console.log(comentario.editor.getData());
+    console.log("X1:" + this.x1);
+    console.log("Y1:" + this.y1);
+    console.log("X2:" + this.x2);
+    console.log("Y2:" + this.y2);
   }
 
 }
