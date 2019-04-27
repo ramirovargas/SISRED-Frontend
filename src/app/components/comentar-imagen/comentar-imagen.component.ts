@@ -1,5 +1,9 @@
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Recurso } from '../../services/version/ver-version-red/recurso.model';
+import { Comentario } from '../../services/comentario/comentario.model';
+import { ComentarImagenService } from '../../services/comentario/comentar-imagen.service';
 
 declare function setup():any;
 
@@ -23,7 +27,15 @@ export class ComentarImagenComponent implements OnInit {
   drag:boolean = false;
   mostrarCaja: boolean;
 
+  idVersion: number;
+  idRecurso: number;
+  recurso: Recurso;
+  comentarios: Comentario[] = [];
+  comentario: string = '';
+
   @ViewChild("myCanvas") myCanvas:ElementRef;
+
+  constructor(private route: ActivatedRoute, private comentarImagenService: ComentarImagenService) { }
 
   mdEvent(e) {
     //persist starting position
@@ -34,11 +46,11 @@ export class ComentarImagenComponent implements OnInit {
 
   mmEvent(e) {
 
-    if (this.drag) {
+    if (this.drag && this.recurso) {
 
       //redraw image on canvas
       let base_image = new Image();
-      base_image.src = 'https://ak3.picdn.net/shutterstock/videos/10826363/thumb/1.jpg';
+      base_image.src = this.recurso.url;
       let context: CanvasRenderingContext2D = this.myCanvas.nativeElement.getContext("2d");
       let sx = this.startX;
       let sy = this.startY;
@@ -82,9 +94,14 @@ export class ComentarImagenComponent implements OnInit {
   }
 
   ngOnInit() {
-    
     setup();
-    //draw image on canvas
+    this.idVersion = this.route.snapshot.params.idVersion;
+    this.idRecurso = this.route.snapshot.params.idRecurso;
+    this.getRecurso();
+    this.getComentarios();
+  }
+
+  initCanvas() {
     let base_image = new Image();
     let context: CanvasRenderingContext2D = this.myCanvas.nativeElement.getContext("2d");
     base_image.onload = function () {
@@ -92,15 +109,42 @@ export class ComentarImagenComponent implements OnInit {
       context.canvas.width = base_image.width;
       context.drawImage(base_image, 0, 0);
     };
-    base_image.src = 'https://ak3.picdn.net/shutterstock/videos/10826363/thumb/1.jpg';
+    base_image.src = this.recurso.url;
   }
 
   onChangeComentario(comentario){
-    console.log(comentario.editor.getData());
-    console.log("X1:" + this.x1);
-    console.log("Y1:" + this.y1);
-    console.log("X2:" + this.x2);
-    console.log("Y2:" + this.y2);
+    this.comentario = comentario;
   }
 
+  getRecurso() {
+    this.comentarImagenService.obtenerDetallesRecurso(this.idRecurso)
+      .then(response => {
+        this.recurso = response;
+        this.getImagenRecurso();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  getImagenRecurso() {
+    this.comentarImagenService.getImagenRecurso(this.recurso.archivo)
+      .then(response => {
+        this.recurso.url = response.link;
+        this.initCanvas();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  getComentarios() {
+    this.comentarImagenService.obtenerListaComentarios(this.idVersion, this.idRecurso)
+      .then(response => {
+        this.comentarios = response;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 }

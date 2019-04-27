@@ -3,7 +3,9 @@ import { environment } from './../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Comentario } from './comentario.model';
 import { of } from 'rxjs/internal/observable/of';
-import { Recurso } from '../recurso/recurso.model';
+import { Recurso } from '../version/ver-version-red/recurso.model';
+import { Dropbox } from 'dropbox';
+import fetch from 'isomorphic-fetch';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -70,16 +72,19 @@ export class ComentarImagenService {
         recurso.archivo = data.archivo;
         recurso.thumbnail = data.thumbnail;
         recurso.fechaCreacion = data.fecha_creacion;
-        recurso.fechaUltimaModificacion = data.fecha_ultima_modificacion;
         recurso.tipo = data.tipo;
         recurso.descripcion = data.descripcion;
-        recurso.metadata = data.metadata;
-        recurso.autor = data.autor;
-        recurso.usuarioUltimaModificacion = data.usuario_ultima_modificacion;
+        recurso.url = '';
         resolve(recurso);
       }, err => {
         reject(err);
       });      
     });
+  }
+
+  getImagenRecurso(ruta: string): Promise<any> {
+    let ACCESS_TOKEN = 'FOsYIGqxyoAAAAAAAAAACo5sRYD5XCAOZy15c341h99QLcgRWBeiWQfRgnCOt0Gq';
+    let dbx = new Dropbox({ accessToken: ACCESS_TOKEN, fetch });
+    return dbx.filesGetTemporaryLink({path: ruta});
   }
 }
