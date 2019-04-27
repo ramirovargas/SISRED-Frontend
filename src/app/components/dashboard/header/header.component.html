@@ -21,43 +21,22 @@
         <!-- User Account: style can be found in dropdown.less -->
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="assets/AdminLTE/dist/img/user2-160x160.jpg" class="user-image" alt="User Image" />
-            <span class="hidden-xs">Alexander Pierce</span>
+            <img src="https://img.icons8.com/metro/420/star.png" class="user-image" alt="Star Image" />            
           </a>
-          <ul class="dropdown-menu">
-            <!-- User image -->
-            <li class="user-header">
-              <img src="assets/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
-
-              <p>
-                Alexander Pierce - Web Developer
-                <small>Member since Nov. 2012</small>
-              </p>
-            </li>
+          <ul class="dropdown-menu">                        
             <!-- Menu Body -->
-            <li class="user-body">
-              <div class="row">
-                <div class="col-xs-4 text-center">
-                  <a href="#">Followers</a>
-                </div>
-                <div class="col-xs-4 text-center">
-                  <a href="#">Sales</a>
-                </div>
-                <div class="col-xs-4 text-center">
-                  <a href="#">Friends</a>
+            <li class="user-body">              
+              <div *ngFor="let not of notificaciones">
+                <div routerLink="/red/4/detalle">                  
+                  <span class="row pl-5">{{not}}</span>
+                  <span class="row pl-5">{{not}}</span>
+                  <div style="text-align: right">
+                    <span>{{not}}</span>
+                  </div>
+                  <hr style="border:1px dashed"/>
                 </div>
               </div>
-              <!-- /.row -->
-            </li>
-            <!-- Menu Footer-->
-            <li class="user-footer">
-              <div class="pull-left">
-                <a href="#" class="btn btn-default btn-flat">Profile</a>
-              </div>
-              <div class="pull-right">
-                <a href="#" class="btn btn-default btn-flat">Sign out</a>
-              </div>
-            </li>
+            </li>            
           </ul>
         </li>
       </ul>

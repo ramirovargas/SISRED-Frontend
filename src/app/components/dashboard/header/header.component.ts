@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { RedAsignadosService } from '../../../services/red/red-asignados.service';
+import { RedAsignado } from "../../../services/red/RedAsignado";
 
 @Component({
   selector: 'app-header',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  notificaciones : String[] = ["Prueba1", "Prueba2", "Prueba3"];
+  idUsuario: String;
+  constructor(private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private redAsignadosService: RedAsignadosService
+  ) { }
 
-  ngOnInit() {
+  ngOnInit() {    
+    this.idUsuario = this.activatedRoute.snapshot.params.idUsuario; //TODO Temporal.    
   }
 
 }
