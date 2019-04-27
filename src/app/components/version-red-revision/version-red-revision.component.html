@@ -30,7 +30,7 @@
               <dt>Malesuada porta</dt>
               <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
             </dl>      
-            <button class="btn btn-lg btn-outline-primary" (click)="open()">Launch demo modal</button>
+            <button class="btn position btn-primary" data-toggle="modal" data-target="#myModal">Habilitar Version de RED</button>
           </div>
           <!-- /.box-body -->
         </div>
@@ -71,18 +71,48 @@
   </section>
   <!-- /.content -->
 </div>
-<!-- /.content-wrapper -->
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title">Hi there!</h4>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
+<div class="container">
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header color-back">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Seguro quiere habilitar esta version de RED</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" (click)=open() class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#myModalPass">Aceptar</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+      
+    </div>
   </div>
-  <div class="modal-body">
-    <p>Hello, {{name}}!</p>
+  
+</div>
+<div class="container">
+    <!-- Modal -->
+    <div class="modal fade" id="myModalPass" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header color-back">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p>Version de RED habilitada</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
-  </div>
-</ng-template>

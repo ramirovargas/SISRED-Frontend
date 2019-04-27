@@ -78,7 +78,7 @@ import { PdfViewerComponent } from './common/pdf-viewer/pdf-viewer.component';
     
   ],
   providers: [AgregarRecursoClientService, ResourceDetailsRestClientService],
-  bootstrap: [AppComponent,NgbModule]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
 

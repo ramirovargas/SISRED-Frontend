@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { RedAsignado } from './RedAsignado';
+import { map } from "rxjs/operators";
 import { environment } from './../../../environments/environment';
 import { HabilitarRed } from './HabilitarRed';
 
@@ -25,15 +25,12 @@ export class RedVersionService {
     private router: Router
   ) { }
 
-  getREDs(idUsuario: String) :Observable<HabilitarRed[]>{
-    this.reds = [];
-    this.httpClient.get(this.API_URL+idUsuario, httpOptions).subscribe((data: any) => {
-      const red = new HabilitarRed();
-      red.listo=data[0].listo;
-      console.log(red.listo);
-      this.reds.push(red);
-    });
-    return of(this.reds);
+
+  setREDs(idUsuario: any): Observable<any> {
+    const json = { "id_conectate": idUsuario};
+    return this.httpClient
+      .put(environment.apiUrl + idUsuario, json)
+      .pipe(map(reponse => reponse));
   }
 
 }
