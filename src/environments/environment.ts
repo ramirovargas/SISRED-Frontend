@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   // apiUrl: 'http://sisredbackend.herokuapp.com/api/'
-  apiUrl: 'http://127.0.0.1:8000/api/'
+  apiUrl: 'https://sisred-equipo4-backend.herokuapp.com/api/',
+  
 };
 
 /*
