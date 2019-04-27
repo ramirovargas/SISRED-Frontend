@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { NotificacionesService } from './notificaciones.service';
+import { RevisionesService } from './revision.service';
 
-describe('NotificacionesService', () => {
+describe('RevisionesService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: NotificacionesService = TestBed.get(NotificacionesService);
+    const service: RevisionesService = TestBed.get(RevisionesService);
     expect(service).toBeTruthy();
   });
 });

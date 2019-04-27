@@ -2,32 +2,33 @@ import { Injectable } from '@angular/core';
 import { Observable, of} from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import {Notificacion} from './revision.model';
+import {Revision} from './revision.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class NotificacionesService {
-  API_URL ='http://127.0.0.1:8000/api/notificaciones/2';
-  private notificaciones: Array<Notificacion> = [];
+export class RevisionesService {
+  API_URL ='http://127.0.0.1:8000/api/revisiones/2';
+  private revisiones: Array<Revision> = [];
 
   constructor(
     private httpClient: HttpClient
   ) { }
 
   // Metodo que invoca y formatea las notificaciones en el modelo definido en el forntend.
-  getNotificaciones(): Observable<Notificacion[]> {
-    this.notificaciones = [];      
+  getRevisiones(): Observable<Revision[]> {
+    this.revisiones = [];      
     this.httpClient.get(this.API_URL).subscribe((data: Array<any>) => {
       data.forEach(dataItem => {
-        const noti = new Notificacion();          
-        noti.mensaje = dataItem.mensaje;
-        noti.red = dataItem.red;
-        noti.rol = dataItem.rol;
-        noti.fecha = dataItem.fecha;           
-        this.notificaciones.push(noti);
+        const rev = new Revision();                  
+        rev.red = dataItem.red;
+        rev.rol = dataItem.rol;
+        rev.fecha = dataItem.fecha;
+        rev.version = dataItem.versionId;
+        rev.redId = dataItem.redId;
+        this.revisiones.push(rev);
       });
     });
-    return of(this.notificaciones);
+    return of(this.revisiones);
   }
 }

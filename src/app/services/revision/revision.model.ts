@@ -1,9 +1,9 @@
-// Model Notificacion
-export class Notificacion {
-    id: number;
-    mensaje: string;
-    fecha: string;
+// Model Revision
+export class Revision {
+    version: string;    
+    fecha: string;    
     red: string;
     rol: string;
+    redId: string;
   }
   

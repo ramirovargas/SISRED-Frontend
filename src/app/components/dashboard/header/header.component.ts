@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { NotificacionesService } from '../../../services/revision/revision.service';
-import { Notificacion } from "../../../services/revision/revision.model";
+import { RevisionesService } from '../../../services/revision/revision.service';
+import { Revision } from "../../../services/revision/revision.model";
 
 @Component({
   selector: 'app-header',
@@ -10,18 +10,23 @@ import { Notificacion } from "../../../services/revision/revision.model";
 })
 export class HeaderComponent implements OnInit {
 
-  notificaciones : Array<Notificacion> = [];
+  revisiones : Array<Revision> = [];
   idUsuario: String;
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
-    private notificacionesService: NotificacionesService
+    private revisionesService: RevisionesService
   ) { }
 
   ngOnInit() {    
-    this.getNotificaciones()
+    this.getRevisiones()
   }
 
-  getNotificaciones(){
-    this.notificacionesService.getNotificaciones().subscribe(notificaciones => this.notificaciones = notificaciones);
+  getRevisiones(){
+    this.revisionesService.getRevisiones().subscribe(revisiones => this.revisiones = revisiones);
+  }
+
+  ultimo(rev: Revision){
+    if(rev == this.revisiones[this.revisiones.length]) return true
+    return false
   }
 }
