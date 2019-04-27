@@ -1,9 +1,9 @@
-import { HttpClientModule } from "@angular/common/http";
-import { NgModule } from "@angular/core";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from "@angular/platform-browser";
-import { NgbAlertModule, NgbPaginationModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbAlertModule, NgbPaginationModule, NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgSpinKitModule } from "ng-spin-kit";
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { AppRoutingModule } from "./app-routing.module";
@@ -30,6 +30,9 @@ import { SideBarComponent } from './components/dashboard/side-bar/side-bar.compo
 import { FooterComponent } from './components/dashboard/footer/footer.component';
 import { TabPanesComponent } from './components/dashboard/tab-panes/tab-panes.component';
 import { ComentarImagenComponent } from './components/comentar-imagen/comentar-imagen.component';
+import { RedCrearVersionComponent } from './components/red-crear-version/red-crear-version.component';
+import { BuscarRedComponent } from './components/buscar-red/buscar-red.component';
+import { VerVersionRedComponent } from './components/ver-version-red/ver-version-red.component';
 
 
 @NgModule({
@@ -54,7 +57,10 @@ import { ComentarImagenComponent } from './components/comentar-imagen/comentar-i
     SideBarComponent,
     FooterComponent,
     TabPanesComponent,
-    ComentarImagenComponent    
+    ComentarImagenComponent,
+    VerVersionRedComponent,
+    RedCrearVersionComponent,
+    BuscarRedComponent
   ],
   imports: [
     AppRoutingModule,
@@ -67,6 +73,7 @@ import { ComentarImagenComponent } from './components/comentar-imagen/comentar-i
     NgSpinKitModule,
     NgbAlertModule,
     NgbPaginationModule,
+    NgbModule,
     HttpModule,
     NgxSpinnerModule,
     CKEditorModule
