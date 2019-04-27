@@ -86,13 +86,14 @@ export class VersionService {
   }
 
   copyFiles(dbx: Dropbox, pathToVersion: string, idRed: number, recursos: Array<Recurso>) {
+    let fullPathRecursoRed;
+    let recursoName
+    let versionPath;
     const filesRelocationPath = [];
     for (const recurso of recursos) {
-      const fullPathRecursoRed = recurso.archivo;
-      const recursoName = fullPathRecursoRed.substring(fullPathRecursoRed.lastIndexOf('/'), fullPathRecursoRed.length);
-      const versionPath = pathToVersion + recursoName;
-      console.log('from: ' + fullPathRecursoRed);
-      console.log('to: ' + versionPath);
+      fullPathRecursoRed = recurso.archivo;
+      recursoName = fullPathRecursoRed.substring(fullPathRecursoRed.lastIndexOf('/'), fullPathRecursoRed.length);
+      versionPath = pathToVersion + recursoName;
       filesRelocationPath.push({from_path: fullPathRecursoRed, to_path: versionPath});
     }
     dbx.filesCopyBatchV2({entries: filesRelocationPath, autorename: false});
