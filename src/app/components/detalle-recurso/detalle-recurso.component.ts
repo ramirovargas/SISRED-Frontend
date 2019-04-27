@@ -21,6 +21,8 @@ export class DetalleRecursoComponent implements OnInit {
   public successMessage: string;
   private idResource: number;
   private _success = new Subject<string>();
+  public formErrorMessage = '';
+  public formError = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -62,6 +64,8 @@ export class DetalleRecursoComponent implements OnInit {
         this.getResourceDetail(this.idResource);
       })
       .catch(err => {
+        this.formErrorMessage = err;
+        this.formError = true;
       });
 
   }
