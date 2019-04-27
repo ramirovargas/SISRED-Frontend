@@ -28,14 +28,15 @@ export class ComentarImagenService {
   // Metodo que invoca al servicio que agrega un comentario a un comentario existente
   guardarComentarioExistente(contenido:String, usuario:number, idTabla:number, id_v:number, id_r:number){
     const url = this.COMENTARIO_EXISTENTE_URL.replace('{id_v}', id_v.toString()).replace('{id_r}', id_r.toString());
-    var obj = {contenido, usuario, idTabla}
+    var obj = {contenido, usuario, idTabla};
     return this.httpClient.post<Comentario>(url, JSON.stringify(obj), httpOptions);
   }
 
   // Metodo que invoca al servicio que agrega un comentario nuevo
   guardarComentarioNuevo(contenido:String, usuario:number, x1:number, x2:number, y1:number, y2:number, id_v:number, id_r:number){
     const url = this.COMENTARIO_NUEVO_URL.replace('{id_v}', id_v.toString()).replace('{id_r}', id_r.toString());
-    var obj = {contenido, usuario, x1, x2, y1, y2}
+    var obj = {contenido, usuario, x1, x2, y1, y2};
+    console.log(obj);
     return this.httpClient.post<Comentario>(url, JSON.stringify(obj), httpOptions);
   }
 

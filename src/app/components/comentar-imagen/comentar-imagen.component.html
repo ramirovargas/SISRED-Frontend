@@ -31,7 +31,14 @@
                 (mousemove)="mmEvent($event)">
                 </canvas>
                 <div *ngIf="mostrarCaja">
-                <ckeditor [editor]="Editor" (change)="onChangeComentario($event)"></ckeditor>
+                  <ckeditor [editor]="Editor" (change)="onChangeComentario($event)"></ckeditor>
+                  <button class="btn btn-primary" (click)="publicarComentarioAreaNueva()">Comentar</button>
+                </div>
+                <div *ngFor="let coment of comentarios.reverse()" class="box">
+                  <div class="box-header with-border">
+                    dsfas
+                  </div>
+                  <div class="box-body" [innerHTML]="coment.contenido"></div>
                 </div>
             </div>
             <!-- /.box-body -->

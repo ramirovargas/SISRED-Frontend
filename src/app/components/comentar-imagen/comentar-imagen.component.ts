@@ -16,13 +16,15 @@ export class ComentarImagenComponent implements OnInit {
 
   public Editor = ClassicEditor;
 
-  startX: number = null;
-  startY: number = null;
+  usuarioId: number = 5;
 
-  x1: number = null;
-  y1: number = null;
-  x2: number = null;
-  y2: number = null;
+  startX: number;
+  startY: number;
+
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
 
   drag:boolean = false;
   mostrarCaja: boolean;
@@ -111,7 +113,7 @@ export class ComentarImagenComponent implements OnInit {
   }
 
   onChangeComentario(comentario){
-    this.comentario = comentario;
+    this.comentario = comentario.editor.getData();
   }
 
   getRecurso() {
@@ -140,9 +142,22 @@ export class ComentarImagenComponent implements OnInit {
     this.comentarImagenService.obtenerListaComentarios(this.idVersion, this.idRecurso)
       .then(response => {
         this.comentarios = response;
+        console.log(response);
       })
       .catch(err => {
         console.log(err);
+      });
+  }
+
+  publicarComentarioAreaNueva() {
+    this.comentarImagenService.guardarComentarioNuevo(this.comentario, this.usuarioId, this.x1, 
+      this.x2, this.y1, this.y2, this.idVersion, this.idRecurso)
+      .subscribe(data => {
+        console.log(data);
+        window.location.reload();
+      }, err => {
+        console.log(err);
+        alert(err);
       });
   }
 }
