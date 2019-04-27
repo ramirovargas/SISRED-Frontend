@@ -28,10 +28,10 @@
             <li class="user-body">              
               <div *ngFor="let not of notificaciones">
                 <div routerLink="/red/4/detalle">                  
-                  <span class="row pl-5">{{not}}</span>
-                  <span class="row pl-5">{{not}}</span>
+                  <span class="row pl-5">{{not.red}}</span>
+                  <span class="row pl-5">{{not.rol}}</span>
                   <div style="text-align: right">
-                    <span>{{not}}</span>
+                    <span>{{not.fecha}}</span>
                   </div>
                   <hr style="border:1px dashed"/>
                 </div>

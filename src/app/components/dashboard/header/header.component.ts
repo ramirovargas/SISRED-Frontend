@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { RedAsignadosService } from '../../../services/red/red-asignados.service';
-import { RedAsignado } from "../../../services/red/RedAsignado";
+import { NotificacionesService } from '../../../services/notificaciones/notificaciones.service';
+import { Notificacion } from "../../../services/notificaciones/notificacion.model";
 
 @Component({
   selector: 'app-header',
@@ -10,15 +10,18 @@ import { RedAsignado } from "../../../services/red/RedAsignado";
 })
 export class HeaderComponent implements OnInit {
 
-  notificaciones : String[] = ["Prueba1", "Prueba2", "Prueba3"];
+  notificaciones : Array<Notificacion> = [];
   idUsuario: String;
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
-    private redAsignadosService: RedAsignadosService
+    private notificacionesService: NotificacionesService
   ) { }
 
   ngOnInit() {    
-    this.idUsuario = this.activatedRoute.snapshot.params.idUsuario; //TODO Temporal.    
+    this.getNotificaciones()
   }
 
+  getNotificaciones(){
+    this.notificacionesService.getNotificaciones().subscribe(notificaciones => this.notificaciones = notificaciones);
+  }
 }
