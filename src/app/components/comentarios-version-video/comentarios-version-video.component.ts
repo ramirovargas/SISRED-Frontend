@@ -34,6 +34,7 @@ export class ComentariosVersionVideoComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    setup();
     // this.getUrlRecursoVideo();
     this.addPluginVideo();
   }
