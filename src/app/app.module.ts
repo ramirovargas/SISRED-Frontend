@@ -33,6 +33,8 @@ import { ResourceDetailsRestClientService } from './services/recurso/detalle/res
 import { PdfViewerComponent } from './common/pdf-viewer/pdf-viewer.component';
 import { HabilitarUsuarioComponent } from './components/HabilitarUsuario/Habilitar-Usuario.component';
 import { HabilitarUsuarioClientService } from './services/HabilitarUsuario/habilita-usuario-client.service';
+import { ClickOutsideDirectiveDirective } from './common/pdf-viewer/click-outside-directive.directive';
+import { RedComentarPdfComponent } from './components/red-comentar-pdf/red-comentar-pdf.component';
 
 
 
@@ -59,7 +61,9 @@ import { HabilitarUsuarioClientService } from './services/HabilitarUsuario/habil
     FooterComponent,
     TabPanesComponent,
     PdfViewerComponent,
-    HabilitarUsuarioComponent
+    HabilitarUsuarioComponent,
+    ClickOutsideDirectiveDirective,
+    RedComentarPdfComponent
   ],
   imports: [
     AppRoutingModule,
