@@ -52,6 +52,7 @@ export class ComentarImagenService {
           comentario.fechaCreacion = dataItem.fecha_creacion;
           comentario.cerrado = dataItem.cerrado;
           comentario.comentarioMultimedia = dataItem.comentario_multimedia;
+          comentario.usuario = dataItem.usuario.usuario.first_name + ' ' + dataItem.usuario.usuario.last_name;
           this.comentarios.push(comentario);
         });
         resolve(this.comentarios);

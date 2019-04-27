@@ -4,4 +4,5 @@ export class Comentario {
   fechaCreacion: string;
   cerrado: boolean;
   comentarioMultimedia: ComentarioMultimedia | null | undefined;
+  usuario: string;
 }

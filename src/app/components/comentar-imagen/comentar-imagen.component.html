@@ -32,11 +32,13 @@
                 </canvas>
                 <div *ngIf="mostrarCaja">
                   <ckeditor [editor]="Editor" (change)="onChangeComentario($event)"></ckeditor>
-                  <button class="btn btn-primary" (click)="publicarComentarioAreaNueva()">Comentar</button>
+                  <button class="btn btn-default" (click)="initCanvas()">Cancelar</button>
+                  <button class="btn btn-primary" (click)="publicarComentario()">Comentar</button>
                 </div>
-                <div *ngFor="let coment of comentarios.reverse()" class="box">
-                  <div class="box-header with-border">
-                    dsfas
+                <div *ngFor="let coment of comentarios.reverse()" (click)="seleccionarComentario(coment)" class="box comentario" [class.selected]="coment===seleccionado">
+                  <div class="box-header with-border row">
+                    <div class="col-sm-6 info text-bold">{{coment.usuario}}</div>
+                    <div class="col-sm-6 info right">{{coment.fechaCreacion}}</div>
                   </div>
                   <div class="box-body" [innerHTML]="coment.contenido"></div>
                 </div>

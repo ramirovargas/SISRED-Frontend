@@ -34,6 +34,7 @@ export class ComentarImagenComponent implements OnInit {
   recurso: Recurso;
   comentarios: Comentario[] = [];
   comentario: string = '';
+  seleccionado: Comentario;
 
   @ViewChild("myCanvas") myCanvas:ElementRef;
 
@@ -84,8 +85,10 @@ export class ComentarImagenComponent implements OnInit {
     //draw final rectangle on canvas
     let x = this.x1 = this.startX - this.myCanvas.nativeElement.getBoundingClientRect().left;
     let y = this.y1 = this.startY - this.myCanvas.nativeElement.getBoundingClientRect().top;
-    let w = this.x2 = e.clientX - this.myCanvas.nativeElement.getBoundingClientRect().left - x;
-    let h = this.y2 = e.clientY - this.myCanvas.nativeElement.getBoundingClientRect().top - y;
+    let w = e.clientX - this.myCanvas.nativeElement.getBoundingClientRect().left - x;
+    let h = e.clientY - this.myCanvas.nativeElement.getBoundingClientRect().top - y;
+    this.x2 = w + x;
+    this.y2 = h + y;
     this.myCanvas.nativeElement.getContext("2d").setLineDash([0]);
     this.myCanvas.nativeElement.getContext("2d").strokeRect(x, y, w, h);
 
@@ -112,6 +115,26 @@ export class ComentarImagenComponent implements OnInit {
       context.drawImage(base_image, 0, 0);
     };
     base_image.src = this.recurso.url;
+    this.mostrarCaja = false;
+    this.seleccionado = undefined;
+  }
+
+  dibujar(x1, x2, y1, y2) {
+    let base_image = new Image();
+    let context: CanvasRenderingContext2D = this.myCanvas.nativeElement.getContext("2d");
+    base_image.onload = function () {
+      context.canvas.height = base_image.height;
+      context.canvas.width = base_image.width;
+      context.drawImage(base_image, 0, 0);
+
+      context.strokeStyle = 'rgba(255,0,0,100)';
+      context.fillStyle = 'rgba(255,180,180,0.7)';
+      context.setLineDash([0]);
+      context.strokeRect(x1, y1, x2-x1, y2-y1);
+      context.fillRect(x1, y1, x2-x1, y2-y1);
+    };
+    base_image.src = this.recurso.url;
+    this.mostrarCaja = true;
   }
 
   onChangeComentario(comentario){
@@ -151,6 +174,15 @@ export class ComentarImagenComponent implements OnInit {
       });
   }
 
+  publicarComentario() {
+    if(this.seleccionado) {
+      this.publicarComentarioAreaExistente();
+    }
+    else {
+      this.publicarComentarioAreaNueva();
+    }
+  }
+
   publicarComentarioAreaNueva() {
     this.comentarImagenService.guardarComentarioNuevo(this.comentario, this.usuarioId, this.x1, 
       this.x2, this.y1, this.y2, this.idVersion, this.idRecurso)
@@ -161,5 +193,23 @@ export class ComentarImagenComponent implements OnInit {
         console.log(err);
         alert(err);
       });
+  }
+
+  publicarComentarioAreaExistente() {
+    this.comentarImagenService.guardarComentarioExistente(this.comentario, this.usuarioId, 
+      this.seleccionado.comentarioMultimedia.id, this.idVersion, this.idRecurso)
+      .subscribe(data => {
+        console.log(data);
+        window.location.reload();
+      }, err => {
+        console.log(err);
+        alert(err);
+      });
+  }
+
+  seleccionarComentario(comentario: Comentario) {
+    this.seleccionado = comentario;
+    this.dibujar(comentario.comentarioMultimedia.x1, comentario.comentarioMultimedia.x2, 
+      comentario.comentarioMultimedia.y1, comentario.comentarioMultimedia.y2);
   }
 }

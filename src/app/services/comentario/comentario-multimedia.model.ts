@@ -3,4 +3,5 @@ export class ComentarioMultimedia {
   x2: number;
   y1: number;
   y2: number;
+  id: number;
 }
