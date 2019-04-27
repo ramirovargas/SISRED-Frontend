@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { NotificacionesService } from '../../../services/notificaciones/notificaciones.service';
-import { Notificacion } from "../../../services/notificaciones/notificacion.model";
+import { NotificacionesService } from '../../../services/revision/revision.service';
+import { Notificacion } from "../../../services/revision/revision.model";
 
 @Component({
   selector: 'app-header',
