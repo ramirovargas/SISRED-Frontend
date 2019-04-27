@@ -1,5 +1,7 @@
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Recurso } from '../../services/version/ver-version-red/recurso.model';
 
 declare function setup():any;
 
@@ -23,7 +25,13 @@ export class ComentarImagenComponent implements OnInit {
   drag:boolean = false;
   mostrarCaja: boolean;
 
+  idVersion: number;
+  idRecurso: number;
+  recurso: Recurso;
+
   @ViewChild("myCanvas") myCanvas:ElementRef;
+
+  constructor(private route: ActivatedRoute) { }
 
   mdEvent(e) {
     //persist starting position
@@ -80,8 +88,9 @@ export class ComentarImagenComponent implements OnInit {
   }
 
   ngOnInit() {
-    
     setup();
+    this.idVersion = this.route.snapshot.params.idVersion;
+    this.idRecurso = this.route.snapshot.params.idRecurso;
     //draw image on canvas
     let base_image = new Image();
     let context: CanvasRenderingContext2D = this.myCanvas.nativeElement.getContext("2d");
@@ -94,11 +103,7 @@ export class ComentarImagenComponent implements OnInit {
   }
 
   onChangeComentario(comentario){
-    console.log(comentario.editor.getData());
-    console.log("X1:" + this.x1);
-    console.log("Y1:" + this.y1);
-    console.log("X2:" + this.x2);
-    console.log("Y2:" + this.y2);
+    
   }
 
 }

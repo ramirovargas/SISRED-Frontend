@@ -31,7 +31,7 @@ const routes: Routes = [
     component: RedsRelacionadosComponent
   },
   { path: 'reds/:idUsuario', component: RedAsignadosComponent },
-  { path: 'comentarImagen', component: ComentarImagenComponent },
+  { path: 'red/version/:idVersion/archivo/:idRecurso/comentar', component: ComentarImagenComponent },
   { path: 'buscarRed', component: BuscarRedComponent },
   {
     path: 'red/:idRed/version/:version',
