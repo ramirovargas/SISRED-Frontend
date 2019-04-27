@@ -14,9 +14,9 @@ declare function setupTable(): any;
 })
 
 export class VersionRedRevisionComponent implements OnInit  {
-  private idVersion: number;
-  private version: Version;
-  private recursos: Array<Recurso> = [];
+  idVersion: number;
+  version: Version;
+  recursos: Array<Recurso> = [];
   
   constructor(
     private route: ActivatedRoute,    
