@@ -56,8 +56,10 @@ export class ComentarImagenComponent implements OnInit {
         let y = sy - canvasTop;
         let w = e.clientX - canvasLeft - x;
         let h = e.clientY - canvasTop - y;
-        context.setLineDash([6]);
+        context.strokeStyle = 'rgba(255,0,0,100)';
+        context.fillStyle = 'rgba(255,180,180,0.7)';
         context.strokeRect(x, y, w, h);
+        context.fillRect(x, y, w, h);
       };
 
 
@@ -70,7 +72,7 @@ export class ComentarImagenComponent implements OnInit {
     let y = this.y1 = this.startY - this.myCanvas.nativeElement.getBoundingClientRect().top;
     let w = this.x2 = e.clientX - this.myCanvas.nativeElement.getBoundingClientRect().left - x;
     let h = this.y2 = e.clientY - this.myCanvas.nativeElement.getBoundingClientRect().top - y;
-    this.myCanvas.nativeElement.getContext("2d").setLineDash([6]);
+    this.myCanvas.nativeElement.getContext("2d").setLineDash([0]);
     this.myCanvas.nativeElement.getContext("2d").strokeRect(x, y, w, h);
 
     let ctx = CanvasRenderingContext2D = this.myCanvas.nativeElement.getContext("2d");
