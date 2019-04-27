@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from "@angular/platform-browser";
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgbAlertModule, NgbPaginationModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgSpinKitModule } from "ng-spin-kit";
 import { PdfViewerModule } from 'ng2-pdf-viewer';
@@ -31,8 +32,6 @@ import { VersionRedRevisionComponent } from './components/version-red-revision/v
 import { AgregarRecursoClientService } from './services/recurso/agregar/agregar-recurso-client.service';
 import { ResourceDetailsRestClientService } from './services/recurso/detalle/resource-details-rest-client.service';
 import { PdfViewerComponent } from './common/pdf-viewer/pdf-viewer.component';
-import { HabilitarUsuarioComponent } from './components/HabilitarUsuario/Habilitar-Usuario.component';
-import { HabilitarUsuarioClientService } from './services/HabilitarUsuario/habilita-usuario-client.service';
 
 
 
@@ -58,8 +57,8 @@ import { HabilitarUsuarioClientService } from './services/HabilitarUsuario/habil
     SideBarComponent,
     FooterComponent,
     TabPanesComponent,
-    PdfViewerComponent,
-    HabilitarUsuarioComponent
+    PdfViewerComponent
+ 
   ],
   imports: [
     AppRoutingModule,
@@ -74,9 +73,11 @@ import { HabilitarUsuarioClientService } from './services/HabilitarUsuario/habil
     NgbPaginationModule,
     HttpModule,
     NgxSpinnerModule,
-    PdfViewerModule
+    PdfViewerModule,
+    NgbModule,
+    
   ],
-  providers: [AgregarRecursoClientService, ResourceDetailsRestClientService, HabilitarUsuarioClientService],
+  providers: [AgregarRecursoClientService, ResourceDetailsRestClientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
