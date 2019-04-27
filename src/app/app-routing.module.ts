@@ -17,6 +17,7 @@ import { VersionRedRevisionComponent } from './components/version-red-revision/v
 import { LoginComponent } from './components/login/login.component';
 import { AutenticacionGuard } from './guards/autenticacion/autenticacion.guard';
 import { NoAutenticadoGuard } from './guards/no-autenticado/no-autenticado.guard';
+import { BuscarRecursoComponent } from './components/buscar-recurso/buscar-recurso.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent, canActivate: [NoAutenticadoGuard] },
@@ -77,6 +78,11 @@ const routes: Routes = [
   {
     path: 'reds/:idRed/avance',
     component: VerAvanceRedComponent,
+    canActivate: [AutenticacionGuard]
+  },
+  {
+    path: 'buscarRecurso',
+    component: BuscarRecursoComponent,
     canActivate: [AutenticacionGuard]
   },
   { path: '**', component: NotFoundComponent }

@@ -5,7 +5,8 @@ import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import {
   NgbAlertModule,
-  NgbPaginationModule
+  NgbPaginationModule,
+  NgbModule
 } from '@ng-bootstrap/ng-bootstrap';
 import { NgSpinKitModule } from 'ng-spin-kit';
 import { AppRoutingModule } from './app-routing.module';
@@ -31,6 +32,7 @@ import { HeaderComponent } from './components/dashboard/header/header.component'
 import { SideBarComponent } from './components/dashboard/side-bar/side-bar.component';
 import { FooterComponent } from './components/dashboard/footer/footer.component';
 import { TabPanesComponent } from './components/dashboard/tab-panes/tab-panes.component';
+import { BuscarRecursoComponent } from './components/buscar-recurso/buscar-recurso.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { TabPanesComponent } from './components/dashboard/tab-panes/tab-panes.co
     HeaderComponent,
     SideBarComponent,
     FooterComponent,
-    TabPanesComponent
+    TabPanesComponent,
+    BuscarRecursoComponent
   ],
   imports: [
     AppRoutingModule,
@@ -66,6 +69,7 @@ import { TabPanesComponent } from './components/dashboard/tab-panes/tab-panes.co
     NgSpinKitModule,
     NgbAlertModule,
     NgbPaginationModule,
+    NgbModule,
     HttpModule,
     NgxSpinnerModule
   ],
