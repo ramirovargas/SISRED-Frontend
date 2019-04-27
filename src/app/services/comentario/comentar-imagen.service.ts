@@ -17,13 +17,15 @@ export class ComentarImagenService {
 
   constructor(private httpClient: HttpClient) { }
 
-  guardarComentarioExistente(comentario:Comentario, id_v:number, id_r:number){
+  guardarComentarioExistente(contenido:String, usuario:number, idTabla:number, id_v:number, id_r:number){
     const url = this.COMENTARIO_EXISTENTE_URL.replace('{id_v}', id_v.toString()).replace('{id_r}', id_r.toString());
-    return this.httpClient.post<Comentario>(url, JSON.stringify(comentario), httpOptions);
+    var obj = {contenido, usuario, idTabla}
+    return this.httpClient.post<Comentario>(url, JSON.stringify(obj), httpOptions);
   }
 
-  guardarComentarioNuevo(comentario:Comentario, id_v:number, id_r:number){
+  guardarComentarioNuevo(contenido:String, usuario:number, x1:number, x2:number, y1:number, y2:number, id_v:number, id_r:number){
     const url = this.COMENTARIO_NUEVO_URL.replace('{id_v}', id_v.toString()).replace('{id_r}', id_r.toString());
-    return this.httpClient.post<Comentario>(url, JSON.stringify(comentario), httpOptions);
+    var obj = {contenido, usuario, x1, x2, y1, y2}
+    return this.httpClient.post<Comentario>(url, JSON.stringify(obj), httpOptions);
   }
 }
