@@ -29,7 +29,7 @@ export class RedVersionService {
   setREDs(idUsuario: any): Observable<any> {
     const json = { "id_conectate": idUsuario};
     return this.httpClient
-      .put(environment.apiUrl + idUsuario, json)
+      .put(this.API_URL + idUsuario, json)
       .pipe(map(reponse => reponse));
   }
 
