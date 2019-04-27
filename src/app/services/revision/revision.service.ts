@@ -8,7 +8,7 @@ import {Revision} from './revision.model';
   providedIn: 'root'
 })
 export class RevisionesService {
-  API_URL ='http://127.0.0.1:8000/api/revisiones/2';
+  API_URL = environment.apiUrl  + 'revisiones/2';
   private revisiones: Array<Revision> = [];
 
   constructor(
@@ -17,10 +17,10 @@ export class RevisionesService {
 
   // Metodo que invoca y formatea las notificaciones en el modelo definido en el forntend.
   getRevisiones(): Observable<Revision[]> {
-    this.revisiones = [];      
+    this.revisiones = [];
     this.httpClient.get(this.API_URL).subscribe((data: Array<any>) => {
       data.forEach(dataItem => {
-        const rev = new Revision();                  
+        const rev = new Revision();
         rev.red = dataItem.red;
         rev.rol = dataItem.rol;
         rev.fecha = dataItem.fecha;
