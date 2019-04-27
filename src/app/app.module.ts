@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from "@angular/platform-browser";
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgbAlertModule, NgbPaginationModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgSpinKitModule } from "ng-spin-kit";
 import { PdfViewerModule } from 'ng2-pdf-viewer';
@@ -58,6 +58,7 @@ import { PdfViewerComponent } from './common/pdf-viewer/pdf-viewer.component';
     FooterComponent,
     TabPanesComponent,
     PdfViewerComponent
+ 
   ],
   imports: [
     AppRoutingModule,
@@ -73,10 +74,11 @@ import { PdfViewerComponent } from './common/pdf-viewer/pdf-viewer.component';
     HttpModule,
     NgxSpinnerModule,
     PdfViewerModule,
-    NgbModule
+    NgbModule,
+    
   ],
   providers: [AgregarRecursoClientService, ResourceDetailsRestClientService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,NgbModule]
 })
 export class AppModule { }
 
