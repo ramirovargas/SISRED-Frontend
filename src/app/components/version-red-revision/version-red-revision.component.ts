@@ -41,8 +41,7 @@ export class VersionRedRevisionComponent implements OnInit  {
   }
 
   getRecursos(): void {
-    this.recursos = [];
     this.versionService.getRecursos(this.idVersion).subscribe(recursos => (this.recursos = recursos), error=>console.log("error: "+error), ()=>setTimeout(function() { setupTable() }, 1000))
-     //TODO: Use antoher solution instead of a delay
+    //TODO: Use antoher solution instead of a delay
   }
 }

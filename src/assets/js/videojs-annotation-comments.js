@@ -5899,9 +5899,13 @@ module.exports = function (videojs) {
             key: 'onReady',
             value: function onReady(callback) {
                 if (this.eventDispatcher.pluginReady) {
-                    return callback();
+                    if ( callback ) {
+                      return callback();
+                    }
                 }
-                this._readyCallbacks.push(callback);
+                if ( callback ) {
+                  this._readyCallbacks.push(callback);
+                }
             }
 
             // Mark plugin as ready and fire any pending callbacks

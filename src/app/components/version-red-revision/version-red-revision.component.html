@@ -23,12 +23,9 @@
                   <!-- /.box-header -->
                   <div class="box-body">
                     <dl>
-                      <dt>RED</dt>
-                      <dd>{{ version.nombreRed }}</dd>
-                      <dt>Número de versión</dt>
-                      <dd>{{ version.numero }}</dd>                      
-                      <dt>Número de recursos</dt>
-                      <dd>{{ version.recursos }}</dd>
+                      <dd><b>RED:</b> {{ version.nombreRed }}</dd>
+                      <dd><b>Número de versión:</b> {{ version.numero }}</dd>
+                      <dd><b>Número de recursos:</b> {{ version.recursos }}</dd>
                     </dl>
                     <div class="float-right">
                       <button type="submit" class="btn btn-info">Pasar RED listo para usuario final</button>
@@ -47,7 +44,7 @@
         <div class="box box-primary">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Listado de Recursos de la Versión</h3>
+              <h3 class="box-title">Listado de Recursos de la Versión <dd>{{ recursos }}</dd></h3>
             </div>
             <div class="box-body">
               <table id="searchtable" class="table table-bordered table-striped">
@@ -70,7 +67,7 @@
                             <button *ngIf="item.tipo == tipoVideo" class="btn btn-info"
                                     [routerLink]="['/red/version/' +idVersion + '/recurso/'+ item.id +'/comentarios']"
                                     routerLinkActive="router-link-active">Revisar recurso</button>
-                            <button *ngIf="item.tipo != tipoVideo" class="btn btn-info" >Revisar recurso</button>
+                            <button *ngIf="item.tipo != tipoVideo" class="btn btn-info" onClick="alert('En desarrollo')">Revisar recurso</button>
                           </div>
                         </td>
                     </tr>
