@@ -3,6 +3,7 @@ import {AnnotationComments} from '@contently/videojs-annotation-comments';
 import {CommentsVersionVideoService} from '../../services/recurso/comments-version-video.service';
 import {ActivatedRoute} from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
+import {Location} from "@angular/common";
 
 declare let videojs: any;
 declare function setup(): any;
@@ -28,7 +29,8 @@ export class ComentariosVersionVideoComponent implements OnInit, AfterViewInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private commentsVersionVideoService: CommentsVersionVideoService,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    private location: Location,
   ) {
     this.idVersion = this.activatedRoute.snapshot.params.idVersion;
     this.idRecurso = this.activatedRoute.snapshot.params.idRecurso;
@@ -106,6 +108,12 @@ export class ComentariosVersionVideoComponent implements OnInit, AfterViewInit {
   // Metodo que obtiene todos los comentarios del recurso video
   consultarComentarios(): void {
     this.commentsVersionVideoService.getCommentsVersionVideo(this.idRecurso).subscribe(comments => (this.annotations = comments));
+  }
+
+  // Metodo que regresa a la pantella anterior
+  goBack(): void {
+    this.location.back();
+    console.log(this.location);
   }
 
 

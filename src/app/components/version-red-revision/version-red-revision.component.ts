@@ -40,7 +40,8 @@ export class VersionRedRevisionComponent implements OnInit  {
     setup();
   }
 
-  getRecursos(): void {    
+  getRecursos(): void {
+    this.recursos = [];
     this.versionService.getRecursos(this.idVersion).subscribe(recursos => (this.recursos = recursos), error=>console.log("error: "+error), ()=>setTimeout(function() { setupTable() }, 1000))
      //TODO: Use antoher solution instead of a delay
   }
