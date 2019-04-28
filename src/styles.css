@@ -24,3 +24,7 @@
 .row {
   width: 100% !important;
  }
+
+ .dataTables_filter {
+  float: right;
+}
