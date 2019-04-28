@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { AutenticacionService } from '../autenticacion/autenticacion.service';
 
 import { Recurso } from './recurso';
 import { environment } from '../../../environments/environment';
@@ -9,10 +10,14 @@ import { environment } from '../../../environments/environment';
 })
 export class BuscarRecursoService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpClient: HttpClient,
+    private autenticacionService: AutenticacionService
+  ) { }
 
   buscarRecursos(name, fechaInicio, fechaCierre, texto): Promise<Recurso[]> {
 
+    const tokenSisred = this.autenticacionService.obtenerToken();
     let params = new HttpParams();
 
     params = name === null ? params : params.append('name', name)
@@ -22,7 +27,8 @@ export class BuscarRecursoService {
 
     let options = {
       headers: new HttpHeaders({
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        Authorization: 'Token ' + tokenSisred
       }),
       params,
     };

@@ -49,6 +49,7 @@ export class MetadataService {
     idRecurso: number,
     tag: string
   ) {
+    const tokenSisred = this.autenticacionService.obtenerToken();
     return new Promise((resolve, reject) => {
       if (
         idRecurso === 0 ||
@@ -58,7 +59,8 @@ export class MetadataService {
       } else {
         const options = {
           headers: new HttpHeaders({
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Authorization: 'Token ' + tokenSisred
           })
         };
 
