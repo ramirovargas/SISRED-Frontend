@@ -1,3 +1,5 @@
+@import url(../../../assets/css/page.css);
+
 .comment-wrapper .panel-body {
     max-height:650px;
     overflow:auto;

@@ -25,8 +25,7 @@
             "styles": [
               "src/styles.css",
               "src/assets/css/annotations.css",
-              "src/assets/css/comment_icon.svg",
-              "src/assets/css/page.css",
+              "src/assets/css/comment_icon.svg",              
               "src/assets/css/videojs_skin.css"
             ],
             "scripts": [
