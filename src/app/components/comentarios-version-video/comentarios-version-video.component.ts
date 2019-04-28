@@ -50,11 +50,6 @@ export class ComentariosVersionVideoComponent implements OnInit, AfterViewInit {
 
   }
 
-  /*ngAfterViewChecked() {
-    // console.log( "! changement de la date du composant !" );
-    this.cdRef.detectChanges();
-  }*/
-
   getUrlRecursoVideo(): void {
     console.log('URL FIRST');
     this.commentsVersionVideoService.getUrlRecursoVideo(this.idRecurso).subscribe(url => (this.respuestaVideo = url));
