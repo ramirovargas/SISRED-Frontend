@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
+import { AutenticacionService } from '../autenticacion/autenticacion.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,21 +10,24 @@ import { Observable } from 'rxjs';
 export class RedService {
   httpHeaders = new HttpHeaders({ 'Content-type': 'application/json' });
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private autenticacionService: AutenticacionService
+  ) {}
 
   getRedsRelacionados(idProyectoC) {
     return new Promise((resolve, reject) => {
-      const options = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json'
-        })
-      };
+      const tokenSisred = this.autenticacionService.obtenerToken();
+
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Token ' + tokenSisred
+      });
 
       this.http
-        .get(
-          environment.apiUrl + 'reds/relacionados/' + idProyectoC,
-          options
-        )
+        .get(environment.apiUrl + 'reds/relacionados/' + idProyectoC, {
+          headers
+        })
         .subscribe(
           (data: any) => {
             resolve(data);
@@ -37,8 +41,15 @@ export class RedService {
   }
 
   getRedRecursosDetalle(id): Observable<any> {
+    const tokenSisred = this.autenticacionService.obtenerToken();
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Token ' + tokenSisred
+    });
+
     return this.http.get(environment.apiUrl + 'getRedDetailRecursos/' + id, {
-      headers: this.httpHeaders
+      headers
     });
   }
 }

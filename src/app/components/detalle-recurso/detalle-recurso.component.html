@@ -4,7 +4,7 @@
 
 <div class="details-container content-wrapper">
   <form [formGroup]="detailResourceForm">
-    <div class="row border bg-primary">
+    <div class="row border btn-primary btn-lg">
       <div class="col-sm">
         <h3>Recurso: {{ resourceDetailsoModel?.name }}</h3>
       </div>
@@ -73,12 +73,21 @@
 
     <div class="row">
       <div class="col-sm-6 border">Metadata</div>
-      <div class="col-sm-6 border">
-        <div class="btn-group btn-space" role="group" *ngFor="let metadata of resourceDetailsoModel?.metadata">
-          <button type="button" class="btn btn-outline-primary">
-            {{ metadata.tag }}
-          </button>
+      <div *ngIf="!showInputText" class="col-sm-6 border">
+        <span class="metadata-padding" *ngFor="let metadata of resourceDetailsoModel?.metadata">
+          <span class="badge badge-pill label-info text-sm-center text-wrap">{{metadata.tag}}</span>
+        </span>
+      </div>
+      <div *ngIf="showInputText" class="col-sm-6 border" style="display: inline; align-items: center;">
+        <div class="btn-toolbar">
+          <input formControlName="newMetadata" [(ngModel)]="resourceDetailsoModel.newMetadata" type="text" id="newMetadata"
+              placeholder="Metadata" />
+          <button type="button" class="btn btn-success btn-sm" (click)="addMetadata()" [disabled]="!resourceDetailsoModel.newMetadata"><i class="fas fa-plus"></i>&nbsp;Agregar</button>
         </div>
+        <br>
+         <span class="metadata-padding" *ngFor="let metadata of resourceDetailsoModel?.metadata">
+          <span class="badge badge-pill label-info text-sm-center text-wrap">{{metadata.tag}}</span>
+        </span>
       </div>
     </div>
     <div class="row border">
