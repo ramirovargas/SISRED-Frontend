@@ -17,6 +17,11 @@ export class VersionRedRevisionComponent implements OnInit  {
   idVersion: number;
   version: Version;
   recursos: Array<Recurso> = [];
+
+  //Según BD
+  tipoVideo: string = "video";
+  tipoImagen: string = "imagen";
+  tipoPDF: string = "pdf";
   
   constructor(
     private route: ActivatedRoute,    
@@ -35,7 +40,8 @@ export class VersionRedRevisionComponent implements OnInit  {
     setup();
   }
 
-  getRecursos(): void {    
+  getRecursos(): void {
+    this.recursos = [];
     this.versionService.getRecursos(this.idVersion).subscribe(recursos => (this.recursos = recursos), error=>console.log("error: "+error), ()=>setTimeout(function() { setupTable() }, 1000))
      //TODO: Use antoher solution instead of a delay
   }

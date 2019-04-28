@@ -3,6 +3,7 @@ import {AnnotationComments} from '@contently/videojs-annotation-comments';
 import {CommentsVersionVideoService} from '../../services/recurso/comments-version-video.service';
 import {ActivatedRoute} from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
+import {Location} from "@angular/common";
 
 declare let videojs: any;
 declare function setup(): any;
@@ -21,7 +22,6 @@ export class ComentariosVersionVideoComponent implements OnInit, AfterViewInit {
   idRecurso = 1;
   pluginOptions: any;
   annotations: any[];
-  // mostrar = true;
   playerOptions = {controlBar: {volumePanel: {inline: false}}};
   player: any;
   respuestaVideo: any;
@@ -29,7 +29,8 @@ export class ComentariosVersionVideoComponent implements OnInit, AfterViewInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private commentsVersionVideoService: CommentsVersionVideoService,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    private location: Location,
   ) {
     this.idVersion = this.activatedRoute.snapshot.params.idVersion;
     this.idRecurso = this.activatedRoute.snapshot.params.idRecurso;
@@ -38,24 +39,22 @@ export class ComentariosVersionVideoComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     setup();
     this.getUrlRecursoVideo();
-    // this.addPluginVideo();
   }
 
   ngAfterViewInit() {
-
     setTimeout(() => {
           this.addPluginVideo();
       },
       1000);
-
   }
 
+  // Metodo que obtiene la url del recurso video
   getUrlRecursoVideo(): void {
-    console.log('URL FIRST');
     this.commentsVersionVideoService.getUrlRecursoVideo(this.idRecurso).subscribe(url => (this.respuestaVideo = url));
   }
 
- iniciarPlugin(): void {
+  // Metodo que configura el plugin de video
+  iniciarPlugin(): void {
     const plugin = this.player.annotationComments(this.pluginOptions);
     plugin.on('onStateChanged', (event) => {
       console.log('Persistiendo Comentarios->');
@@ -70,8 +69,8 @@ export class ComentariosVersionVideoComponent implements OnInit, AfterViewInit {
 
   }
 
+  // Metodo que agrega el plugin al video
   addPluginVideo(): void {
-    console.log('ADD FIRST');
     this.consultarComentarios();
 
     this.pluginOptions = {
@@ -88,9 +87,6 @@ export class ComentariosVersionVideoComponent implements OnInit, AfterViewInit {
       showMarkerShapeAndTooltips: true
     };
 
-
-
-    // this.mostrar = false;
     this.player = videojs('my-video', this.playerOptions, function onPlayerReady() {
       videojs.log('Your player is ready!');
 
@@ -99,11 +95,6 @@ export class ComentariosVersionVideoComponent implements OnInit, AfterViewInit {
 
       // muted
       this.muted(false);
-
-      // How about an event listener?
-      /*this.on('ended', function() {
-        videojs.log('Awww...over so soon?!');
-      });*/
 
     });
 
@@ -114,8 +105,15 @@ export class ComentariosVersionVideoComponent implements OnInit, AfterViewInit {
 
   }
 
+  // Metodo que obtiene todos los comentarios del recurso video
   consultarComentarios(): void {
     this.commentsVersionVideoService.getCommentsVersionVideo(this.idRecurso).subscribe(comments => (this.annotations = comments));
+  }
+
+  // Metodo que regresa a la pantella anterior
+  goBack(): void {
+    this.location.back();
+    console.log(this.location);
   }
 
 
