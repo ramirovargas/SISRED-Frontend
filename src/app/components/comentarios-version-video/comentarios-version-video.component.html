@@ -12,13 +12,11 @@
 <div class="container">
 
   <div id="video_wrap">
-    <!--<div *ngFor="let pathVideo of respuestaVideo">-->
+    <div *ngFor="let pathVideo of respuestaVideo">
       <video id='my-video' class='video-js' controls preload='auto' width='720' height='405' data-setup='{}'>
-        <!--<source src={{pathVideo.url}} type='video/mp4'>-->
-        <source src="https://www.dropbox.com/s/df9eg5pifn7ny9g/%233.%20Scrum%20en%206%20minutos%20-%20Metodolog%C3%ADas%20%C3%81giles.mp4?raw=1" type='video/mp4'>
-      </video>
-    <!--</div>-->
-
+        <source src={{pathVideo.url}} type='video/mp4'>
+     </video>
+    </div>
 
     <div class="row bootstrap snippets">
       <div class="col-md-8 col-md-offset-2 col-sm-12">
@@ -30,8 +28,8 @@
                   <div class="panel-body">
                       <ul class="media-list" *ngFor="let multi of annotations">
                         <li class="media" *ngFor="let comment of multi.comments">
-                              <a href="#" class="pull-left">
-                                  <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                              <a class="pull-left">
+                                  <img src="http://dehradunfinder.in/en/images/reviewer-image.png" alt="" class="img-circle">
                               </a>
                               <div class="media-body">
                                   <span class="text-muted pull-right">

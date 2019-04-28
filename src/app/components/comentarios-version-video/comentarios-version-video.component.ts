@@ -21,7 +21,7 @@ export class ComentariosVersionVideoComponent implements OnInit, AfterViewInit {
   idRecurso = 1;
   pluginOptions: any;
   annotations: any[];
-  mostrar = true;
+  // mostrar = true;
   playerOptions = {controlBar: {volumePanel: {inline: false}}};
   player: any;
   respuestaVideo: any;
@@ -37,28 +37,37 @@ export class ComentariosVersionVideoComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     setup();
-    // this.getUrlRecursoVideo();
-    this.addPluginVideo();
+    this.getUrlRecursoVideo();
+    // this.addPluginVideo();
   }
 
   ngAfterViewInit() {
 
-    /*setTimeout(() =>
-      {
+    setTimeout(() => {
           this.addPluginVideo();
       },
-      1000);*/
+      1000);
 
-  }
-
-  ngAfterViewChecked() {
-    //console.log( "! changement de la date du composant !" );
-    this.cdRef.detectChanges();
   }
 
   getUrlRecursoVideo(): void {
     console.log('URL FIRST');
     this.commentsVersionVideoService.getUrlRecursoVideo(this.idRecurso).subscribe(url => (this.respuestaVideo = url));
+  }
+
+ iniciarPlugin(): void {
+    const plugin = this.player.annotationComments(this.pluginOptions);
+    plugin.on('onStateChanged', (event) => {
+      console.log('Persistiendo Comentarios->');
+      console.log(event.detail);
+      this.commentsVersionVideoService.addVideoComments(this.idVersion, this.idRecurso, event.detail);
+      setTimeout(() => {
+                this.consultarComentarios();
+            }, 2500);
+      this.cdRef.detectChanges();
+    });
+    plugin.onReady(console.log('PLUGIN IS READY!'));
+
   }
 
   addPluginVideo(): void {
@@ -79,7 +88,9 @@ export class ComentariosVersionVideoComponent implements OnInit, AfterViewInit {
       showMarkerShapeAndTooltips: true
     };
 
-    this.mostrar = false;
+
+
+    // this.mostrar = false;
     this.player = videojs('my-video', this.playerOptions, function onPlayerReady() {
       videojs.log('Your player is ready!');
 
@@ -93,24 +104,19 @@ export class ComentariosVersionVideoComponent implements OnInit, AfterViewInit {
       /*this.on('ended', function() {
         videojs.log('Awww...over so soon?!');
       });*/
+
     });
 
-    const plugin = this.player.annotationComments(this.pluginOptions);
-    plugin.onReady(console.log('PLUGIN IS READY!'));
-    plugin.on('onStateChanged', (event) => {
-      console.log('Persistiendo Comentarios->');
-      console.log(event.detail);
-      this.commentsVersionVideoService.addVideoComments(this.idVersion, this.idRecurso, event.detail);
-      setTimeout(() => {
-                this.consultarComentarios();
-            }, 2500);
-      this.cdRef.detectChanges();
-    });
+    setTimeout(() => {
+          this.iniciarPlugin();
+      },
+      1000);
 
   }
 
   consultarComentarios(): void {
     this.commentsVersionVideoService.getCommentsVersionVideo(this.idRecurso).subscribe(comments => (this.annotations = comments));
   }
+
 
 }
