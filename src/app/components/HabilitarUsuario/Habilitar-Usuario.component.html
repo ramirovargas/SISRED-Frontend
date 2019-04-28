@@ -11,7 +11,6 @@
       <li class="">Habilitar usuario</li>
     </ol>
   </section>
-
   <!-- Main content -->
   <section class="content">
     <div class="row">
@@ -52,7 +51,7 @@
                     </tr>
                   </table>
                 <div class="col-sm-2">
-                <button *ngIf="showInputText===true" type="button" (click)="User_Habilitar()" class="btn btn-primary btn-sm btn-block">
+                <button *ngIf="showInputText===true" type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#myModal">
                     Habilitar
                   </button>
               </div>
@@ -70,5 +69,51 @@
     <!-- /.row -->
   </section>
   <!-- /.content -->
+  <div class="container">
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header color-back">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>¿Está seguro de habilitar el usuario?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" (click)="User_Habilitar()"  class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#myModalPass">Aceptar</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+  <div class="container">
+    <!-- Modal -->
+    <div class="modal fade" id="myModalPass" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header color-back">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p>Usuario habilitado con exito</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
 </div>
 <!-- /.content-wrapper -->
