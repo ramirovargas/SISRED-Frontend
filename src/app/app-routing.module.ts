@@ -14,12 +14,20 @@ import { RedAsignadosComponent } from './components/red/asignaciones/red-asignad
 import { RedsRelacionadosComponent } from './components/reds-relacionados/reds-relacionados.component';
 import { VerAvanceRedComponent } from './components/ver-avance-red/ver-avance-red.component';
 import { VersionRedRevisionComponent } from './components/version-red-revision/version-red-revision.component';
+import { HabilitarUsuarioComponent } from './components/HabilitarUsuario/Habilitar-Usuario.component';
+import { RedComentarPdfComponent } from './components/red-comentar-pdf/red-comentar-pdf.component';
 import { LoginComponent } from './components/login/login.component';
 import { AutenticacionGuard } from './guards/autenticacion/autenticacion.guard';
 import { NoAutenticadoGuard } from './guards/no-autenticado/no-autenticado.guard';
 import { BuscarRecursoComponent } from './components/buscar-recurso/buscar-recurso.component';
 
 const routes: Routes = [
+  { path: '', component: RedAsignadosComponent },
+  { path: 'red/:idRed/proyecto/agregar', component: AddRedComponent },
+  { path: 'red/:idRed/detalle', component: DetalleREDComponent },
+  { path: 'reds/:idUsuario', component: RedAsignadosComponent },
+  { path: 'asignaciones', component: RedsPorPersonaComponent },
+  { path: 'habilitarusuario', component: HabilitarUsuarioComponent },
   { path: '', component: LoginComponent, canActivate: [NoAutenticadoGuard] },
   {
     path: 'red/:idRed/proyecto/agregar',

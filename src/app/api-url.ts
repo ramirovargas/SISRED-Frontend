@@ -1,1 +1,1 @@
-export const API_URL = 'https://equipo2backend.herokuapp.com'
+export const API_URL = 'http://127.0.0.1:8000/'
