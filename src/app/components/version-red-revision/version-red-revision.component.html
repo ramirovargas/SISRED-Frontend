@@ -58,7 +58,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of recursos">
+                    <tr id="searchtableelements" *ngFor="let item of recursos">
                         <td>
                           <img src="{{item.thumbnail}}" width="300" height="200" *ngIf="item.tipo == tipoImagen">
                           <video id="player" width="300" height="200" src={{item.thumbnail}} allowfullscreen controls #media *ngIf="item.tipo == tipoVideo"></video>

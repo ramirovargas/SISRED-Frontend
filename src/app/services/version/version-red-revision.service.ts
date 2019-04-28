@@ -4,7 +4,6 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of} from 'rxjs';
 import { Version } from './version.model'
 import { Recurso } from './recurso.model'
-import { Red } from '../red/red';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +12,6 @@ export class VersionRedRevisionService {
   API_URL_VERSION = environment.apiUrl +  'get_version/';
   API_URL_RECURSOS = environment.apiUrl +  'get_recursos_by_version/';
   private version: Version = new Version();
-  private red: Red = new Red();
   private recursos: Array<Recurso> = [];
 
   constructor(private httpClient: HttpClient) { 
