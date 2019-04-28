@@ -118,14 +118,14 @@ export class DetalleREDComponent implements OnInit {
       .then(data => {
         this.cambioFaseExitoso = true;
         this.mensaje = 'El cambio de fase fue exitoso.';
+        $(this.modalRespuesta.nativeElement).modal('show');
       }
       ).catch(error => {
         this.cambioFaseExitoso = false;
         console.log('error',error.error);
         this.mensaje = error.error;
+        $(this.modalRespuesta.nativeElement).modal('show');
       });
-    console.log('message', this.modalRespuesta);
-    $(this.modalRespuesta.nativeElement).modal('show');
   }
 
   //Metodo para cuando una fase es seleccionada
