@@ -17,6 +17,11 @@ export class VersionRedRevisionComponent implements OnInit  {
   idVersion: number;
   version: Version;
   recursos: Array<Recurso> = [];
+
+  //Según BD
+  tipoVideo: string = "video";
+  tipoImagen: string = "imagen";
+  tipoPDF: string = "pdf";
   
   constructor(
     private route: ActivatedRoute,    

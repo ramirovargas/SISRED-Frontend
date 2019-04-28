@@ -40,7 +40,8 @@ export class VersionRedRevisionService {
     
     this.httpClient.get(this.API_URL_RECURSOS, {params}).subscribe((data: Array<any>) => {
       data.forEach(dataItem => {
-        const recurso = new Recurso();        
+        const recurso = new Recurso();
+        recurso.id = dataItem['pk'];
         recurso.nombre = dataItem['fields'].nombre;
         recurso.thumbnail = dataItem['fields'].thumbnail;
         recurso.tipo = dataItem['fields'].tipo;

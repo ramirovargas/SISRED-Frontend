@@ -60,14 +60,17 @@
                 <tbody>
                     <tr *ngFor="let item of recursos">
                         <td>
-                          <img src="{{item.thumbnail}}" width="300" height="200" *ngIf="item.tipo == 'imagen'">
-                          <video id="player" width="300" height="200" src={{item.thumbnail}} allowfullscreen controls #media *ngIf="item.tipo == 'video'"></video>
+                          <img src="{{item.thumbnail}}" width="300" height="200" *ngIf="item.tipo == tipoImagen">
+                          <video id="player" width="300" height="200" src={{item.thumbnail}} allowfullscreen controls #media *ngIf="item.tipo == tipoVideo"></video>
 
                         </td>
                         <td>
                           {{ item.nombre }}
                           <div class="float-right">
-                            <button type="submit" class="btn btn-info">Revisar recurso</button>
+                            <button *ngIf="item.tipo == tipoVideo" class="btn btn-info"
+                                    [routerLink]="['/red/version/' +idVersion + '/recurso/'+ item.id +'/comentarios']"
+                                    routerLinkActive="router-link-active">Revisar recurso</button>
+                            <button *ngIf="item.tipo != tipoVideo" class="btn btn-info" >Revisar recurso</button>
                           </div>
                         </td>
                     </tr>
