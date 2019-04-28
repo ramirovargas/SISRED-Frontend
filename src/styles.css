@@ -8,7 +8,6 @@
 @import url(assets/AdminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css);
 @import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic';
 
-
 .row-middle {
   display: flex;
   align-items: center;
@@ -21,3 +20,7 @@
 .pointer {
   cursor: pointer;
 }
+
+.row {
+  width: 100% !important;
+ }
