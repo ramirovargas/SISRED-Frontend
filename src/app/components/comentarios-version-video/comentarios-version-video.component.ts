@@ -37,24 +37,23 @@ export class ComentariosVersionVideoComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     setup();
-    // this.getUrlRecursoVideo();
-    this.addPluginVideo();
+    this.getUrlRecursoVideo();
+    // this.addPluginVideo();
   }
 
   ngAfterViewInit() {
 
-    /*setTimeout(() =>
-      {
+    setTimeout(() => {
           this.addPluginVideo();
       },
-      1000);*/
+      1000);
 
   }
 
-  ngAfterViewChecked() {
-    //console.log( "! changement de la date du composant !" );
+  /*ngAfterViewChecked() {
+    // console.log( "! changement de la date du composant !" );
     this.cdRef.detectChanges();
-  }
+  }*/
 
   getUrlRecursoVideo(): void {
     console.log('URL FIRST');
