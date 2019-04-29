@@ -1,4 +1,3 @@
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -6,53 +5,66 @@
     <h1>
       Agregar Comentarios a Video
     </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li class="active">Agregar Comentarios a Video</li>
+    </ol>
   </section>
 
   <!-- Main content -->
-<div class="container">
-
-  <div id="video_wrap">
-    <div *ngFor="let pathVideo of respuestaVideo">
-      <video id='my-video' class='video-js' controls preload='auto' width='720' height='405' data-setup='{}'>
-        <source src={{pathVideo.url}} type='video/mp4'>
-     </video>
-    </div>
-
-    <div class="row bootstrap snippets">
-      <div class="col-md-8 col-md-offset-2 col-sm-12">
-          <div class="comment-wrapper">
-              <div class="panel panel-info">
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Video -->
+        <div id="video_wrap">
+          <div *ngFor="let pathVideo of respuestaVideo">
+            <video id='my-video' class='video-js' controls preload='auto' width='720' height='405'
+                   data-setup='{}'>
+              <source src={{pathVideo.url}} type='video/mp4'>
+            </video>
+          </div>
+          <!-- Lista comentarios -->
+          <div class="row bootstrap snippets">
+            <div class="col-md-8 col-md-offset-2 col-sm-12">
+              <div class="comment-wrapper">
+                <div class="panel panel-info">
                   <div class="panel-heading">
-                      Listado de Comentarios
+                    Listado de Comentarios
                   </div>
                   <div class="panel-body">
-                      <ul class="media-list" *ngFor="let multi of annotations">
-                        <li class="media" *ngFor="let comment of multi.comments">
-                              <a class="pull-left">
-                                  <img src="http://dehradunfinder.in/en/images/reviewer-image.png" alt="" class="img-circle">
-                              </a>
-                              <div class="media-body">
+                    <ul class="media-list" *ngFor="let multi of annotations">
+                      <li class="media" *ngFor="let comment of multi.comments">
+                        <a class="pull-left">
+                          <img src="http://dehradunfinder.in/en/images/reviewer-image.png" alt=""
+                               class="img-circle">
+                        </a>
+                        <div class="media-body">
                                   <span class="text-muted pull-right">
                                      <small class="text-muted">{{comment.meta.datetime}}</small>
                                   </span>
-                                  <strong class="text-success">{{comment.meta.user_name}}</strong>
-                                  <p>{{comment.body}}</p>
-                                  <p><small class="text-muted">Segundo inicial: {{multi.range.start}} - Segundo final: {{multi.range.end}}</small></p>
+                          <strong class="text-success">{{comment.meta.user_name}}</strong>
+                          <p>{{comment.body}}</p>
+                          <p>
+                            <small class="text-muted">Segundo inicial: {{multi.range.start}} - Segundo
+                              final: {{multi.range.end}}</small>
+                          </p>
 
-                              </div>
-                          </li>
-                      </ul>
+                        </div>
+                      </li>
+                    </ul>
                   </div>
+                </div>
               </div>
+            </div>
           </div>
-
+        </div>
+        <div class="float-right">
+          <button type="button" (click)="goBack()" class="btn btn-info">Volver</button>
+        </div>
       </div>
     </div>
-
-  </div>
-
-  <div class="">
-      <button type="button" (click)="goBack()" class="btn btn-info">Volver</button>
-  </div>
-
+    <!-- /.row -->
+  </section>
+  <!-- /.content -->
 </div>
+<!-- /.content-wrapper -->

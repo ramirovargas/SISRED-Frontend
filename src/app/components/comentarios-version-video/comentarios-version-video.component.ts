@@ -37,6 +37,7 @@ export class ComentariosVersionVideoComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    console.log("ngOnInit Comentarios");
     setup();
     this.getUrlRecursoVideo();
   }
@@ -87,6 +88,9 @@ export class ComentariosVersionVideoComponent implements OnInit, AfterViewInit {
       showMarkerShapeAndTooltips: true
     };
 
+    if(videojs.getPlayers()["my-video"]) { //No se permiten multiples
+      delete videojs.getPlayers()["my-video"];
+    }
     this.player = videojs('my-video', this.playerOptions, function onPlayerReady() {
       videojs.log('Your player is ready!');
 
@@ -113,7 +117,6 @@ export class ComentariosVersionVideoComponent implements OnInit, AfterViewInit {
   // Metodo que regresa a la pantella anterior
   goBack(): void {
     this.location.back();
-    console.log(this.location);
   }
 
 
