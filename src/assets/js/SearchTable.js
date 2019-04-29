@@ -4,7 +4,7 @@
  * @returns void
  */
 function setupTable() { 
-  $('#searchtable').DataTable({
+  $('#search_table_resources').DataTable({
     'paging'      : true,
     'lengthChange': false,
     'searching'   : true,

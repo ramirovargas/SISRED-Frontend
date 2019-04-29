@@ -22,9 +22,7 @@ export class ResourceDetailsRestClientService {
     });
 
     return this.http
-      .get(environment.apiUrl + UrlConstant.RESOURCE_DETAILS_ENDPOINT + id, {
-        headers
-      })
+      .get(environment.apiUrl + UrlConstant.RESOURCE_DETAILS_ENDPOINT + id)
       .pipe(map(reponse => reponse));
   }
 
