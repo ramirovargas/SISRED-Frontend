@@ -29,6 +29,7 @@ export class AutenticacionService {
 
   // Obtiene los datos del usuario
   obtenerDatosUsuario(): DatosUsuario {
+
     let datosUsuario = null;
     const token = this.obtenerToken();
     const usuarioTexto = localStorage.getItem('SISRED');
