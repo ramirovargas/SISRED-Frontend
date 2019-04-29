@@ -9,3 +9,4 @@ export class ResourceDetailModel {
   thumbnail: string;
   lastUserModification: string
 }
+

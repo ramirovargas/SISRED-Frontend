@@ -17,8 +17,35 @@
     </a>
 
     <div class="navbar-custom-menu ml-auto">
-      <ul class="nav navbar-nav">
-        <!-- User Account: style can be found in dropdown.less -->
+      <ul class="nav navbar-nav collapse navbar-collapse">
+        <li class="dropdown notifications-menu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" (click)="obtenerNotificaciones()">
+            <i class="fa fa-bell-o"></i>
+            <span class="label label-warning" *ngIf="numeroNoVisto > 0" >{{numeroNoVisto}}</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="header">Tu tienes {{notificaciones?.length}} notificaciones</li>
+            <li>
+              <!-- inner menu: contains the actual data -->
+              <ul class="menu">
+                <div *ngFor="let notificacion of notificaciones">
+                  <li [ngClass]="{'bg-gray': !notificacion.visto}" class="border-bottom-1 padre" style="height: 30px">
+                    <a href="/red/{{notificacion.idRed}}/detalle" (click)="cambiarNotificacionAVisto(notificacion.id, notificacion.visto)" class="m-3">
+                      <i class="fa fa-users text-aqua" *ngIf="notificacion.tipo === 'ASIGNAR_RED_SINCRONIZADO'"></i>
+                      <i class="fa fa-exchange text-yellow" *ngIf="notificacion.tipo === 'CAMBIAR_FASE_RED'"></i>
+                      <i class="fa fa-upload text-red" *ngIf="notificacion.tipo === 'SUBIR_RED'"></i>
+                      <i class="fa fa-commenting text-aqua" *ngIf="notificacion.tipo === 'COMENTARIOS_RED'"></i>
+                      <i class="fa fa-check-circle text-green" *ngIf="notificacion.tipo === 'MARCAR_VERSION_FINAL_RED'"></i>
+                      <i class="fa fa-commenting text-green" *ngIf="notificacion.tipo === 'CERRAR_COMENTARIOS'"></i>
+                      <i class="fa fa-check-circle-o text-blue" *ngIf="notificacion.tipo === 'REVISION_RED_LISTA'"></i> {{notificacion.nombreRed}}: {{notificacion.mensaje}}
+                    </a>
+                  </li>
+                </div>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <img src="https://img.icons8.com/metro/420/star.png" class="user-image" alt="Star Image" />            
@@ -46,7 +73,35 @@
                         </tr>                    
                     </tbody>
                   </table>
-            </li>            
+            </li> 
+          </ul>
+        </li> 
+        <li class="dropdown user user-menu">   
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">       
+            <img src="assets/logos/uniandes.jpg" class="user-image" alt="User Image" />
+            <span class="hidden-xs">{{usuario.nombre}} {{usuario.apellido}}</span>
+          </a>
+          <ul class="dropdown-menu">
+            <!-- User image -->
+            <li class="user-header">
+              <img src="assets/logos/uniandes.jpg" class="img-circle" alt="User Image" />
+
+              <p>
+                {{usuario.nombre}} {{usuario.apellido}}
+                <small>{{usuario.email}}</small>
+                <small><b>ID:</b> {{usuario.idConectate}}</small>
+              </p>
+            </li>
+            <!-- Menu Body -->
+            <li class="user-body">
+              <!-- /.row -->
+            </li>
+            <!-- Menu Footer-->
+            <li class="user-footer text-center">
+              <div>
+                <button (click)="cerrarSesion()" class="btn btn-primary">Cerrar sesión</button>
+              </div>
+            </li>
           </ul>
         </li>
       </ul>

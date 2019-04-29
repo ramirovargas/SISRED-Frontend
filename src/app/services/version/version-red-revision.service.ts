@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { environment } from './../../../environments/environment';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, of} from 'rxjs';
 import { Version } from './version.model'
 import { Recurso } from './recurso.model'
+import { AutenticacionService } from '../autenticacion/autenticacion.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class VersionRedRevisionService {
   private version: Version = new Version();
   private recursos: Array<Recurso> = [];
 
-  constructor(private httpClient: HttpClient) { 
-
+  constructor(private httpClient: HttpClient, private autenticacionService: AutenticacionService) { 
+    
   }
 
   getVersionInfo(id: number): Observable<Version> {
@@ -35,8 +36,14 @@ export class VersionRedRevisionService {
   getRecursos(id: number): Observable<Recurso[]> {
     let params = new HttpParams();
     params = params.append('id', id.toString());
+
+    const tokenSisred = this.autenticacionService.obtenerToken();
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Token ' + tokenSisred
+    });
     
-    this.httpClient.get(this.API_URL_RECURSOS, {params}).subscribe((data: Array<any>) => {
+    this.httpClient.get(this.API_URL_RECURSOS, { headers }).subscribe((data: Array<any>) => {
       data.forEach(dataItem => {
         const recurso = new Recurso();
         recurso.id = dataItem['pk'];

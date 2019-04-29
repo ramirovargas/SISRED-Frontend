@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://grupo3-sprint2-backend.herokuapp.com/api/'
+  apiUrl: 'http://localhost:8000/api/'
 };

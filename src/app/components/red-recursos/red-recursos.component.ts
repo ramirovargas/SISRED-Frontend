@@ -18,7 +18,7 @@ export class RedRecursosComponent implements OnInit {
   public red;
 
   constructor(private activatedRoute: ActivatedRoute, private api: RedService) {
-    this.id = this.activatedRoute.snapshot.params['id'];
+    this.id = this.activatedRoute.snapshot.params['idRed'];
     this.getReds();
   }
 

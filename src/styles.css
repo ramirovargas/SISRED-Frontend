@@ -25,6 +25,14 @@
   width: 100% !important;
  }
 
- .dataTables_filter {
+.dataTables_filter {
   float: right;
+}
+
+.bg-sisred-blue {
+  background-color: #3c8dbc !important;
+}
+
+.text-sisred-blue {
+  color: #3c8dbc !important;
 }
