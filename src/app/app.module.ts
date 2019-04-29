@@ -20,7 +20,6 @@ import { RedRecursosDetalleComponent } from './components/red-recursos-detalle/r
 import { RedAsignadosComponent } from './components/red/asignaciones/red-asignados.component';
 import { RedsPorPersonaComponent } from './components/reds-por-persona/reds-por-persona.component';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { FooterComponent } from './components/dashboard/footer/footer.component';
 import { SideBarComponent } from './components/dashboard/side-bar/side-bar.component';
@@ -34,7 +33,6 @@ import { AgregarRecursoClientService } from './services/recurso/agregar/agregar-
 import { ResourceDetailsRestClientService } from './services/recurso/detalle/resource-details-rest-client.service';
 import { HeaderComponent } from './components/dashboard/header/header.component';
 import { BuscarRecursoComponent } from './components/buscar-recurso/buscar-recurso.component';
-import { PdfViewerComponent } from './common/pdf-viewer/pdf-viewer.component';
 import { HabilitarUsuarioComponent } from './components/HabilitarUsuario/Habilitar-Usuario.component';
 import { HabilitarUsuarioClientService } from './services/HabilitarUsuario/habilita-usuario-client.service';
 import { VersionRedRevisionComponent } from './components/version-red-revision/version-red-revision.component';
@@ -62,7 +60,6 @@ import { VersionRedRevisionComponent } from './components/version-red-revision/v
     SideBarComponent,
     FooterComponent,
     TabPanesComponent,
-    PdfViewerComponent,
     HabilitarUsuarioComponent,
     TabPanesComponent,
     BuscarRecursoComponent
@@ -79,7 +76,6 @@ import { VersionRedRevisionComponent } from './components/version-red-revision/v
     NgbModule,
     HttpModule,
     NgxSpinnerModule,
-    PdfViewerModule,
   ],
   providers: [AgregarRecursoClientService, ResourceDetailsRestClientService,HabilitarUsuarioClientService],
   bootstrap: [AppComponent]
