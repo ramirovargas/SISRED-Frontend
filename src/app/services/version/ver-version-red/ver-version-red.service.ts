@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {Version} from '../version.model';
 import {environment} from '../../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { AutenticacionService } from '../../autenticacion/autenticacion.service';
 import {Observable, of} from 'rxjs';
 import {Recurso} from './recurso.model';
 import { Dropbox } from 'dropbox';
@@ -12,14 +14,19 @@ import fetch from 'isomorphic-fetch';
 })
 export class VerVersionRedService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private autenticacionService: AutenticacionService) {
   }
 
   getVersion(idVersion: number): Promise<Version> {
+    const tokenSisred = this.autenticacionService.obtenerToken();
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Token ' + tokenSisred
+    });
     const urlVersion = environment.apiUrl + 'versiones/{id}/';
     const apiUrl = urlVersion.replace('{id}', idVersion.toString());
     return new Promise((resolve,reject) => {
-      this.http.get<any>(apiUrl).subscribe(dataItem => {
+      this.http.get<any>(apiUrl, {headers}).subscribe(dataItem => {
         let vVersion: Version = new Version();
         vVersion.numero = dataItem.numero;
         vVersion.fechaCreacion = dataItem.fecha_creacion;
@@ -38,11 +45,16 @@ export class VerVersionRedService {
   }
 
   getRecursosVersion(idVersion: number): Promise<Array<Recurso>> {
+    const tokenSisred = this.autenticacionService.obtenerToken();
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Token ' + tokenSisred
+    });
     const urlVersion = environment.apiUrl + 'versiones/{id}/recursos/';
     const apiUrl = urlVersion.replace('{id}', idVersion.toString());
     let vLstRecurso: Array<Recurso> = [];
     return new Promise((resolve, reject) => {
-      this.http.get<any>(apiUrl).subscribe(dataItem => {
+      this.http.get<any>(apiUrl, {headers}).subscribe(dataItem => {
         dataItem.context.forEach(item => {
           const vObjeto = new Recurso();
           vObjeto.nombre = item.nombre;

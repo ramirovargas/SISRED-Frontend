@@ -1,15 +1,11 @@
 import { Injectable } from '@angular/core';
 import { environment } from './../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AutenticacionService } from '../autenticacion/autenticacion.service';
 import { Comentario } from './comentario.model';
-import { of } from 'rxjs/internal/observable/of';
 import { Recurso } from '../version/ver-version-red/recurso.model';
 import { Dropbox } from 'dropbox';
 import fetch from 'isomorphic-fetch';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
 
 @Injectable({
   providedIn: 'root'
@@ -23,13 +19,18 @@ export class ComentarImagenService {
 
   private comentarios: Array<Comentario> = [];
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private autenticacionService: AutenticacionService) { }
 
   // Metodo que invoca al servicio que agrega un comentario a un comentario existente
   guardarComentarioExistente(contenido:String, usuario:number, idTabla:number, id_v:number, id_r:number){
+    const tokenSisred = this.autenticacionService.obtenerToken();
     const url = this.COMENTARIO_EXISTENTE_URL.replace('{id_v}', id_v.toString()).replace('{id_r}', id_r.toString());
     var obj = {contenido, usuario, idTabla};
-    return this.httpClient.post<Comentario>(url, JSON.stringify(obj), httpOptions);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Token ' + tokenSisred
+    });
+    return this.httpClient.post<Comentario>(url, JSON.stringify(obj), {headers});
   }
 
   // Metodo que invoca al servicio que agrega un comentario nuevo
@@ -37,15 +38,25 @@ export class ComentarImagenService {
     const url = this.COMENTARIO_NUEVO_URL.replace('{id_v}', id_v.toString()).replace('{id_r}', id_r.toString());
     var obj = {contenido, usuario, x1, x2, y1, y2};
     console.log(obj);
-    return this.httpClient.post<Comentario>(url, JSON.stringify(obj), httpOptions);
+    const tokenSisred = this.autenticacionService.obtenerToken();
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Token ' + tokenSisred
+    });
+    return this.httpClient.post<Comentario>(url, JSON.stringify(obj), {headers});
   }
 
   // Metodo que invoca al servicio que obtiene la lista de comentarios
   obtenerListaComentarios(id_v:number, id_r:number): Promise<Comentario[]>{
     this.comentarios = [];
     const url = this.OBTENER_LISTA_COMENTARIOS_URL.replace('{id_v}', id_v.toString()).replace('{id_r}', id_r.toString());
+    const tokenSisred = this.autenticacionService.obtenerToken();
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Token ' + tokenSisred
+    });
     return new Promise((resolve, reject) => {
-      this.httpClient.get(url).subscribe((data: any) => {
+      this.httpClient.get(url, {headers}).subscribe((data: any) => {
         data.context.forEach(dataItem => {
           const comentario = new Comentario();
           comentario.contenido = dataItem.contenido;
@@ -65,9 +76,14 @@ export class ComentarImagenService {
 
   // Metodo que invoca al servicio que obtiene los detalles de un recurso
   obtenerDetallesRecurso(idRecurso: number): Promise<Recurso> {  
-    const url = this.OBTENER_DETALLES_RECURSO_URL.replace('{id}', idRecurso.toString());    
+    const url = this.OBTENER_DETALLES_RECURSO_URL.replace('{id}', idRecurso.toString()); 
+    const tokenSisred = this.autenticacionService.obtenerToken();
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Token ' + tokenSisred
+    });   
     return new Promise((resolve, reject) => {
-      this.httpClient.get(url).subscribe((data: any) => {
+      this.httpClient.get(url, {headers}).subscribe((data: any) => {
         const recurso = new Recurso();
         recurso.nombre = data.nombre;
         recurso.id = data.id;

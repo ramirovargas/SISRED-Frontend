@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
+import { AutenticacionService } from '../autenticacion/autenticacion.service';
 import { CrearVersionModel, Version } from './version.model';
 import { Recurso } from '../recurso/recurso.model';
 import { HttpClient } from '@angular/common/http';
@@ -20,14 +21,19 @@ export class VersionService {
 
   private versiones: Array<Version> = [];
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private autenticacionService: AutenticacionService) { }
 
   // Metodo que invoca al servicio que obtiene las versiones del RED
   getVersiones(idRed: number): Promise<Version[]> {
+    const tokenSisred = this.autenticacionService.obtenerToken();
     this.versiones = [];
     const apiUrlFinal = this.API_URL.replace('{id}', idRed.toString());
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Token ' + tokenSisred
+    });
     return new Promise((resolve, reject) => {
-      this.httpClient.get(apiUrlFinal).subscribe((data: any) => {
+      this.httpClient.get(apiUrlFinal, {headers}).subscribe((data: any) => {
         data.context.forEach(dataItem => {
           const version = new Version();
           version.id = dataItem.id;
@@ -58,13 +64,12 @@ export class VersionService {
   }
 
   crearVersionRed(model: CrearVersionModel, idRed: number): Observable<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        Authorization: 'my-auth-token'
-      })
-    };
-    return this.httpClient.post<CrearVersionModel>(this.API_URL_CREAR, model, httpOptions);
+    const tokenSisred = this.autenticacionService.obtenerToken();
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Token ' + tokenSisred
+    });
+    return this.httpClient.post<CrearVersionModel>(this.API_URL_CREAR, model, {headers});
   }
 
   crearVersionDropbox(idRed: number, consecutivo: number, recursos: Array<Recurso>, thumbnail: File) {
@@ -100,7 +105,12 @@ export class VersionService {
   }
 
   markAsFinal(versionNumero: number): Observable<Version> {
+    const tokenSisred = this.autenticacionService.obtenerToken();
     const apiUrlMarcar = this.MARCAR_VERSION_URL.replace('{id}', versionNumero.toString());
-    return this.httpClient.post<Version>(apiUrlMarcar, '');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Token ' + tokenSisred
+    });
+    return this.httpClient.post<Version>(apiUrlMarcar, '', {headers});
   }
 }

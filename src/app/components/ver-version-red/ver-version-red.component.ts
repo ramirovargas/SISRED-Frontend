@@ -25,7 +25,7 @@ export class VerVersionRedComponent implements OnInit {
 
   ngOnInit() {
     setup();
-    this.idVersion = this.route.snapshot.params.id;
+    this.idVersion = this.route.snapshot.params.idVersion;
     this.getVersion();
     this.getRecursosVersion();     
   }

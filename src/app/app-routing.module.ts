@@ -13,7 +13,7 @@ import { RedRecursosComponent } from './components/red-recursos/red-recursos.com
 import { RedAsignadosComponent } from './components/red/asignaciones/red-asignados.component';
 import { RedsRelacionadosComponent } from './components/reds-relacionados/reds-relacionados.component';
 import { VerAvanceRedComponent } from './components/ver-avance-red/ver-avance-red.component';
-import {VerVersionRedComponent} from './components/ver-version-red/ver-version-red.component';
+import { VerVersionRedComponent } from './components/ver-version-red/ver-version-red.component';
 import { VersionRedRevisionComponent } from './components/version-red-revision/version-red-revision.component';
 import { ComentarImagenComponent } from './components/comentar-imagen/comentar-imagen.component';
 import { RedCrearVersionComponent } from './components/red-crear-version/red-crear-version.component';
@@ -26,9 +26,16 @@ import { NoAutenticadoGuard } from './guards/no-autenticado/no-autenticado.guard
 import { BuscarRecursoComponent } from './components/buscar-recurso/buscar-recurso.component';
 
 const routes: Routes = [
-  { path: 'red/:idRed/proyectos', component: ProyectosRedComponent },
-  { path: 'red/version/:idVersion/archivo/:idRecurso/comentar', component: ComentarImagenComponent },
-  { path: 'buscarRed', component: BuscarRedComponent },
+  {
+    path: 'red/version/:idVersion/archivo/:idRecurso/comentar',
+    component: ComentarImagenComponent,
+    canActivate: [AutenticacionGuard]
+  },
+  {
+    path: 'buscarRed',
+    component: BuscarRedComponent,
+    canActivate: [AutenticacionGuard]
+  },
   { path: 'test', 
     component: RedAsignadosComponent,
     canActivate: [NoAutenticadoGuard]
@@ -110,13 +117,21 @@ const routes: Routes = [
     component: VerAvanceRedComponent,
     canActivate: [AutenticacionGuard]
   },
-  { path: 'red/version/:id', component: VerVersionRedComponent },
+  {
+    path: 'red/version/:idVersion',
+    component: VerVersionRedComponent,
+    canActivate: [AutenticacionGuard]
+  },
   {
     path: 'buscarRecurso',
     component: BuscarRecursoComponent,
     canActivate: [AutenticacionGuard]
   },
-  { path: 'crearVersion/:idRed', component: RedCrearVersionComponent },
+  {
+    path: 'crearVersion/:idRed',
+    component: RedCrearVersionComponent,
+    canActivate: [AutenticacionGuard]
+  },
   { path: '**', 
     component: NotFoundComponent, 
     canActivate: [AutenticacionGuard] 

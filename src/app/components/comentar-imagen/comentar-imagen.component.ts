@@ -189,7 +189,9 @@ export class ComentarImagenComponent implements OnInit {
       this.x2, this.y1, this.y2, this.idVersion, this.idRecurso)
       .subscribe(data => {
         console.log(data);
-        window.location.reload();
+        this.getComentarios();
+        this.mostrarCaja = false;
+        this.seleccionado = undefined;
       }, err => {
         console.log(err);
         alert(err);
@@ -201,7 +203,9 @@ export class ComentarImagenComponent implements OnInit {
       this.seleccionado.comentarioMultimedia.id, this.idVersion, this.idRecurso)
       .subscribe(data => {
         console.log(data);
-        window.location.reload();
+        this.getComentarios();
+        this.mostrarCaja = false;
+        this.seleccionado = undefined;
       }, err => {
         console.log(err);
         alert(err);

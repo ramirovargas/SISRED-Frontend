@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from  '@angular/common/http';
+import { AutenticacionService } from '../../autenticacion/autenticacion.service';
 
 import { Red } from '../red';
 import { environment } from '../../../../environments/environment';
@@ -9,7 +10,7 @@ import { environment } from '../../../../environments/environment';
 })
 export class BuscarRedsService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private autenticacionService: AutenticacionService) { }
 
   buscarReds(idUsuario, fechaInicio, fechaCierre, texto): Promise<Red[]> {
 
@@ -19,9 +20,11 @@ export class BuscarRedsService {
     params = fechaCierre===null ? params : params.append('fend', fechaCierre)
     params = texto===null ? params : params.append('text', texto)
 
+    const tokenSisred = this.autenticacionService.obtenerToken();
     let options = {
       headers: new HttpHeaders({
-        'content-type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: 'Token ' + tokenSisred
       }),
       params,
     };

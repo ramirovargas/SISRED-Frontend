@@ -40,6 +40,7 @@ export class BuscarRedComponent implements OnInit {
         this.spinner.hide()
         this.reds = reds;
         this.eliminarRepetidos();
+        this.pagina = 1;
       })
       .catch(err => {
         this.spinner.hide();

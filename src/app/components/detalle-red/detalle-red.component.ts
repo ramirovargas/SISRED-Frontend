@@ -135,6 +135,7 @@ export class DetalleREDComponent implements OnInit {
   // Marcar versión como final
   markAsFinal(version:Version): void {
     this.versionesService.markAsFinal(version.id).subscribe(()=>this.getVersiones())
+  }
 
   // Metodo que obtiene las fases
   getFases(): void {
