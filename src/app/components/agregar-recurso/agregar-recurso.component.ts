@@ -20,7 +20,7 @@ export class AgregarRecursoComponent implements OnInit {
   uploadSuccessful = false;
   url;
   today = formatDate(new Date(), 'dd/MM/yyyy', 'en-US');
-
+  IdRed: number;
   registerForm: FormGroup;
 
   constructor(
@@ -28,7 +28,9 @@ export class AgregarRecursoComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private agregarRecursoRestClientService: AgregarRecursoClientService,
-  ) { }
+  ) {
+      this.IdRed = this.route.snapshot.params['idRed'];
+  }
 
   ngOnInit() {
     this.registerForm = new FormGroup({
@@ -61,7 +63,7 @@ export class AgregarRecursoComponent implements OnInit {
       }
     }
   }
-
+//function to upload file resource and register on database  related information
   register() {
     this.uploadSuccessful = false;
     const nombre = this.registerForm.get('nombre').value;
@@ -69,9 +71,9 @@ export class AgregarRecursoComponent implements OnInit {
     const autor = this.registerForm.get('autor').value;
     const descripcion = this.registerForm.get('descripcion').value;
     const url = this.url;
-
+    debugger;
     const recurso = {'nombre': nombre, 'archivo':url, 'thumbnail':'urlThumbnail',
-    'tipo': tipo, 'descripcion':descripcion, 'autor':1};
+    'tipo': tipo, 'descripcion':descripcion, 'autor':1, 'idRed':this.IdRed};
     console.log(recurso);
 
     // set the component state to "uploading"

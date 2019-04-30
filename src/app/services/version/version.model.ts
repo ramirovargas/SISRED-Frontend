@@ -3,7 +3,7 @@ import { Recurso } from '../recurso/recurso.model';
 
 export class Version {
   id: number;
-  numero: number;
+  numero: number | string;
   fechaCreacion: string;
   creadoPor: string;
   imagen: string;
@@ -12,6 +12,7 @@ export class Version {
   nombreRed: string;
   nombreConectate: string;
   archivos: string;
+  recursos: number;
 }
 
 export class CrearVersionModel {

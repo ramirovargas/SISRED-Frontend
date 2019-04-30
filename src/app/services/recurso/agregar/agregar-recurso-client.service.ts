@@ -4,11 +4,14 @@ import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 const url = 'https://content.dropboxapi.com/2/files/upload';
 const token = 'n8Swy7K2KQAAAAAAAAAAEhPhfmBUFQIkLeX-JZ5wHeCntHYtZr1WFAGKwv8yaz0-';
+import { UrlConstant } from 'src/app/constants/url-constant';
+import { environment } from 'src/environments/environment';
+import { AutenticacionService } from '../../autenticacion/autenticacion.service';
 
 @Injectable()
 export class AgregarRecursoClientService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private autenticacionService: AutenticacionService) { }
 
   public upload(files: Set<File>):
     { [key: string]: { progress: Observable<number> } } {
@@ -74,8 +77,16 @@ export class AgregarRecursoClientService {
     return status;
   }
 
+  //Call rest service to add recurso.
   register(user: any): Observable<any> {
-    return this.http.post("https://grupo1-sisred.herokuapp.com/recurso/recurso_post/", user).pipe(map(response => { }));
+    const tokenSisred = this.autenticacionService.obtenerToken();
+    const options = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: 'Token ' + tokenSisred
+        })
+      };
+    return this.http.post(environment.apiUrl + UrlConstant.RESOURCE_DETAILS_ADD_ENDPOINT, user, options).pipe(map(response => { }));
   }
 
 }

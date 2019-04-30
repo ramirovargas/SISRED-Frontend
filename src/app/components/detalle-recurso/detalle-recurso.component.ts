@@ -5,6 +5,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { ResourceDetailsRestClientService } from 'src/app/services/recurso/detalle/resource-details-rest-client.service';
+import { MetadataService } from '../../services/metadata/metadata.service';
 
 @Component({
   selector: "app-detalle-recurso",
@@ -20,16 +21,19 @@ export class DetalleRecursoComponent implements OnInit {
   public successMessage: string;
   private idResource: number;
   private _success = new Subject<string>();
-
+  public formErrorMessage = '';
+  public formError = false;
 
   constructor(
     private route: ActivatedRoute,
-    private resourceDetailsRestClientService: ResourceDetailsRestClientService
+    private resourceDetailsRestClientService: ResourceDetailsRestClientService,
+    private metadataService: MetadataService
   ) {
     this.route.params.subscribe(param => {
       this.idResource = Number(param["id"]);
     });
   }
+
 
   ngOnInit(): void {
     this.loadForm();
@@ -50,6 +54,22 @@ export class DetalleRecursoComponent implements OnInit {
     this.showInputText = false;
   }
 
+  //Servicio para Agrega Metadata a un recurso
+  addMetadata() {
+    this.metadataService.addMetadataRecurso(
+      this.idResource,
+      this.detailResourceForm.get('newMetadata').value
+    )
+    .then(data => {
+        this.getResourceDetail(this.idResource);
+      })
+      .catch(err => {
+        this.formErrorMessage = err;
+        this.formError = true;
+      });
+
+  }
+
   loadForm(): void {
     this.detailResourceForm = new FormGroup({
       type: new FormControl(""),
@@ -58,6 +78,7 @@ export class DetalleRecursoComponent implements OnInit {
       updateDate: new FormControl(""),
       description: new FormControl(""),
       metadata: new FormControl(""),
+      newMetadata: new FormControl("")
     });
   }
 
@@ -65,6 +86,7 @@ export class DetalleRecursoComponent implements OnInit {
     this.resourceDetailsRestClientService
       .getResourceDetailsById(id)
       .subscribe(response => {
+        console.log(response.metadata)
         this.resourceDetailsoModel = {
           type: response.tipo,
           author: response.getAutor,
