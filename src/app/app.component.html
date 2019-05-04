@@ -1,14 +1,14 @@
 <div class="wrapper">
-  <app-header></app-header>
+  <app-header *ngIf="autenticado && usuario" [usuario]="usuario"></app-header>
   <!-- Left side column. contains the logo and sidebar -->
-  <app-side-bar></app-side-bar>
+  <app-side-bar *ngIf="autenticado && usuario" [usuario]="usuario"></app-side-bar>
 
   <router-outlet></router-outlet>
 
-  <app-footer></app-footer>
+  <app-footer *ngIf="autenticado && usuario"></app-footer>
 
   <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
+  <aside class="control-sidebar control-sidebar-dark" *ngIf="autenticado && usuario">
     <!-- Create the tabs -->
     <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
       <li>
@@ -19,11 +19,11 @@
       </li>
     </ul>
     <!-- Tab panes -->
-    <app-tab-panes></app-tab-panes>
+    <app-tab-panes *ngIf="autenticado && usuario"></app-tab-panes>
   </aside>
   <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
-  <div class="control-sidebar-bg"></div>
+  <div class="control-sidebar-bg" *ngIf="autenticado && usuario"></div>
 </div>
 <!-- ./wrapper -->

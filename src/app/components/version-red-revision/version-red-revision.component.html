@@ -3,7 +3,7 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Agregar proyecto RED        
+      Versión del RED en revisión        
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>        
@@ -14,59 +14,126 @@
   <!-- Main content -->
   <section class="content">
     <div class="row">
-      <div class="col-md-6">
-        <div class="box box-solid">
-          <div class="box-header with-border">
-            <h3 class="box-title">Información del RED</h3>
-          </div>
-          <!-- /.box-header -->
-          <div class="box-body">
-            <dl>
-              <dt>Description lists</dt>
-              <dd>A description list is perfect for defining terms.</dd>
-              <dt>Euismod</dt>
-              <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-              <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-              <dt>Malesuada porta</dt>
-              <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-            </dl>
-          </div>
-          <!-- /.box-body -->
-        </div>
-        <!-- /.box -->
-      </div>
-      <!-- ./col -->
-      <div class="col-md-6">
-        <div class="box box-solid">
-          <div class="box-header with-border">
-            <i class="fa fa-text-width"></i>
-
-            <h3 class="box-title">Description Horizontal</h3>
-          </div>
-          <!-- /.box-header -->
-          <div class="box-body">
-            <dl class="dl-horizontal">
-              <dt>Description lists</dt>
-              <dd>A description list is perfect for defining terms.</dd>
-              <dt>Euismod</dt>
-              <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-              <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-              <dt>Malesuada porta</dt>
-              <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-              <dt>Felis euismod semper eget lacinia</dt>
-              <dd>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo
-                sit amet risus.
-              </dd>
-            </dl>
-          </div>
+      <div class="col-md-12">
+        <div class="box box-primary">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Información del RED</h3>
+                  </div>
+                  <!-- /.box-header -->
+                  <div class="box-body">
+                    <dl>
+                      <dd><b>RED:</b> {{ version.nombreRed }}</dd>
+                      <dd><b>Número de versión:</b> {{ version.numero }}</dd>
+                      <dd><b>Número de recursos:</b> {{ version.recursos }}</dd>
+                    </dl>
+                    <div>
+                      <button type="submit" class="btn btn-info">Pasar RED listo para usuario final</button>
+                    </div>                    
+                  </div>
+            </div>                             
           <!-- /.box-body -->
         </div>
         <!-- /.box -->
       </div>
       <!-- ./col -->
     </div>
+    
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-primary">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Listado de Recursos de la Versión</h3>
+            </div>
+            <div class="box-body">
+              <table id="search_table_resources" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Thumbnail</th>
+                  <th>Recurso</th>                  
+                </tr>
+                </thead>
+                <tbody>
+                    <tr id="searchtableelements" *ngFor="let item of recursos">
+                        <td>
+                          <img src="{{item.thumbnail}}" width="300" height="200" *ngIf="item.tipo == tipoImagen">
+                          <video id="player" width="300" height="200" src={{item.thumbnail}} allowfullscreen controls #media *ngIf="item.tipo == tipoVideo"></video>
+
+                        </td>
+                        <td>
+                          {{ item.nombre }}
+                          <div class="float-right">
+                            <button *ngIf="item.tipo == tipoVideo" class="btn btn-info"
+                                    [routerLink]="['/red/version/' +idVersion + '/recurso/'+ item.id +'/comentarios']"
+                                    routerLinkActive="router-link-active">Revisar recurso</button>
+                            <button *ngIf="item.tipo != tipoVideo" class="btn btn-info" onClick="alert('En desarrollo')">Revisar recurso</button>
+                          </div>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>Thumbnail</th>
+                  <th>Recurso</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>            
+          </div>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-info">Volver</button>
+        </div>
+      </div>
+
+    </div>
     <!-- /.row -->
   </section>
   <!-- /.content -->
 </div>
-<!-- /.content-wrapper -->
+<div class="container">
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header color-back">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Seguro quiere habilitar esta version de RED</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#myModalPass">Aceptar</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+<div class="container">
+    <!-- Modal -->
+    <div class="modal fade" id="myModalPass" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header color-back">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p>Version de RED habilitada</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+  </div>

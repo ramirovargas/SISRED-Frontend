@@ -1,3 +1,47 @@
-<div class="row bg-danger">
-  <h1>Iniciar sesión</h1>
+<div class="hold-transition login-page bg-sisred-blue">
+  <div class="login-box mt-0 pt-5">
+    <div class="login-logo text-white pt-5">
+      SIS<b>RED</b>
+    </div>
+    <!-- /.login-logo -->
+    <div *ngIf="enviado && mensajeError !== ''" class="alert alert-danger alert-dismissible" role="alert">
+      <div class="row row-middle">
+        <div class="col-10">
+          {{mensajeError}}
+        </div>
+        <div class="col-2 text-right pr-0">
+          <i aria-hidden="true" data-dismiss="alert" class="fas fa-times pointer"></i>
+        </div>
+      </div>
+    </div>
+    <div class="login-box-body mx-auto shadow rounded">
+      <h4 class="text-center mb-4">Inicia sesión en la plataforma</h4>
+
+      <form>
+        <div class="form-group has-feedback">
+          <label>Correo</label>
+          <input type="email" class="form-control" [(ngModel)]="correo" name="correo"
+            [attr.disabled]="cargando ? true : null">
+          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+          <small class="text-red" *ngIf="enviado && correo === ''">El correo es requerido</small>
+        </div>
+        <div class="form-group has-feedback">
+          <label>Contraseña</label>
+          <input type="password" class="form-control" [(ngModel)]="contrasena" name="contrasena"
+            [attr.disabled]="cargando ? true : null">
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+          <small class="text-red" *ngIf="enviado && contrasena === ''">La contraseña es requerida</small>
+        </div>
+        <div class="row mt-5">
+          <!-- /.col -->
+          <div class="col-12 text-center">
+            <button *ngIf="!cargando" type="button" class="btn btn-primary" (click)="login()">Iniciar sesión</button>
+            <i *ngIf="cargando" class="fas fa-spin fa-spinner fa-2x text-sisred-blue"></i>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+    </div>
+    <!-- /.login-box-body -->
+  </div>
 </div>

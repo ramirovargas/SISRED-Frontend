@@ -23,7 +23,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/annotations.css",
+              "src/assets/css/comment_icon.svg",              
+              "src/assets/css/videojs_skin.css"
             ],
             "scripts": [
               "src/assets/AdminLTE/bower_components/jquery/dist/jquery.min.js",  
@@ -31,9 +34,15 @@
               "src/assets/AdminLTE/bower_components/fastclick/lib/fastclick.js", 
               "src/assets/AdminLTE/dist/js/adminlte.min.js",
               "src/assets/AdminLTE/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js",
+              "src/assets/AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js",
+              "src/assets/AdminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js",
               "src/assets/js/DatePicker.js",
               "src/assets/js/DropboxScript.js",
-              "src/assets/js/Init.js"
+              "src/assets/js/Init.js",
+              "src/assets/js/SearchTable.js",
+              "src/assets/video.js/dist/video.min.js",
+              "src/assets/js/videojs-annotation-comments.js"
+
             ],
             "es5BrowserSupport": true
           },
