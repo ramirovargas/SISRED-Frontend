@@ -7,7 +7,7 @@
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="red/detalle">RED</a></li>
+      <li><a href="#">RED</a></li>
       <li class="active">Ver avance del RED</li>
     </ol>
   </section>
@@ -15,69 +15,103 @@
   <!-- Main content -->
   <section class="content">
     <div class="row">
-      <!-- Left col -->
-      <div class="col-md-12">
-          <div class="box box-primary">
-            <div class="box-header with-border">  
-                <a class="box-title" href="#" (click)="onChangePageRed()">{{ red?.nombre }}</a>
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-              </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div class="row invoice-info">
-                <div class="col-md-8">
-                    Proyecto Conecta-Te: {{ red?.getProyecto }}
-                </div>
-                <!-- /.col -->
-                <div class="col-md-4">
-                  <a class="btn btn-app pull-right">
-                    <i class="glyphicon glyphicon-search"></i> {{ red?.getFase }}
-                  </a>
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row invoice-info -->
-              <div class="row">
-                <div class="col-md-12">
-                    <h4>Avance de sub-productos de RED</h4>
-                </div>
-              </div>
-              <!-- /.row-->
-              <div class="row">
-                <div class="col-md-8">
-                  <div class="table-responsive">
-                    <table class="table no-margin">
-                      <thead>
-                      <tr>
-                        <th>Sub-producto</th>
-                        <th>Fase</th>
-                      </tr>
-                      </thead>
-                      <tbody>                      
-                      <tr *ngFor="let subproducto of subred">
-                        <td>{{ subproducto.nombre }}</td>
-                        <td><span class="label label-success">{{ subproducto.getFase }}</span></td>
-                      </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <!-- /.table-responsive -->
-                </div>
-              </div>
-              <!-- /.row-->
-            </div>
-            <!-- ./box-body -->
-            <div class="box-footer">            
-            </div>
-            <!-- /.box-footer -->
+      <div class="box box-primary">
+        <div class="box-header with-border">  
+            <a class="box-title" href="#">{{ red?.nombre }}</a>
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            </button>
           </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="row invoice-info">
+            <div class="col-md-6">
+              Id del RED: {{ red?.id }}
+            </div>
+            <!-- /.col -->
+            <div class="col-md-6">
+              Proyecto: {{ red?.id }}
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row invoice-info -->
+          <div class="row">
+            <div class="col-md-6">
+              Nombre del RED: {{ red?.id }}
+            </div>
+            <!-- /.col -->
+            <div class="col-md-6">
+              U.H. Modificación: {{ red?.id }}
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row-->              
+        </div>
+        <!-- ./box-body -->
+        <div class="box-footer">            
+        </div>
+        <!-- /.box-footer -->
       </div>
-      <!-- /.col.md-12 -->
     </div>
     <!-- /.row -->
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box">
+          <div class="box-header">
+            <h3 class="box-title">Historico de fases</h3>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body table-responsive no-padding">
+            <table class="table table-hover">
+              <tr>
+                <th>Nombre</th>
+                <th>Fecha inicial</th>
+                <th>Fecha final</th>
+                <th>Comentario</th>
+              </tr>
+              <tr *ngFor="let fase of fases">
+                <td>{{ fase.nombre }}</td>
+                <td>{{ fase.fechaInicial }}</td>
+                <td>{{ fase.fechaFinal }}</td>
+                <td>{{ fase.comentario }}</td>
+              </tr>
+            </table>
+          </div>
+          <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+      </div>
+    </div>
+    <!-- /.row-->
+
+    <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Historico de asignados</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tr>
+                  <th>Nombre</th>
+                  <th>Rol</th>
+                </tr>
+                <tr *ngFor="let asignado of asignados">
+                  <td>{{ asignado.nombre }}</td>
+                  <td>{{ asignado.rol }}</td>
+                </tr>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
+      <!-- /.row-->
+
   </section>
   <!-- /.content -->
 

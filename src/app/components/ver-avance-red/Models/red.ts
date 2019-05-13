@@ -1,5 +1,5 @@
 export class RED {
+    id: BigInteger;
     nombre: string;
     getProyecto: string;
-    getFase: string;
 }

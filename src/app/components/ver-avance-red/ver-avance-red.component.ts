@@ -46,8 +46,4 @@ export class VerAvanceRedComponent implements OnInit {
         this.subred = response;
       });
   }
-
-  public onChangePageRed(): void {
-    this._route.navigate(['/ver-detalle-red/' + this.idRed]);
-  }
 }
