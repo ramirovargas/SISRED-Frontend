@@ -11,7 +11,6 @@ import { AdvanceRedRestClientService } from 'src/app/services/red/advance-red-re
 })
 export class VerAvanceRedComponent implements OnInit {
   public red: RED;
-  subred: Array<RED>;
   public advanceRedForm: FormGroup;
   private idRed: number;
 
@@ -43,7 +42,6 @@ export class VerAvanceRedComponent implements OnInit {
       .getAdvanceRedById(id)
       .subscribe(response => {
         this.red = response[0];
-        this.subred = response;
       });
   }
 }

@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { UrlConstant } from '../constants/url-constant';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AutenticacionService } from './autenticacion/autenticacion.service';
+import { UrlConstant } from 'src/app/constants/url-constant';
+import { AutenticacionService } from '../autenticacion/autenticacion.service';
 
 @Injectable({
   providedIn: 'root'
