@@ -9,12 +9,20 @@ import { AutenticacionService } from '../autenticacion/autenticacion.service';
 @Injectable({
   providedIn: 'root'
 })
+
+/**
+ * Se declara la variable HttpClient para la configuración de la ruta de la pagina y autenticación
+ **/
 export class AdvanceRedRestClientService {
   constructor(
     private http: HttpClient,
     private autenticacionService: AutenticacionService
   ) {}
 
+  /**
+   * metodo para obtener el objeto red y sus fases
+   * @param id es el id del red a buscar
+   */
   getAdvanceRedById(id: number): Observable<any> {
     const tokenSisred = this.autenticacionService.obtenerToken();
 
